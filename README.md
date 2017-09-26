@@ -6,3 +6,5 @@
 - Alex Denton
 - Charlie McDermitt
 
+## Goal
+![Doc](./assets/block.jpg)
