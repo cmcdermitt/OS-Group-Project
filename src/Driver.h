@@ -13,8 +13,8 @@
 // The next functions are run in a loop: 
 // scheduleNext(): Calls functions from long term scheduler and short term scheduler to load 
 // jobs onto the ready queue and the ram.
-//  
-
+// cpu.execute(): The cpu is permitted to run until job completion or interrupt.   
+//
 
 class Driver {
 Loader *load; 
