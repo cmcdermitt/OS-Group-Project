@@ -1,0 +1,6 @@
+Driver
+Disk
+Loader
+RAM
+(long-term) scheduler
+Everything else
