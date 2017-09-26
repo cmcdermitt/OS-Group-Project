@@ -5,6 +5,10 @@
 #ifndef OS_GROUP_PROJECT_RAM_H
 #define OS_GROUP_PROJECT_RAM_H
 
+//The RAM will contain a 1024 locations containing a dedicated 8-character Hex word
+//The read(int address) function is called by the Fetch class, which locates
+//a literal address in the RAM array and returns the word at that location.
+
 
 class RAM {
 public: 
