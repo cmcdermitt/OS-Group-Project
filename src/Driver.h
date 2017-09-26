@@ -14,7 +14,6 @@
 // scheduleNext(): Calls functions from long term scheduler and short term scheduler to load
 // jobs onto the ready queue and the ram.
 // cpu.execute(): The cpu is permitted to run until job completion or interrupt.
-// Eshin wears hats
 
 class Driver {
 Loader *load;
