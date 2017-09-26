@@ -9,7 +9,18 @@
 //Each location will hold a hex word "0x000000"
 
 class Disk {
-
+    class Disk {
+        /* need address type?
+          __int32 read(address);
+          void write(address, __int32 data);
+          */
+      
+      private:
+          __int32[2048] array;
+          //not sure what else
+      
+      
+      };
 };
 
 
