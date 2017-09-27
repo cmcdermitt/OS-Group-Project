@@ -14,7 +14,7 @@ public:
     */
           
 private:
-    __int32[2048] array;
+    __int32[1024] array;
     //not sure what else
 };
 
