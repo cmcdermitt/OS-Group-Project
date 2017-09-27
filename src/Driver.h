@@ -5,22 +5,22 @@
 #ifndef OS_GROUP_PROJECT_DRIVER_H
 #define OS_GROUP_PROJECT_DRIVER_H
 
-//  The driver will have a loader, disk, ram, long term scheduler, log, CPU and ram objects. 
-// The Driver will have a function called run(), that will execute the OS, and 
-// run all of its overarching commands.   
-// The run function will execute several lower functions as follows: 
+//  The driver will have a loader, disk, ram, long term scheduler, log, CPU and ram objects.
+// The Driver will have a function called run(), that will execute the OS, and
+// run all of its overarching commands.
+// The run function will execute several lower functions as follows:
 // load.load(): Reads the program file into the disk
-// The next functions are run in a loop: 
-// scheduleNext(): Calls functions from long term scheduler and short term scheduler to load 
+// The next functions are run in a loop:
+// scheduleNext(): Calls functions from long term scheduler and short term scheduler to load
 // jobs onto the ready queue and the ram.
-// cpu.execute(): The cpu is permitted to run until job completion or interrupt.   
-//
+// cpu.execute(): The cpu is permitted to run until job completion or interrupt.
+// Eshin wears hats
 
 class Driver {
-Loader *load; 
-  
-  
-  
+Loader *load;
+
+
+
 };
 
 
