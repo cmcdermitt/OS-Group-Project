@@ -4,7 +4,7 @@
 
 #ifndef OS_GROUP_PROJECT_RAM_H
 #define OS_GROUP_PROJECT_RAM_H
-
+#include <iostream>
 //The RAM will contain a 1024 locations containing a dedicated 8-character Hex word
 //The read(int address) function is called by the Fetch class, which locates
 //a literal address in the RAM array and returns the word at that location.
@@ -12,11 +12,11 @@
 
 class RAM {
 public:
-    __int32 read(__int32 address);
-    void write(__int32 address, __int32 data);
-          
+    __int32_t read(__int32_t address);
+    void write(__int32_t address, __int32_t data);
+
 private:
-     __int32[1024] array;
+     __int32_t array[1024];
     //not sure what else
 };
 

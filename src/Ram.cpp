@@ -9,10 +9,10 @@ class Disk {
       __int32 read(address);
       void write(address, __int32 data);
       */
-  
+
   private:
-      __int32[1024] array;
+      __int32 array[1024];
       //not sure what else
-  
-  
+
+
   };

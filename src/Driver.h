@@ -16,7 +16,7 @@
 // cpu.execute(): The cpu is permitted to run until job completion or interrupt.
 
 class Driver {
-Loader *load;
+
 
 
 
