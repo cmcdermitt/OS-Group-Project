@@ -12,13 +12,13 @@ class Disk {
     /* need address type?
       __int32 read(address);
       void write(address, __int32 data);
-      */
+
 
   private:
       __int32[2048] array;
       //not sure what else
-      
-     
+
+
 };
 
 

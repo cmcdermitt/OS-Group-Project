@@ -7,8 +7,11 @@
 
 
 class Loader {
-    
-};
+    const std::string CODEFILENAME = "ProgramFile.txt"
+    public:
+    init(); // Loads all of the data into the disk and creates a job list
+
+}
 
 
 #endif //OS_GROUP_PROJECT_LOADER_H
