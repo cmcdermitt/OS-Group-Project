@@ -4,14 +4,17 @@
 
 #ifndef OS_GROUP_PROJECT_LOADER_H
 #define OS_GROUP_PROJECT_LOADER_H
-#include <iostream>
-const std::string CODEFILENAME = "ProgramFile.txt";
+
+#include "Disk.h"
+
 class Loader {
-
-    public:
-    void init(); // Loads all of the data into the disk and creates a job list
-
-};
+public:
+    void init(Disk disk_to_load); // Loads all of the data into the disk and creates a job list
+private:
+    const std::string CODEFILENAME = "ProgramFile.txt"
+    Disk disk;
+    
+}
 
 
 #endif //OS_GROUP_PROJECT_LOADER_H

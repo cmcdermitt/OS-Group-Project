@@ -3,3 +3,22 @@
 //
 
 #include "Driver.h"
+#include "Disk.h"
+#include "Loader.h"
+
+class Driver{
+    
+    Driver(){
+        Disk disk = Disk();
+        Loader loader = loader();
+    }
+    
+    void run() {
+        loader.init(&disk); 
+        
+        
+    }
+    
+    
+    
+}
