@@ -4,7 +4,7 @@
 
 class Utility
 {
-  string HexToBinary(int hex)
+  string HexToBinary(int hexinput)
   {
     string s = hex;
     stringstream ss;
