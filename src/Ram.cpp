@@ -3,7 +3,9 @@
 //
 
 #include "RAM.h"
-
+#include <iostream>
+#include <stdlib.h>
+ #include <stdint.h>
 class Disk {
     /* need address type?
       __int32 read(address);
