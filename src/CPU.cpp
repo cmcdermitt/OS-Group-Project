@@ -33,3 +33,7 @@ bool CPU::MOV(int fromReg, int toReg) {
     this->Register[toReg] = this->Register[fromReg];
     return true;
 }
+
+int* CPU::dump_registers() const{
+    return Register;
+}
