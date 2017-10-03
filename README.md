@@ -1,19 +1,19 @@
 # OS-Group-Project
 ## Colaborators
-- Eric Schneider
-- Zachery Auzenne
-- Eshin Griffith
-- Alex Denton
-- Charlie McDermitt
+- :tennis: Eric Schneider
+- :notes: Zachery Auzenne
+- :frog: Eshin Griffith
+- :wolf: Alex Denton
+- :dog: Charlie McDermitt
 ## Todo
-1. Implement Disk Read function
-2. Implement Disk Write function
-3. Implement PCB
+1. :tennis: Implement Disk Read function
+2. :tennis: Implement Disk Write function
+3. :notes: Implement PCB
 4. Implement Driver
-5. Implement Loader Read
-6. Implement Loader Write
-7. Implement CPU
-8. Implement Decoder
+5. :dog: Implement Loader Read
+6. :dog: Implement Loader Write
+7. :frog: Implement CPU
+8. :wolf: Implement Decoder
 
 ## Goal
 ![Doc](./assets/block.jpg)
