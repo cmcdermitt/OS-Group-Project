@@ -27,3 +27,13 @@ bool CPU::ST(int regNum) {
 bool CPU::LW(int addr, int regNum) {
     return false;
 }
+
+bool CPU::MOV(int fromReg, int toReg) {
+    if(toReg<0||toReg>=16||fromReg<0||fromReg>=16) return false;
+    this->Register[toReg] = this->Register[fromReg];
+    return true;
+}
+
+int* CPU::dump_registers() const{
+    return Register;
+}
