@@ -15,11 +15,11 @@
 
 class RAM {
 public:
-    __int32_t read(__int32_t address);
-    void write(__int32_t address, __int32_t data);
+    int read(int address);
+    void write(int address, int data);
 
 private:
-     __int32_t array[1024];
+     int array[1024];
     //not sure what else
 };
 

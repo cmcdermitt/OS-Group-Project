@@ -9,7 +9,7 @@
 
 class CPU {
     private:
-        __int32_t Register[16];
+        int Register[16];
         RAM ram;
         
     public:

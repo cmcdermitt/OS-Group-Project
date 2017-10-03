@@ -6,14 +6,14 @@
 #include <iostream>
 #include <stdlib.h>
 
-__int32 Disk::read(__int32 address)
+int Disk::read(int address)
 {
     if(address >= 2048 || address < 0)
         return -1;
     return diskData[address];
 }
 
-void Disk::write(__int32 address, __int32 data)
+void Disk::write(int address, int data)
 {
     if(address >= 2048 || address < 0)
         exit(EXIT_FAILURE);
