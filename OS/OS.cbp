@@ -32,6 +32,21 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="../src/CPU.cpp" />
+		<Unit filename="../src/CPU.h" />
+		<Unit filename="../src/Disk.cpp" />
+		<Unit filename="../src/Disk.h" />
+		<Unit filename="../src/Driver.cpp" />
+		<Unit filename="../src/Driver.h" />
+		<Unit filename="../src/Loader.cpp" />
+		<Unit filename="../src/Loader.h" />
+		<Unit filename="../src/PCB.cpp" />
+		<Unit filename="../src/Ram.cpp" />
+		<Unit filename="../src/Ram.h" />
+		<Unit filename="../src/TODO.txt" />
+		<Unit filename="../src/Utility.cpp" />
+		<Unit filename="../src/Utility.h" />
+		<Unit filename="../src/main.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
