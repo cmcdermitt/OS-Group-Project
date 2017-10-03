@@ -11,15 +11,17 @@ class CPU {
     private:
         int Register[16];
         RAM ram;
-
-    public:
-
-        bool Operate(int code);
-        CPU(RAM ram);
         bool RD();
         bool WR();
         bool ST(int regNum);
         bool LW(int addr, int regNum);
+        bool MOV(int fromReg, int toReg);
+
+    public:
+        //code is the instruction being passed; returns the thing
+        bool Operate(int code);
+        CPU(RAM ram);
+
 };
 
 
