@@ -13,7 +13,7 @@
 5. :tennis: Implement Loader Read
 6. :tennis: Implement Loader Write
 7. :frog: Implement CPU
-8. :wolf: Implement Decoder
+8. :suspect: Implement Decoder
 9. :dog: Long Term Scheduler
 10. :notes: Short Term Scheduler
 
