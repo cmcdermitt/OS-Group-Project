@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1507058712 source:c:\users\eric schneider\documents\github\os-group-project\src\cpu.cpp
+	"CPU.h"
+
+1507058713 c:\users\eric schneider\documents\github\os-group-project\src\cpu.h
+
+1507060734 source:c:\users\eric schneider\documents\github\os-group-project\src\disk.cpp
+	"Disk.h"
+	<iostream>
+	<stdlib.h>
+
+1507060662 c:\users\eric schneider\documents\github\os-group-project\src\disk.h
+	<iostream>
+
+1507058713 source:c:\users\eric schneider\documents\github\os-group-project\src\driver.cpp
+	"Driver.h"
+
+1507060741 c:\users\eric schneider\documents\github\os-group-project\src\driver.h
+
+1507058713 source:c:\users\eric schneider\documents\github\os-group-project\src\loader.cpp
+	"Loader.h"
+
+1507060803 c:\users\eric schneider\documents\github\os-group-project\src\loader.h
+	<iostream>
+
+1507058713 source:c:\users\eric schneider\documents\github\os-group-project\src\main.cpp
+	<iostream>
+
+1507060865 source:c:\users\eric schneider\documents\github\os-group-project\src\ram.cpp
+	"RAM.h"
+
+1507060855 c:\users\eric schneider\documents\github\os-group-project\src\ram.h
+	<iostream>
+
