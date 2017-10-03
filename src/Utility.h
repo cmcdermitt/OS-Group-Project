@@ -4,7 +4,8 @@
 class Utility
 {
   public:
-    string HexToBinary( int hexinput); //converts Hex values to 32-bit binary long
+    string HexToBinary(int hexinput); //converts Hex values to 32-bit binary long
+    int BinaryToHex (string binaryinput);
 }
 
 #endif // UTILITY_H_INCLUDED
