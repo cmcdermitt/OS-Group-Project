@@ -9,12 +9,13 @@
 
 class Loader {
 public:
-    void init(Disk disk_to_load); // Loads all of the data into the disk and creates a job list
+    void init(Disk *disk_to_load); // Loads all of the data into the disk and creates a job list
+    Loader();
 private:
-    const std::string CODEFILENAME = "ProgramFile.txt"
+    const std::string CODEFILENAME = "ProgramFile.txt";
     Disk disk;
-    
-}
+
+};
 
 
 #endif //OS_GROUP_PROJECT_LOADER_H

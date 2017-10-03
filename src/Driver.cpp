@@ -6,19 +6,18 @@
 #include "Disk.h"
 #include "Loader.h"
 
-class Driver{
-    
-    Driver(){
+
+
+    Driver::Driver(){
         Disk disk = Disk();
-        Loader loader = loader();
+        Loader loader = Loader();
     }
-    
-    void run() {
-        loader.init(&disk); 
-        
-        
+
+    void Driver::run() {
+        loader.init(&disk);
+
+
     }
-    
-    
-    
-}
+
+
+

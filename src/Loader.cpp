@@ -4,27 +4,27 @@
 
 #include "Loader.h"
 #include <iostream>
-#include <stdlib>
+#include <stdlib.h>
+#include <fstream>
+#include <string>
 
-class Loader{
-    
-    Loader(){
-        
+    Loader::Loader(){
+
     }
-    
-    void init (Disk disk_to_load) {
-        fstream input;    
-        input.open(CODEFILENAME);
-    
+
+    void Loader::init (Disk *disk_to_load) {
+        std::ifstream input(CODEFILENAME);
+        std::string temp;
+        while(getline(input, temp));
+    }
         //logic for actually reading file goes here
-        
-        
-    }
-    
-    
-    
-    
 
 
-    
-}
+
+
+
+
+
+
+
+

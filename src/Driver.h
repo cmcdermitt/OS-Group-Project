@@ -14,11 +14,17 @@
 // scheduleNext(): Calls functions from long term scheduler and short term scheduler to load
 // jobs onto the ready queue and the ram.
 // cpu.execute(): The cpu is permitted to run until job completion or interrupt.
-
+#include "Loader.h"
+#include "Driver.h"
 class Driver {
 
+public:
+Driver();
+void run();
 
-
+private:
+    Loader loader;
+   Disk disk;
 
 };
 
