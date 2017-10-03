@@ -7,44 +7,7 @@
 #include <stdlib.h>
 
 class PCB {
-  public:
-  
-  PCB ();
-  
-  void setId (int id);
-  int getId ();
-  
-  void setSize (int size);
-  int getSize ();
-  
-  void setPri (int priority);
-  int getPri();
-  
-  void setStatus (PROCESS_STATUS proc);
-  PROCESS_STATUS getStatus();
-  
-  void setJobAddress (int address);
-  int getJobAddress ();
-  
-  void setPrgmCounter (int counter);
-  int getPrgmCounter ();
-  
-  void setRan (bool var);
-  bool getRan ();
-  
-  void setMemory (bool var);
-  bool getMemory ();
-  
-  void setReg (int reg[]);
-  int[] getReg ();
-  
-  void setDataDisk (int address);
-  int getDataDisk ();
-  
-  void setDataMem (int address);
-  int getDataMem ();
- 
-  private:
+   private:
   //Job
     int jobId;
     int jobSize;
@@ -56,12 +19,50 @@ class PCB {
     bool hasRan;
     bool inMemory;
     int registers [16];
-    
+
     //Data
     int dataDiskAddress;
     int dataMemoryAddress;
-    
-//Implementation    
+  public:
+
+  PCB ();
+
+  void setId (int id);
+  int getId ();
+
+  void setSize (int size);
+  int getSize ();
+
+  void setPri (int priority);
+  int getPri();
+
+  void setStatus (PROCESS_STATUS proc);
+  PROCESS_STATUS getStatus();
+
+  void setJobAddress (int address);
+  int getJobAddress ();
+
+  void setPrgmCounter (int counter);
+  int getPrgmCounter ();
+
+  void setRan (bool var);
+  bool getRan ();
+
+  void setMemory (bool var);
+  bool getMemory ();
+
+  void setReg (int reg[]);
+  int[] getReg ();
+
+  void setDataDisk (int address);
+  int getDataDisk ();
+
+  void setDataMem (int address);
+  int getDataMem ();
+
+
+
+//Implementation
 
 PCB () {
   jobId = 0;
@@ -73,7 +74,7 @@ PCB () {
   hasRan = false;
   inMemory = false;
   registers.fill(0);
-  
+
   dataDiskAddress = 0;
   dataMemoryAddress = 0;
  }
