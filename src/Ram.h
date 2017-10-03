@@ -11,11 +11,9 @@
 
 
 class RAM {
-public: 
-    /* need address type?
-    __int32 read(address);
-    void write(address, __int32 data);
-    */
+public:
+    __int32 read(__int32 address);
+    void write(__int32 address, __int32 data);
           
 private:
      __int32[1024] array;

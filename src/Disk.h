@@ -9,14 +9,12 @@
 //Each location will hold a hex word "0x000000"
 
 class Disk {
-    /* need address type?
-      __int32 read(address);
-      void write(address, __int32 data);
-      */
+    __int32 read(__int32 address);
+    void write(__int32 address, __int32 data);
 
-  private:
-      __int32[2048] array;
-      //not sure what else
+    private:
+    const int SIZE = 2048;
+    __int32[SIZE] array;
       
      
 };
