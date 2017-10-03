@@ -1,8 +1,9 @@
 #include <iostream>
-
+#include "Disk.h"
 
 int main()
 {
-    Disk::test();
+    Disk *d = new Disk();
+       d->test();
     return 0;
 }

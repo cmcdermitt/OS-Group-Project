@@ -25,7 +25,7 @@ class Disk {
     Disk(); // Constructor
     // Uses the functions in Disk to see if they work; do not use in
     // main project
-
+ void test();
 
 };
 

@@ -11,8 +11,9 @@ class CPU {
     private:
         int Register[16];
         RAM ram;
-        
+
     public:
+
         bool Operate(int code);
         CPU(RAM ram);
         bool RD();
