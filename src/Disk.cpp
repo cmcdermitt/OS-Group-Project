@@ -20,3 +20,22 @@ void Disk::write(__int32 address, __int32 data)
     diskData[address] = data;
 
 }
+
+Disk::Disk()
+{
+
+}
+
+void static test()
+{
+Disk *disk = new Disk();
+disk->write(234, 4538);
+std::cout << "234: should be 3539:\t" << disk->read(234);
+std::cout << "0: should be 0:\t" << disk->read(0);
+disk->write(235, 12344);
+disk->write(234, 2333);
+std::cout << "234: should be 2333:\t" << disk->read(234);
+std::cout << "235: should be 12344:\t" <<  disk->read(235);
+std::cout << "236: should be 0:\t" << disk->read(236);
+
+}

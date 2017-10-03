@@ -7,8 +7,10 @@
 
 //Comprised of an array limited to 2048 words (or locations)
 //Each location will hold a hex word "0x000000"
-const int SIZE = 2048;
 #include <iostream>
+#include <stdlib.h>
+const int SIZE = 2048;
+
 class Disk {
 
   private:
@@ -18,9 +20,11 @@ class Disk {
 
   public:
 
-    __int32 read(__int32 address);
-    void write(__int32 address, __int32 data);
-
+    __int32 read(__int32 address); // Returns data from location
+    void write(__int32 address, __int32 data); // Writes data to location
+    Disk(); // Constructor
+    // Uses the functions in Disk to see if they work; do not use in
+    // main project
 
 
 };
