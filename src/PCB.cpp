@@ -64,7 +64,7 @@ class PCB {
 
 //Implementation
 
-PCB () {
+PCB::PCB () {
   jobId = 0;
   jobSize = 0;
   jobPri = 0;
