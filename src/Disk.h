@@ -15,17 +15,17 @@ class Disk {
 
   private:
 
-      __int32 diskData[SIZE];
+      int diskData[SIZE];
       //not sure what else
 
   public:
 
-    __int32 read(__int32 address); // Returns data from location
-    void write(__int32 address, __int32 data); // Writes data to location
+    int read(int address); // Returns data from location
+    void write(int address, int data); // Writes data to location
     Disk(); // Constructor
     // Uses the functions in Disk to see if they work; do not use in
     // main project
-
+ void test();
 
 };
 
