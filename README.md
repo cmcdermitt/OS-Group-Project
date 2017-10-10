@@ -3,7 +3,7 @@
 - :tennis: Eric Schneider
 - :notes: Zachery Auzenne
 - :frog: Eshin Griffith
-- :wolf: Alex Denton
+- ~~:wolf: Alex Denton~~
 - :dog: Charlie McDermitt
 ## Todo
 1. :tennis: Implement Disk Read function
