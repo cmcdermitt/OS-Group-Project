@@ -1,11 +1,12 @@
 # OS-Group-Project
-## Colaborators
+## Collaborators
 - :tennis: Eric Schneider
 - :notes: Zachery Auzenne
 - :frog: Eshin Griffith
-- ~~:wolf: Alex Denton~~
 - :dog: Charlie McDermitt
-## Todo
+- ~~:wolf: Alex Denton~~
+
+## To-do
 1. :tennis: Implement LTS
 3. ~~:notes: Implement PCB~~
 4. :question: Implement Driver
