@@ -6,15 +6,24 @@
 #include <iostream>
 #include <stdlib.h>
  #include <stdint.h>
-class Disk {
-    /* need address type?
-      int read(address);
-      void write(address, __int32 data);
-      */
 
-  private:
-      int array[1024];
-      //not sure what else
+    void RAM::write(int address, int data)
+    {
+        if(address >= 1024 || address < 0)
+            exit(EXIT_FAILURE);
+        ram_data[address] = data;
 
+    }
 
-  };
+    int RAM::read(int address)
+    {
+        if(address >= 1024 || address < 0)
+            return -1;
+        return ram_data[address];
+    }
+
+    RAM::RAM()
+    {
+        for(int i = 0; i < 1024; i++)
+            ram_data[i] = 0;
+    }

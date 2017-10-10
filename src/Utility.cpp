@@ -3,7 +3,8 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
-	// ******** NOT TESTED ************
+#include <cmath>
+// ******** NOT TESTED ************
 	// Hex to Binary
 	// Converts hex to binary
 

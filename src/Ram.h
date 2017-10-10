@@ -17,9 +17,10 @@ class RAM {
 public:
     int read(int address);
     void write(int address, int data);
+    RAM();
 
 private:
-     int array[1024];
+     int ram_data[1024];
     //not sure what else
 };
 
