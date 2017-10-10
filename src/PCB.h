@@ -3,7 +3,7 @@
 #include<list>
 //Created by Charlie McDermitt on 10/3/2017
 
-//PCB struct; may replace the class later 
+//PCB struct; may replace the class later
 
 
 struct PCB {
@@ -16,6 +16,7 @@ struct PCB {
 	int temp_buf_size;
 	enum PROCESS_STATUS { RUNNING, READY, BLOCKED, NEW, COMPLETED };
 	enum PROCESS_STATUS state;
+	int jobDiskAddress;
 	int job_address;
 	int prgm_counter;
 	bool has_ran;

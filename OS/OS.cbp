@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -41,13 +42,13 @@
 		<Unit filename="../src/Loader.cpp" />
 		<Unit filename="../src/Loader.h" />
 		<Unit filename="../src/PCB.cpp" />
+		<Unit filename="../src/PCB.h" />
 		<Unit filename="../src/Ram.cpp" />
 		<Unit filename="../src/Ram.h" />
 		<Unit filename="../src/TODO.txt" />
 		<Unit filename="../src/Utility.cpp" />
 		<Unit filename="../src/Utility.h" />
 		<Unit filename="../src/main.cpp" />
-		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

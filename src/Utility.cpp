@@ -2,11 +2,11 @@
 #include <bitset>
 #include <string>
 #include <iostream>
-	// ******** NOT TESTED ************	
+#include <algorithm>
+	// ******** NOT TESTED ************
 	// Hex to Binary
-	// Converts hex to binary 
-namespace Utility
-{
+	// Converts hex to binary
+
 	std::string Utility::HexToBinary(std::string hexinput)
 	{
 		char temp; // Temporry character
@@ -62,7 +62,7 @@ namespace Utility
 	}
 
 
-	// Hex to Decimal 
+	// Hex to Decimal
 	int Utility::convertIndividualHexToDecimal(char hex)
 	{
 		switch (hex)
@@ -104,19 +104,19 @@ namespace Utility
 
 	int Utility::convertHexToDecimal(std::string hexInput)
 	{
-		std::string::iterator it = hexInput.end() - 1; 
-		int place = 0; 
-		int final = 0; 
-		while (it != hexInput.begin())
+		int it = hexInput.length() - 1;
+		int place = 0;
+		int final = 0;
+		while (it != 0)
 		{
-			final += pow(16, place) * convertIndividualHexToDecimal(*it);
+			final += pow(16, place) * convertIndividualHexToDecimal(hexInput.at(it));
 			place++;
-			--it; 
+			--it;
 
-		} 
+		}
 
-		final += pow(16, place) * convertIndividualHexToDecimal(*it);
-		return final; 
+		final += pow(16, place) * convertIndividualHexToDecimal(hexInput.at(0));
+		return final;
 	}
 
 	// Binary to Hex
@@ -174,7 +174,7 @@ namespace Utility
 		}
 	}
 
-	// Converts Binary to decimal 
+	// Converts Binary to decimal
 	int Utility::convertBinaryToDecimal(std::string binaryInput)
 	{
 		int decimal = 0;
@@ -189,5 +189,5 @@ namespace Utility
 	}
 
 
-	
-}
+
+

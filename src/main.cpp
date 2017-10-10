@@ -5,5 +5,5 @@
 int main() {
     //calls Driver to start
 	std::cout << Utility::convertHexToDecimal("ABCDEF");
-	int x = 2; 
+
 }

@@ -99,6 +99,6 @@ bool CPU::BGZ(int B, int addr){
 bool CPU::BLZ(int B, int addr){
     if(this->Register[B]<0) return true; // What is addr?
 }
-int* CPU::dump_registers() const{
-    return Register;
-}
+//int* CPU::dump_registers() const{
+//    return Register;
+//}
