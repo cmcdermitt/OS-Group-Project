@@ -23,6 +23,7 @@ class Driver {
 public:
 Driver();
 void run();
+void test();
 std::list<PCB> *pcbs;
 private:
    Loader *loader;

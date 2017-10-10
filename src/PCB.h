@@ -22,12 +22,15 @@ struct PCB {
 	bool has_ran;
 	bool in_memory;
 	int registers[16];
+	int dataSectionSize;
 
 	//Data
 	int data_disk_address;
 	int data_memory_address;
 
 };
+
+void printPCBs(std::list<PCB> *p);
 #endif // PCB_H_INCLUDED
 
 //class PCB {

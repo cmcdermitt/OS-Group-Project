@@ -4,6 +4,8 @@
 
 int main() {
     //calls Driver to start
-	std::cout << Utility::convertHexToDecimal("ABCDEF");
-
+	//std::cout << Utility::convertHexToDecimal("ABCDEF");
+    Driver *driver = new Driver();
+    driver->run();
+    driver->test();
 }

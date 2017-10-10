@@ -33,7 +33,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="../src/CPU.cpp" />
+		<Unit filename="../Program-File.txt" />
+		<Unit filename="../src/CPU.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="../src/CPU.h" />
 		<Unit filename="../src/Disk.cpp" />
 		<Unit filename="../src/Disk.h" />

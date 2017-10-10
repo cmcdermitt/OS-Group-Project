@@ -1,3 +1,17 @@
+#include <iostream>
+#include "PCB.h"
+void printPCBs(std::list<PCB> *p)
+{
+    std::list::iterator eshen = p.begin();
+    while(eshen != p.end())
+    {
+
+
+    }
+}
+
+
+
 //
 // Created by Zachary Auzenne on 10/03/17.
 //

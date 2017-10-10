@@ -12,12 +12,19 @@
     Driver::Driver(){
          disk = new Disk();
        loader = new Loader();
-	   pcbs = new std::list<PCB>(); 
+	   pcbs = new std::list<PCB>();
     }
 
     void Driver::run() {
         loader->init(disk, pcbs);
 
+
+    }
+
+    void Driver::test()
+    {
+        for(int i= 0; i < 2048; i++)
+            std::cout << disk->read(i) << std::endl;
 
     }
 
