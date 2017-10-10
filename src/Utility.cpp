@@ -1,48 +1,129 @@
-#include 'Utility.h'
+#include "Utility.h"
 #include <bitset>
 #include <string>
+#include <iostream>
 
-class Utility
-{
-  string HexToBinary(int hexinput)
-  {
-    string s = hex;
-    stringstream ss;
-    ss << hex << s;
-    unsigned n;
-    ss >> n;
-    bitset<32> b(n);
-    return b.to_string();
-  }
-  int BinaryToHex (string binaryinput)
-  {
-    for(size_t i = 0; i < (binaryinput.size() - 1); i++)
-    {
-      string binToHex, tmp = "0000";
-      for (size_t j = 0; j < binaryinput[i].size(); j += 4)
-      {
-        tmp = binaryinput[i].substr(j, 4);
-        if      (!tmp.compare("0000")) binToHex += "0";
-        else if (!tmp.compare("0001")) binToHex += "1";
-        else if (!tmp.compare("0010")) binToHex += "2";
-        else if (!tmp.compare("0011")) binToHex += "3";
-        else if (!tmp.compare("0100")) binToHex += "4";
-        else if (!tmp.compare("0101")) binToHex += "5";
-        else if (!tmp.compare("0110")) binToHex += "6";
-        else if (!tmp.compare("0111")) binToHex += "7";
-        else if (!tmp.compare("1000")) binToHex += "8";
-        else if (!tmp.compare("1001")) binToHex += "9";
-        else if (!tmp.compare("1010")) binToHex += "A";
-        else if (!tmp.compare("1011")) binToHex += "B";
-        else if (!tmp.compare("1100")) binToHex += "C";
-        else if (!tmp.compare("1101")) binToHex += "D";
-        else if (!tmp.compare("1110")) binToHex += "E";
-        else if (!tmp.compare("1111")) binToHex += "F";
-        else continue;
-      }
-    hexOStr << binToHex;
-    hexOStr << " ";
-   }
-   return hexOStr;
-  }
-}
+	// Hex to Binary
+	// Converts hex to binary 
+	std::string Utility::HexToBinary(std::string hexinput)
+	{
+		char temp; // Temporry character
+		std::string binaryVersion = "";
+
+		for (int i = 0; i < 8; i++)
+		{
+			binaryVersion = binaryVersion + convertHexCharToBinary(hexinput.at(i));
+		}
+		return binaryVersion;
+	}
+
+
+	// Converts individual hex to binary
+	std::string Utility::convertHexCharToBinary(char hex)
+	{
+		switch (hex)
+		{
+		case '0':
+			return "0000";
+			break;
+		case '1':
+			return "0001";
+		case '2':
+			return "0010";
+		case '3':
+			return "0011";
+		case '4':
+			return "0100";
+		case '5':
+			return "0101";
+		case '6':
+			return "0110";
+		case '7':
+			return "0111";
+		case '8':
+			return "1000";
+		case '9':
+			return "1001";
+		case 'A':
+			return "1010";
+		case 'B':
+			return "1011";
+		case 'C':
+			return "1100";
+		case 'D':
+			return "1101";
+		case 'E':
+			return "1110";
+		case 'F':
+			return "1111";
+		}
+	}
+
+
+	// Binary to Hex
+
+	// Converts Binary to hex
+	std::string Utility::BinaryToHex(std::string binaryinput)
+	{
+		std::string hexVersion = "";
+
+		for (int i = 0; i <= binaryinput.length(); i = i + 4)
+		{
+			hexVersion += binaryinput.substr(i, 4);
+		}
+	}
+
+	// Converts individual bits to a hex Char
+	char Utility::convertFourBitsToHexChar(std::string binary)
+	{
+		int decimal = convertBinaryToDecimal(binary); 
+		switch (decimal)
+		{
+		case 0:
+			return '0';
+		case 1:
+			return '1';
+		case 2:
+			return '2';
+		case 3:
+			return '3';
+		case 4:
+			return '4';
+		case 5:
+			return '5';
+		case 6:
+			return '6';
+		case 7: 
+			return '7'; 
+		case 8: 
+			return '8';
+		case 9: 
+			return '9';
+		case 10: 
+			return 'A';
+		case 11: 
+			return 'B';
+		case 12: 
+			return 'C';
+		case 13: 
+			return 'D';
+		case 14: 
+			return 'E';
+		case 15: 
+			return 'F'; 
+		}
+	}
+
+	// Converts Binary to decimal 
+	int Utility::convertBinaryToDecimal(std::string binaryInput)
+	{
+		int decimal = 0;
+		int place = 1;
+		for (int i = 0; i < binaryInput.length(); i++)
+		{
+			if (binaryInput.at(i) == '1')
+				decimal += place;
+			place *= 2;
+		}
+		return decimal;
+	}
