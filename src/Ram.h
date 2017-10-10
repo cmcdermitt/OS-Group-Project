@@ -18,9 +18,10 @@ public:
     int read(int address);
     void write(int address, int data);
     RAM();
+    const static int SIZE = 1024;
 
 private:
-     int ram_data[1024];
+     int ram_data[SIZE];
     //not sure what else
 };
 

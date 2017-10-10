@@ -9,7 +9,7 @@
 //Each location will hold a hex word "0x000000"
 #include <iostream>
 #include <stdlib.h>
-const int SIZE = 2048;
+const static int SIZE = 2048;
 
 class Disk {
 

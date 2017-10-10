@@ -10,7 +10,7 @@
 
 void Disk::write(int address, std::string data)
 {
-    if(address >= 2048 || address < 0)
+    if(address >= SIZE || address < 0)
         exit(EXIT_FAILURE);
     diskData[address] = data;
 

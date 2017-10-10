@@ -1,12 +1,12 @@
 #include <iostream>
 #include "PCB.h"
+
 void printPCBs(std::list<PCB> *p)
 {
-    std::list::iterator eshen = p.begin();
-    while(eshen != p.end())
+    std::list<PCB>::iterator eshen = p->begin();
+    while(eshen != p->end())
     {
-
-
+        p++;
     }
 }
 
