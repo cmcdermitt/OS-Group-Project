@@ -10,7 +10,7 @@
 3. ~~:notes: Implement PCB~~
 4. :question: Implement Driver
 5. Implement STS
-6. ~~:tennes: Implement Utility functions~~
+6. ~~:tennis: Implement Utility functions~~
 7. ~~:frog: Implement CPU Compute functions~~
 8. :frog: Implement Decoder
 9. :dog: Long Term Scheduler
