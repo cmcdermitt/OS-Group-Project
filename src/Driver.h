@@ -16,15 +16,17 @@
 // cpu.execute(): The cpu is permitted to run until job completion or interrupt.
 #include "Loader.h"
 #include "Driver.h"
+#include<list>
+#include "PCB.h"
 class Driver {
 
 public:
 Driver();
 void run();
-
+std::list<PCB> *pcbs;
 private:
-    Loader loader;
-   Disk disk;
+   Loader *loader;
+   Disk *disk;
 
 };
 

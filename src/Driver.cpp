@@ -5,16 +5,18 @@
 #include "Driver.h"
 #include "Disk.h"
 #include "Loader.h"
-
+#include "PCB.h"
+#include <list>
 
 
     Driver::Driver(){
-        Disk disk = Disk();
-        Loader loader = Loader();
+         disk = new Disk();
+       loader = new Loader();
+	   pcbs = new std::list<PCB>(); 
     }
 
     void Driver::run() {
-        loader.init(&disk);
+        loader->init(disk, pcbs);
 
 
     }
