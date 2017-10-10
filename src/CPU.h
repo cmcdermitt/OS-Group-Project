@@ -43,7 +43,7 @@ class CPU {
         //code is the instruction being passed; returns the thing
         bool Operate(int code);
         CPU(RAM ram);
-        int* dump_registers() const;
+        int* dump_registers();
 };
 
 
