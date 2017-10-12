@@ -4,6 +4,8 @@
 
 #include "CPU.h"
 
+/*
+
 bool CPU::Operate(int code) {
     return false;
 }
@@ -124,3 +126,5 @@ bool CPU::BLZ(int B, int addr){
 int *CPU::dump_registers() {
     return Register;
 }
+
+*/
