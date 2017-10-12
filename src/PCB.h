@@ -14,9 +14,10 @@ struct PCB {
 	int in_buf_size;
 	int out_buf_size;
 	int temp_buf_size;
+    int total_size;
 	enum PROCESS_STATUS { RUNNING, READY, BLOCKED, NEW, COMPLETED };
 	enum PROCESS_STATUS state;
-	int jobDiskAddress;
+	int job_disk_address;
 	int job_address;
 	int prgm_counter;
 	bool has_ran;

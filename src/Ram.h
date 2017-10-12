@@ -14,14 +14,16 @@
 
 
 class RAM {
+
+
 public:
-    int read(int address);
-    void write(int address, int data);
+    std::string read(int address);
+    void write(int address, std::string data);
     RAM();
     const static int SIZE = 1024;
 
 private:
-     int ram_data[SIZE];
+     std::string ram_data[SIZE];
     //not sure what else
 };
 

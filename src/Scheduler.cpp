@@ -9,20 +9,23 @@ void scheduler::lt_sched(std::list<PCB> pcbs, Disk disk, RAM ram)
 {
     for (std::list<PCB>::iterator cursor = pcbs.begin(); cursor != pcbs.end(); ++cursor)
     {
-       /*if (ram used + pcc.total_size < RAM.SIZE)
-        {
-            ready_queue.push(current PCB (will cursor work?));
-            string temp;
-            for (int j = 0; j < limit; j++)
-            {
-               temp = disk.read(start + j);
-               ram.write(temp, start + j);
-            }
-        } else {
-            break; //quit when next job won't fit - add to for loop later/switch to while?
-        }
+        //todo: find appropriate starting location in RAM
+        //set it to cursor->job_address
+        //if there is no location, break
 
-        */
+
+
+
+        //copy each item in the job to RAM and put it on the ready queue
+        std::string temp;
+        for (int j = 0; j < cursor->total_size; j++)
+        {
+            temp = disk.read(cursor->job_disk_address + j);
+            ram.write(cursor->job_address + j, temp);
+        }
+        ready_queue.push(*cursor);
+
+
     }
 }
 

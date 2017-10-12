@@ -12,6 +12,7 @@
 
 namespace scheduler {
     std::queue<PCB> ready_queue;
+    std::list<int> free_space;
 
     void lt_sched(std::list<PCB> pcbs, Disk disk, RAM ram);
 }

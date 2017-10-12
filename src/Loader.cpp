@@ -38,7 +38,7 @@
 				{
 
 					p = new PCB();
-                    p->jobDiskAddress = currentPosition;
+                    p->job_disk_address = currentPosition;
 					temp = temp.substr(7, std::string::npos);
 
 					for(int i = 0; i < temp.length(); i++)
@@ -85,6 +85,7 @@
 				p->in_buf_size = data[3];
 				p->out_buf_size = data[4];
 				p->temp_buf_size = data[5];
+                p->total_size = p->job_size + p->in_buf_size + p->out_buf_size + p->temp_buf_size;
                 pcbs->push_back(*p);
                 counter = 0;
 				}
@@ -100,7 +101,6 @@
 
         }
     }
-        //logic for actually reading file goes here
 
 
 
