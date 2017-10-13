@@ -16,6 +16,8 @@ namespace scheduler {
     std::vector<std::vector<int>> free_ram; //2D vector - first is start address, second is offset
 
     void lt_sched(std::list<PCB> pcbs, Disk disk, RAM ram);
+
+    void st_sched(std::list<PCB> pcbs, Disk disk, RAM ram);//Might have to add in a parameter for dispatcher as well, or just call to a function, not sure yet
 }
 
 #endif //OS_GROUP_PROJECT_LT_SCHEDULER_H

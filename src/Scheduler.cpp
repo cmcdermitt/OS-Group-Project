@@ -69,5 +69,8 @@ void scheduler::lt_sched(std::list<PCB> pcbs, Disk disk, RAM ram) {
 
 }
 
+void scheduler::lt_sched(std::list<PCB> pcbs, Disk disk, RAM ram) {
+
+}
 
 
