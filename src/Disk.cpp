@@ -4,8 +4,8 @@
 
 #include "Disk.h"
 #include <iostream>
-
-
+#include <stdlib.h>
+#include <string>
 
 
 void Disk::write(int address, std::string data)

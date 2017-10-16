@@ -18,6 +18,7 @@
 #include "Driver.h"
 #include<list>
 #include "PCB.h"
+#include "Log.h"
 class Driver {
 
 public:
@@ -28,7 +29,8 @@ std::list<PCB> *pcbs;
 private:
    Loader *loader;
    Disk *disk;
-
+   Log *log; 
+   Log *testLog; 
 };
 
 

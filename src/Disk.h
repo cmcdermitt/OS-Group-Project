@@ -8,7 +8,7 @@
 //Comprised of an array limited to 2048 words (or locations)
 //Each location will hold a hex word "0x000000"
 #include <iostream>
-#include <stdlib.h>
+
 const static int SIZE = 2048;
 
 class Disk {

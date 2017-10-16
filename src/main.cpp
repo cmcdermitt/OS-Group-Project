@@ -7,5 +7,7 @@ int main() {
 	//std::cout << Utility::convertHexToDecimal("ABCDEF");
     Driver *driver = new Driver();
     driver->run();
-    driver->test();
+   driver->test();
+	// system("pause"); 
+	
 }
