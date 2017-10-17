@@ -20,7 +20,9 @@
     {
         mutex.lock();
         return ram_data[address];
-        mutex.unlock();
+
+        mutex.unlock(); 
+
     }
 
     RAM::RAM()

@@ -10,6 +10,8 @@ Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_u
     ram = ram_in_use;
     ram_space[0].position = 0;
     ram_space[0].offset = ram.SIZE;
+
+    
 }
 
 void Scheduler::lt_sched() {
@@ -43,6 +45,7 @@ PCB* Scheduler::lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority) {
 
 
 //sets p->job_ram_address to start location
+//if there's no room, p->job_ram_address will stay unset
 void Scheduler::get_ram_start(PCB *p) {
     int i = 0;
     bool is_space = false;
