@@ -2,7 +2,7 @@
 // Created by Eshin Griffith on 9/26/17.
 //
 
-#include "RAM.h"
+#include "Ram.h"
 #include <iostream>
 #include <stdlib.h>
  #include <stdint.h>
