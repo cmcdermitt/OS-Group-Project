@@ -3,11 +3,14 @@
 //
 
 #include "CPU.h"
+#include "Utility.h"
 
-/*
 
-bool CPU::Operate(int code) {
-    return false;
+bool CPU::Operate() {
+    std::string instruction = CPU::fetch(this->Register[0]);
+    Register[0]++;
+    Op decoded = CPU::decode(instruction);
+    CPU::execute(decoded);
 }
 
 CPU::CPU(RAM ram) {
@@ -23,12 +26,13 @@ bool CPU::WR() {
 }
 
 bool CPU::ST(int addr, int regNum) {
-    this ->ram.write(addr,this->Register[regNum]);
+//    this ->ram.write(addr,this->Register[regNum]);
+    //Utility::convert_decimal_to_hex
     return true;
 }
 
 bool CPU::LW(int addr, int regNum) {
-    this->Register[regNum]=this->ram.read(addr);
+    this->Register[regNum] = Utility::convertHexToDecimal(this->ram.read(addr));
     return true;
 }
 
@@ -96,7 +100,8 @@ bool CPU::NOP(){
     return true;
 }
 bool CPU::JMP(int lineNo){
-    return true; //set lineNo?
+    Register[0] = lineNo;
+    return true;
 }
 bool CPU::BEQ(int B, int D, int addr){
     if(this->Register[B]==this->Register[D]) return true; // What is addr?
@@ -127,4 +132,69 @@ int *CPU::dump_registers() {
     return Register;
 }
 
-*/
+std::string CPU::fetch(int i) {
+    return std::string();
+}
+
+Op CPU::decode(std::string instruction) {
+    std::string binInstruction = Utility::HexToBinary(instruction);
+    Op inst;
+    inst.opType = instruction.substr(2);
+    inst.opCode = Utility::BinaryToHex(instruction.substr(2,8));
+    if(inst.opType=="00"){
+        inst.sReg1 = Utility::convertBinaryToDecimal(instruction.substr(8 ,12));
+        inst.sReg2 = Utility::convertBinaryToDecimal(instruction.substr(12,16));
+        inst.dReg  = Utility::convertBinaryToDecimal(instruction.substr(16,20));
+    }
+    else if(inst.opType=="01"){
+        inst.bReg = Utility::convertBinaryToDecimal(instruction.substr(8 ,12));
+        inst.dReg = Utility::convertBinaryToDecimal(instruction.substr(12,16));
+        inst.address = Utility::convertBinaryToDecimal(instruction.substr(16,32));
+    }
+    else if(inst.opType=="10"){
+        inst.address = Utility::convertBinaryToDecimal(instruction.substr(8,32));
+    }
+    else if(inst.opType=="11"){
+        inst.sReg1 = Utility::convertBinaryToDecimal(instruction.substr(8 ,12));
+        inst.sReg2 = Utility::convertBinaryToDecimal(instruction.substr(12,16));
+        inst.address  = Utility::convertBinaryToDecimal(instruction.substr(16,32));
+    }
+    return inst;
+}
+
+void CPU::execute(Op op) {
+    if(op.opType=="00"){
+             if(op.opCode=="04")CPU::MOV(op.sReg1,op.sReg2);
+        else if(op.opCode=="05")CPU::ADD(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="06")CPU::SUB(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="07")CPU::MUL(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="08")CPU::DIV(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="09")CPU::AND(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="0A")CPU::OR(op.sReg1,op.sReg2,op.dReg);
+    }else
+    if(op.opType=="01"){
+             if(op.opCode=="02")CPU::ST(op.address,op.bReg);
+        else if(op.opCode=="03")CPU::LW(op.address,op.bReg);
+        else if(op.opCode=="0B")CPU::MOVI(op.address,op.bReg);
+        else if(op.opCode=="0C")CPU::ADDI(op.address,op.bReg);
+        else if(op.opCode=="0D")CPU::MULI(op.address,op.bReg);
+        else if(op.opCode=="0E")CPU::DIVI(op.address,op.bReg);
+        else if(op.opCode=="0F")CPU::LDI(op.address,op.bReg);
+        else if(op.opCode=="11")CPU::SLTI(op.bReg,op.address,op.dReg);
+        else if(op.opCode=="15")CPU::BEQ(op.bReg,op.dReg,op.address);
+        else if(op.opCode=="16")CPU::BNE(op.bReg,op.dReg,op.address);
+        else if(op.opCode=="17")CPU::BEZ(op.bReg,op.address);
+        else if(op.opCode=="18")CPU::BNZ(op.bReg,op.address);
+        else if(op.opCode=="19")CPU::BGZ(op.bReg,op.address);
+        else if(op.opCode=="1A")CPU::BLZ(op.bReg,op.address);
+    }else
+    if(op.opType=="10"){
+             if(op.opCode=="12")CPU::HLT();
+        else if(op.opCode=="14")CPU::JMP(op.address);
+    }else
+    if(op.opType=="11"){
+             if(op.opCode=="00")CPU::RD();
+        else if(op.opCode=="01")CPU::WR();
+    }
+}
+

@@ -6,7 +6,15 @@
 #define OS_GROUP_PROJECT_CPU_H
 #include "Ram.h"
 #include <iostream>
-
+struct Op{
+    std::string opType;
+    std::string opCode;
+    int sReg1;
+    int sReg2;
+    int dReg;
+    int bReg;
+    int address;
+};
 class CPU {
     private:
         int Register[16];
@@ -38,12 +46,18 @@ class CPU {
         bool BNZ(int B, int addr);
         bool BGZ(int B, int addr);
         bool BLZ(int B, int addr);
-
+        void execute(Op op);
     public:
         //code is the instruction being passed; returns the thing
-        bool Operate(int code);
+        bool Operate();
         CPU(RAM ram);
         int* dump_registers();
+
+    std::string fetch(int i);
+
+    Op decode(std::string basic_string);
+
+
 };
 
 
