@@ -55,11 +55,13 @@ class CPU {
         void loadPCB(PCB p);
         PCB storePCB();
         int* dump_registers();
-//        void static test();
+        void pass(std::string val);
+        static void test();
 
     std::string fetch(int i);
 
     Op decode(std::string basic_string);
+
 
 
 };

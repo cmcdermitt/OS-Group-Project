@@ -138,28 +138,40 @@ std::string CPU::fetch(int i) {
     return this->ram->read(i+state.job_ram_address);
 }
 
-Op CPU::decode(std::string instruction) {
-    std::string binInstruction = Utility::HexToBinary(instruction);
+Op CPU::decode(std::string hex) {
+    std::string instruction = Utility::HexToBinary(hex);
     Op inst;
-    inst.opType = instruction.substr(2);
-    inst.opCode = Utility::BinaryToHex(instruction.substr(2,8));
+    inst.opType = instruction.substr(0,2);
+    inst.opCode = Utility::BinaryToHex(instruction.substr(2,6));
     if(inst.opType=="00"){
-        inst.sReg1 = Utility::convertBinaryToDecimal(instruction.substr(8 ,12));
-        inst.sReg2 = Utility::convertBinaryToDecimal(instruction.substr(12,16));
-        inst.dReg  = Utility::convertBinaryToDecimal(instruction.substr(16,20));
+        inst.sReg1 = Utility::convertBinaryToDecimal(instruction.substr(8 ,4));
+        inst.sReg2 = Utility::convertBinaryToDecimal(instruction.substr(12,4));
+        inst.dReg  = Utility::convertBinaryToDecimal(instruction.substr(16,4));
+        inst.address = -1;
+        inst.bReg = -1;
+
     }
     else if(inst.opType=="01"){
-        inst.bReg = Utility::convertBinaryToDecimal(instruction.substr(8 ,12));
-        inst.dReg = Utility::convertBinaryToDecimal(instruction.substr(12,16));
-        inst.address = Utility::convertBinaryToDecimal(instruction.substr(16,32));
+        inst.bReg = Utility::convertBinaryToDecimal(instruction.substr(8 ,4));
+        inst.dReg = Utility::convertBinaryToDecimal(instruction.substr(12,4));
+        inst.address = Utility::convertBinaryToDecimal(instruction.substr(16,16));
+        inst.sReg1 = -1;
+        inst.sReg2 = -1;
     }
     else if(inst.opType=="10"){
-        inst.address = Utility::convertBinaryToDecimal(instruction.substr(8,32));
+        inst.address = Utility::convertBinaryToDecimal(instruction.substr(8,24));
+        inst.sReg1 = -1;
+        inst.sReg2 = -1;
+        inst.bReg = -1;
+        inst.dReg = -1;
+
     }
     else if(inst.opType=="11"){
-        inst.sReg1 = Utility::convertBinaryToDecimal(instruction.substr(8 ,12));
-        inst.sReg2 = Utility::convertBinaryToDecimal(instruction.substr(12,16));
-        inst.address  = Utility::convertBinaryToDecimal(instruction.substr(16,32));
+        inst.sReg1 = Utility::convertBinaryToDecimal(instruction.substr(8 ,4));
+        inst.sReg2 = Utility::convertBinaryToDecimal(instruction.substr(12,4));
+        inst.address  = Utility::convertBinaryToDecimal(instruction.substr(16,16));
+        inst.bReg = -1;
+        inst.dReg = -1;
     }
     return inst;
 }
@@ -215,8 +227,29 @@ PCB CPU::storePCB() {
     }
     return state;
 }
+void CPU::pass(std::string val){
+    Op decoded = CPU::decode(val);
+    std::cout << "OpType: " << decoded.opType << std::endl;
+    std::cout << "OpCode: " << decoded.opCode << std::endl;
+    std::cout << "sReg1: " << decoded.sReg1 << std::endl;
+    std::cout << "sReg2: " << decoded.sReg2 << std::endl;
+    std::cout << "dReg: " << decoded.dReg << std::endl;
+    std::cout << "bReg: " << decoded.bReg << std::endl;
+    std::cout << "address: " << decoded.address << std::endl <<std::endl;
 
-//void CPU::test(){
-//    CPU cpu = CPU(RAM());
-////    cpu.Register = {0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3};
-//}
+
+    CPU::execute(decoded);
+    for(int i=0;i<16;i++){
+        std::cout << i <<"\t";
+    }
+    std::cout << std::endl;
+    for(int i=0;i<16;i++){
+        std::cout << this->Register[i] <<"\t";
+    }
+    std::cout << std::endl;
+}
+void CPU::test(){
+    CPU cpu = CPU(new RAM());
+    cpu.pass("C050005C");
+//    cpu.pass(Utility::BinaryToHex("01000"))
+}

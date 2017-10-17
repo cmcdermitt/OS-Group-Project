@@ -21,7 +21,7 @@
 #include "Log.h"
 #include "Scheduler.h"
 #include "Ram.h"
-
+#include "CPU.h"
 class Driver {
 
 public:

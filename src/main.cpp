@@ -7,7 +7,6 @@ int main() {
     Driver *driver = new Driver();
     driver->run();
     driver->test();
-
     std::cout << Utility::convert_decimal_to_hex(16) << std::endl;
     std::cout << Utility::convert_decimal_to_hex(123) << std::endl;
     std::cout << Utility::convert_decimal_to_hex(1230432) << std::endl;

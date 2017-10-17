@@ -127,7 +127,8 @@
 	{
 		std::string hexVersion = "";
 
-		for (int i = 0; i <= binaryinput.length(); i = i + 4)
+
+		for (int i = 0; i < binaryinput.length(); i = i + 4)
 		{
 			hexVersion += binaryinput.substr(i, 4);
 		}
