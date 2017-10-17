@@ -8,6 +8,7 @@ Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_u
     pcbs = pcb_list;
     disk = disk_in_use;
     ram = &ram_in_use;
+    ram_space.push_back(free_ram ());
     ram_space[0].position = 0;
     ram_space[0].offset = ram->SIZE;
 
@@ -24,7 +25,8 @@ PCB* Scheduler::lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority) {
     if(is_priority) {
     } else {
 
-        PCB* next = NULL;
+        PCB* next;
+        next->job_id = 7;
         bool in_ready_queue = false;
         for (std::list<PCB*>::iterator cursor = pcbs.begin(); cursor != pcbs.end(); ++cursor) {
             for (std::list<PCB*>::iterator it = ready_queue.begin(); it != ready_queue.end(); ++it) {
