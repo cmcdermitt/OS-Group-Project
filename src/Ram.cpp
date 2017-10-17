@@ -3,10 +3,7 @@
 //
 
 #include "Ram.h"
-#include <iostream>
-#include <stdlib.h>
- #include <stdint.h>
-#include <mutex>
+
     void RAM::write(int address, std::string data)
     {
         mutex.lock();

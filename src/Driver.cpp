@@ -4,14 +4,6 @@
 
 #include <iostream>
 #include "Driver.h"
-#include "Disk.h"
-#include "Loader.h"
-#include "PCB.h"
-
-
-#include <list>
-#include <string>
-#include "Log.h"
 
     Driver::Driver(){
          disk = Disk();

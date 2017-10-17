@@ -26,7 +26,7 @@ PCB* Scheduler::lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority) {
     } else {
 
         PCB* next;
-        next->job_id = 7;
+        next->job_id = -1;
         bool in_ready_queue = false;
         for (std::list<PCB*>::iterator cursor = pcbs.begin(); cursor != pcbs.end(); ++cursor) {
             for (std::list<PCB*>::iterator it = ready_queue.begin(); it != ready_queue.end(); ++it) {
