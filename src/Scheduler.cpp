@@ -7,9 +7,9 @@
 Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use) {
     pcbs = pcb_list;
     disk = disk_in_use;
-    ram = ram_in_use;
+    ram = &ram_in_use;
     ram_space[0].position = 0;
-    ram_space[0].offset = ram.SIZE;
+    ram_space[0].offset = ram->SIZE;
 
     
 }

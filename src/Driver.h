@@ -32,7 +32,7 @@ std::list<PCB*> pcbs;
 private:
    Loader loader;
    Disk disk;
-    RAM ram;
+    RAM *ram;
    Log *log; 
    Log *testLog; 
 };

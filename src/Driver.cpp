@@ -15,7 +15,7 @@
 
     Driver::Driver(){
          disk = Disk();
-        ram = RAM();
+        ram = new RAM();
        loader = Loader();
 	   pcbs = std::list<PCB*>();
 	   log = new Log("Driver"); 
@@ -27,7 +27,7 @@
 		log->turnOn(); 
         loader.init(disk, pcbs);
 
-        Scheduler sched = Scheduler(pcbs, disk, ram);
+        Scheduler sched = Scheduler(pcbs, disk, *ram);
         std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
 		log->turnOff(); 
 		delete log; 

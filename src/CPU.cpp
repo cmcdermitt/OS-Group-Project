@@ -13,8 +13,9 @@ bool CPU::Operate() {
     CPU::execute(decoded);
 }
 
-CPU::CPU(RAM ram) {
+CPU::CPU(RAM* ram) {
     this->ram = ram;
+    this->Register[1]=0;
 }
 
 bool CPU::RD() {
@@ -32,7 +33,7 @@ bool CPU::ST(int addr, int regNum) {
 }
 
 bool CPU::LW(int addr, int regNum) {
-    this->Register[regNum] = Utility::convertHexToDecimal(this->ram.read(addr));
+    this->Register[regNum] = Utility::convertHexToDecimal(this->ram->read(addr));
     return true;
 }
 
@@ -94,6 +95,7 @@ bool CPU::SLTI(int S, int val, int D){
     return true;
 }
 bool CPU::HLT(){
+    this->state.state = state.COMPLETED;
     return true; //end program?
 }
 bool CPU::NOP(){
@@ -133,7 +135,7 @@ int *CPU::dump_registers() {
 }
 
 std::string CPU::fetch(int i) {
-    return std::string();
+    return this->ram->read(i+state.job_ram_address);
 }
 
 Op CPU::decode(std::string instruction) {
@@ -173,6 +175,9 @@ void CPU::execute(Op op) {
         else if(op.opCode=="0A")CPU::OR(op.sReg1,op.sReg2,op.dReg);
     }else
     if(op.opType=="01"){
+        if(op.dReg!=0){
+            op.address = op.address + op.dReg;
+        }
              if(op.opCode=="02")CPU::ST(op.address,op.bReg);
         else if(op.opCode=="03")CPU::LW(op.address,op.bReg);
         else if(op.opCode=="0B")CPU::MOVI(op.address,op.bReg);
@@ -198,3 +203,20 @@ void CPU::execute(Op op) {
     }
 }
 
+void CPU::loadPCB(PCB p) {
+    this->state = p;
+    for (int i = 0; i < 16; ++i) {
+        this->Register[i] = this->state.registers[i];
+    }
+}
+PCB CPU::storePCB() {
+    for (int i = 0; i < 16; ++i) {
+        this->state.registers[i] = this->Register[i];
+    }
+    return state;
+}
+
+//void CPU::test(){
+//    CPU cpu = CPU(RAM());
+////    cpu.Register = {0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3};
+//}

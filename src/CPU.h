@@ -6,6 +6,7 @@
 #define OS_GROUP_PROJECT_CPU_H
 #include "Ram.h"
 #include <iostream>
+#include "PCB.h"
 struct Op{
     std::string opType;
     std::string opCode;
@@ -18,7 +19,7 @@ struct Op{
 class CPU {
     private:
         int Register[16];
-        RAM ram;
+        RAM* ram;
         bool RD();
         bool WR();
         bool ST(int addr, int regNum);
@@ -48,10 +49,13 @@ class CPU {
         bool BLZ(int B, int addr);
         void execute(Op op);
     public:
-        //code is the instruction being passed; returns the thing
+        PCB state;
         bool Operate();
-        CPU(RAM ram);
+        CPU(RAM* ram);
+        void loadPCB(PCB p);
+        PCB storePCB();
         int* dump_registers();
+//        void static test();
 
     std::string fetch(int i);
 

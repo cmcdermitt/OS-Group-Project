@@ -20,7 +20,7 @@ class Scheduler {
 private:
     std::list<PCB*> pcbs;
     Disk disk;
-    RAM ram;
+    RAM* ram;
     std::vector<free_ram> ram_space;
     std::list<PCB*> ready_queue;
 

@@ -19,15 +19,13 @@
     std::string RAM::read(int address)
     {
         mutex.lock();
-        return ram_data[address];
-
-        mutex.unlock(); 
-
+        std::string rd =  ram_data[address];
+        mutex.unlock();
+        return rd;
     }
 
     RAM::RAM()
     {
-        mutex = std::mutex();
         for(int i = 0; i < SIZE; i++)
             ram_data[i] = "";
     }
