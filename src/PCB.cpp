@@ -1,9 +1,9 @@
 #include <iostream>
 #include "PCB.h"
 
-void printPCBs(std::list<PCB> *p)
+void printPCBs(std::list<PCB*> *p)
 {
-    std::list<PCB>::iterator eshen = p->begin();
+    std::list<PCB*>::iterator eshen = p->begin();
     while(eshen != p->end())
     {
         p++;

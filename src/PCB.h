@@ -21,7 +21,6 @@ struct PCB {
 	int job_address;
 	int prgm_counter;
 	bool has_ran;
-	bool in_memory;
 	int registers[16];
 	int dataSectionSize;
 

@@ -8,14 +8,16 @@
 #include "Loader.h"
 #include "PCB.h"
 
+
 #include <list>
 #include <string>
 #include "Log.h"
 
     Driver::Driver(){
-         disk = new Disk();
-       loader = new Loader();
-	   pcbs = new std::list<PCB>();
+         disk = Disk();
+        ram = RAM();
+       loader = Loader();
+	   pcbs = std::list<PCB*>();
 	   log = new Log("Driver"); 
 	   testLog = new Log("Test");
 
@@ -23,7 +25,10 @@
 
     void Driver::run() {
 		log->turnOn(); 
-        loader->init(disk, pcbs);
+        loader.init(disk, pcbs);
+
+        Scheduler sched = Scheduler(pcbs, disk, ram);
+        std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
 		log->turnOff(); 
 		delete log; 
 
@@ -33,7 +38,7 @@
     {
 		testLog->turnOn();
         for(int i= 0; i < 2048; i++)
-            std::cout << disk->read(i) << std::endl;
+            std::cout << disk.read(i) << std::endl;
 		testLog->turnOff(); 
 		delete testLog;
     }

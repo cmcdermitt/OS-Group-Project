@@ -11,15 +11,14 @@
 #include "Log.h"
 
     Loader::Loader(){
-
     }
 
-    void Loader::init (Disk *disk_to_load, std::list<PCB> *pcbs) {
+    void Loader::init (Disk &disk_to_load, std::list<PCB*> &pcbs) {
 		l = new Log("init"); 
 		l->turnOn(); 
 		// Variables for init function
 		int data[10];
-        std::ifstream input(CODEFILENAME);
+        std::ifstream input("..\\..\\..\\..\\GitHub\\OS-Group-Project\\src\\Program.txt");
         std::string temp;
         std::string store;
         std::string buildString = "";
@@ -92,7 +91,8 @@
 				p->out_buf_size = data[4];
 				p->temp_buf_size = data[5];
                 p->total_size = p->job_size + p->in_buf_size + p->out_buf_size + p->temp_buf_size;
-                pcbs->push_back(*p);
+                p->state = PCB::PROCESS_STATUS::NEW;
+                pcbs.push_back(p);
                 counter = 0;
 				}
 				}   
@@ -100,7 +100,7 @@
 			else if(temp.at(0) != '/')
             {
                 temp = temp.substr(2, std::string::npos);
-                disk_to_load->write(currentPosition, temp);
+                disk_to_load.write(currentPosition, temp);
                 currentPosition++;
             }
         }

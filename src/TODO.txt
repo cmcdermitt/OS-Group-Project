@@ -2,5 +2,5 @@ Driver
 Disk
 Loader
 RAM
-(long-term) scheduler
+(long-term) Scheduler
 Everything else
