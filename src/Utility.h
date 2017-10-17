@@ -23,7 +23,8 @@ namespace Utility
 
 	// Decimal to Binary
 
-	// Decimal to Hex
+	// Decimal to Hex (string)
+	std::string convert_decimal_to_hex(int decimalInput);
 
 	// String to decimal
 	};

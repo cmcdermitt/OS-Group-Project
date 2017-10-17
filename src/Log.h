@@ -7,7 +7,9 @@
 - This class currently does not have support for threads 
 */
 
-#pragma once
+#ifndef OS_GROUP_PROJECT_LOG_H
+#define OS_GROUP_PROJECT_LOG_H
+
 #include <iostream>
 #include <vector>
 #include <chrono>
@@ -40,3 +42,5 @@ public:
 
 
 };
+
+#endif

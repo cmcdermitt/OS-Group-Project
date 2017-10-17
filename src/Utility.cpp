@@ -189,6 +189,76 @@
 		return decimal;
 	}
 
+	std::string Utility::convert_decimal_to_hex(int input) {
+		std::string output = "";
+        int temp;
+        char next;
+
+        while (input != 0) {
+            temp = input % 16;
+            switch (temp)
+            {
+                case 0:
+                    next = '0';
+                    break;
+                case 1:
+                    next = '1';
+                    break;
+                case 2:
+                    next = '2';
+                    break;
+                case 3:
+                    next = '3';
+                    break;
+                case 4:
+                    next = '4';
+                    break;
+                case 5:
+                    next = '5';
+                    break;
+                case 6:
+                    next = '6';
+                    break;
+                case 7:
+                    next = '7';
+                    break;
+                case 8:
+                    next = '8';
+                    break;
+                case 9:
+                    next = '9';
+                    break;
+                case 10:
+                    next = 'A';
+                    break;
+                case 11:
+                    next = 'B';
+                    break;
+                case 12:
+                    next = 'C';
+                    break;
+                case 13:
+                    next = 'D';
+                    break;
+                case 14:
+                    next = 'E';
+                    break;
+                case 15:
+                    next = 'F';
+                    break;
+            }
+            input = input / 16;
+
+            output = next + output;
+        }
+
+        while (output.length() < 8) {
+            output = "0" + output;
+        }
+
+        return output;
+	}
+
 
 
 

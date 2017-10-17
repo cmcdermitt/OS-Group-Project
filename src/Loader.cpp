@@ -8,7 +8,7 @@
 #include <fstream>
 #include <string>
 #include "Utility.h"
-#include <string>
+#include "Log.h"
 
     Loader::Loader(){
 
