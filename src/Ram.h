@@ -7,6 +7,7 @@
 #include <iostream>
 #include <stdlib.h>
  #include <stdint.h>
+ #include <mutex>
 
 //The RAM will contain a 1024 locations containing a dedicated 8-character Hex word
 //The read(int address) function is called by the Fetch class, which locates
@@ -17,6 +18,7 @@ class RAM {
 
 
 public:
+    std::mutex mutex;
     std::string read(int address);
     void write(int address, std::string data);
     RAM();
