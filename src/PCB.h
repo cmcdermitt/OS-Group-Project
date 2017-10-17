@@ -18,7 +18,7 @@ struct PCB {
 	enum PROCESS_STATUS { RUNNING, READY, BLOCKED, NEW, COMPLETED };
 	enum PROCESS_STATUS state;
 	int job_disk_address;
-	int job_address;
+	int job_ram_address;
 	int prgm_counter;
 	bool has_ran;
 	int registers[16];
@@ -92,7 +92,7 @@ void printPCBs(std::list<PCB> *p);
 //    int temp_buf_size;
 //    enum PROCESS_STATUS {RUNNING, READY, BLOCKED, NEW, COMPLETED};
 //    enum PROCESS_STATUS state;
-//    int job_address;
+//    int job_ram_address;
 //    int prgm_counter;
 //    bool has_ran;
 //    bool in_memory;

@@ -8,37 +8,66 @@ Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_u
     pcbs = pcb_list;
     disk = disk_in_use;
     ram = ram_in_use;
+    ram_space[0].position = 0;
+    ram_space[0].offset = ram.SIZE;
+}
+
+void Scheduler::lt_sched() {
+
 }
 
 //TODO: test Scheduler, need loader to test
-//returns pointer to next PCB
+//returns pointer to next PCB, returns null pointer if no next PCB
 PCB* Scheduler::lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority) {
     if(is_priority) {
     } else {
-        bool found = false;
+
+        PCB* next = NULL;
+        bool in_ready_queue = false;
         for (std::list<PCB*>::iterator cursor = pcbs.begin(); cursor != pcbs.end(); ++cursor) {
             for (std::list<PCB*>::iterator it = ready_queue.begin(); it != ready_queue.end(); ++it) {
                 if ((*cursor)->job_id == (*it)->job_id)
-                    found = true;
+                    in_ready_queue = true;
             }
-            if (found) {
-                return *cursor;
+            if (!in_ready_queue) {
+                next = *cursor;
+                return next; //returns a pointer to a PCB in pcbs
             }
         }
+
+        return next;
+
+
     }
 }
 
 
-void get_ram_start(PCB *p) {
+//sets p->job_ram_address to start location
+void Scheduler::get_ram_start(PCB *p) {
+    int i = 0;
+    bool is_space = false;
+    while (i < ram_space.size() && !is_space) {
+        if (ram_space[i].offset >= p->total_size)
+        {
+            is_space = true;
+            p->job_ram_address = ram_space[i].position;
 
+            //modify ram_space to take out space process uses
+            if (ram_space[i].offset == p->total_size)
+                ram_space.erase(ram_space.begin() + i);
+            else //free_ram[i].offset > next.total_size
+                ram_space[i].position = ram_space[i].position + p->total_size;
+        }
+        ++i;
+    }
 }
 
-void load_pcb(PCB *p, RAM &r); //puts PCB in RAM
+void load_pcb(PCB *p, RAM &r); //puts PCB in RAM and ready_queue
 void remove_pcb(PCB *p, RAM &r);
 
 
-//FCFS for now - add priority later
-void Scheduler::lt_sched(std::list<PCB*> pcbs, Disk& disk, RAM& ram) {
+//OLD FUNCTION
+//void Scheduler::lt_sched(std::list<PCB*> pcbs, Disk& disk, RAM& ram) {
 //    //if the ready queue is empty, there's nothing in RAM, so all the space is free
 //    //the ready queue should always be empty the first time lt_sched is called
 //    if (ready_queue.size() == 0) {
@@ -66,7 +95,7 @@ void Scheduler::lt_sched(std::list<PCB*> pcbs, Disk& disk, RAM& ram) {
 //    if (!found)
 //        return;
 //
-//    //find free space for job and set next.job_address
+//    //find free space for job and set next.job_ram_address
 //    //currently first-fit method
 //    int i = 0;
 //    bool is_space = false;
@@ -74,7 +103,7 @@ void Scheduler::lt_sched(std::list<PCB*> pcbs, Disk& disk, RAM& ram) {
 //        if (free_ram[i][1] >= next.total_size)
 //        {
 //            is_space = true;
-//            next.job_address = free_ram[i][0];
+//            next.job_ram_address = free_ram[i][0];
 //
 //            //modify free_ram to take out space process uses
 //            if (free_ram[i][1] == next.total_size)
@@ -94,10 +123,10 @@ void Scheduler::lt_sched(std::list<PCB*> pcbs, Disk& disk, RAM& ram) {
 //    std::string temp;
 //    for (int j = 0; j < next.total_size; j++) {
 //        temp = disk.read(next.job_disk_address + j);
-//        ram.write(next.job_address + j, temp);
+//        ram.write(next.job_ram_address + j, temp);
 //    }
 //    ready_queue.push_front(next);
-
-}
+//
+//}
 
 

@@ -20,7 +20,7 @@
 #include "PCB.h"
 #include "Log.h"
 #include "Scheduler.h"
-#include "RAM.h"
+#include "Ram.h"
 
 class Driver {
 
