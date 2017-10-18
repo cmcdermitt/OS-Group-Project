@@ -25,7 +25,7 @@ private:
     std::list<PCB*> ready_queue;
 
 
-    void get_ram_start(PCB *p); //sets *p->ramStartAddress
+    bool get_ram_start(PCB *p); //sets *p->ramStartAddress
     void load_pcb(PCB *p, RAM &r); //puts PCB in RAM
     void remove_pcb(PCB *p, RAM &r);
 
@@ -36,6 +36,7 @@ public:
     void lt_sched();
     PCB* lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority = false); //returns pointer to next PCB
     void st_sched(std::list<PCB*> pcbs, Disk& disk, RAM& ram);//Might have to add in a parameter for dispatcher as well, or just call to a function, not sure yet
+    void lt_test();
 };
 
 #endif //OS_GROUP_PROJECT_LT_SCHEDULER_H

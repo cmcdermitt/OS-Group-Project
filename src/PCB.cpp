@@ -1,17 +1,37 @@
 #include <iostream>
 #include "PCB.h"
 
-void printPCBs(std::list<PCB*> *p)
+void printPCBs(std::list<PCB*> p)
 {
-    std::list<PCB*>::iterator eshen = p->begin();
-    while(eshen != p->end())
+//    std::list<PCB*>::iterator eshen = p->begin();
+//    while(eshen != p->end())
+//    {
+//        p++;
+//    }
+
+    for(PCB *pcb : p)
     {
-        p++;
+        std::cout << "ID\t" << pcb->job_id << std::endl;
+        std::cout << "Job Size:\t" << pcb->job_size << std::endl;
+        std::cout << "JobPri:\t" << pcb->job_pri << std::endl;
+        std::cout << "InSize:\t" << pcb->in_buf_size << std::endl;
+        std::cout << "OutSize:\t" << pcb->out_buf_size << std::endl;
+        std::cout << "TempSize:\t" << pcb->temp_buf_size << std::endl;
+        std::cout << "Total Size:\t" << pcb->total_size << std::endl;
+        std::cout << "State:\t" << pcb->state << std::endl;
     }
+
 }
 
 
-
+//p->job_id = data[0];
+//p->job_size = data[1];
+//p->job_pri = data[2];
+//p->in_buf_size = data[3];
+//p->out_buf_size = data[4];
+//p->temp_buf_size = data[5];
+//p->total_size = p->job_size + p->in_buf_size + p->out_buf_size + p->temp_buf_size;
+//p->state = PCB::PROCESS_STATUS::NEW;
 //
 // Created by Zachary Auzenne on 10/03/17.
 //

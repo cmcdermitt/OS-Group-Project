@@ -18,7 +18,7 @@
 		l->turnOn(); 
 		// Variables for init function
 		int data[10];
-        std::ifstream input("..\\..\\..\\..\\GitHub\\OS-Group-Project\\src\\Program.txt");
+        std::ifstream input("/home/conrad/CPlusPlus/OS-Group-Project/src/Program.txt");
         std::string temp;
         std::string store;
         std::string buildString = "";
@@ -53,13 +53,18 @@
                             {
                                 if(buildString.length() != 0)
                                 {
-                            data[counter] = Utility::convertHexToDecimal(buildString);
-                            counter++;
-                            buildString = "";
+                                    data[counter] = Utility::convertHexToDecimal(buildString);
+                                    counter++;
+                                    buildString = "";
                                 }
                     }
 				}
-				}
+                    // Last build string must be added
+                    data[counter] = Utility::convertHexToDecimal(buildString);
+                    counter++;
+                    buildString = "";
+
+                }
 				// Do this if the line is a PCB Data Line
 				else
 			{
@@ -77,12 +82,17 @@
                             {
 
                                 {
+                           // Last buildstring must be added
                             data[counter] = Utility::convertHexToDecimal(buildString);
                             counter++;
                             buildString = "";
                                 }
                     }
 				}
+                data[counter] = Utility::convertHexToDecimal(buildString);
+                counter++;
+                buildString = "";
+
 			 // Once a PCB Data Line information is recorded, store that into a pcb
 				p->job_id = data[0];
 				p->job_size = data[1];

@@ -30,7 +30,7 @@ struct PCB {
 
 };
 
-void printPCBs(std::list<PCB> *p);
+void printPCBs(std::list<PCB*> p);
 #endif // PCB_H_INCLUDED
 
 //class PCB {
