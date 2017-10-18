@@ -34,6 +34,29 @@ void Scheduler::lt_sched()
 
 }
 
+void Scheduler::st_sched()
+{
+    PCB *temp;
+    while(!ready_queue.empty()) //Ends on empty ready queue
+    {
+        temp = ready_queue.front(); //Access first sorted PCB
+        ready_queue.pop_front();
+
+        if(temp == nullptr) //Making sure it's not null
+            break;
+
+        //temp = Dispatcher(temp);  //Send PCB to Dispatcher
+        //Receive PCB on either completion or interrupt
+
+        if (temp->state == PCB::PROCESS_STATUS::COMPLETED)
+            remove_pcb(temp, *ram); //Not written yet
+        if (temp->state == PCB::PROCESS_STATUS::BLOCKED)
+            ready_queue.push_front(temp); //Places PCB back at the front to reassess next go around
+
+    }
+
+}
+
 //TODO: test Scheduler, need loader to test
 //returns pointer to next PCB, returns null pointer if no next PCB
 PCB* Scheduler::lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority) {
@@ -129,7 +152,10 @@ void Scheduler::load_pcb(PCB *p, RAM &r) { //puts PCB in RAM and ready_queue dea
     }
 }
 
-void remove_pcb(PCB *p, RAM &r);
+void Scheduler::remove_pcb(PCB *p, RAM &r)
+{
+
+}
 
 void Scheduler::lt_test() {
     for(free_ram r : ram_space)
