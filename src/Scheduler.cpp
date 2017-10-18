@@ -52,6 +52,7 @@ void Scheduler::st_sched()
             remove_pcb(temp, *ram); //Not written yet
         if (temp->state == PCB::PROCESS_STATUS::BLOCKED)
             ready_queue.push_front(temp); //Places PCB back at the front to reassess next go around
+        //Will eventually have a method for resorting PCBs on return based on priority and job_size
 
     }
 
