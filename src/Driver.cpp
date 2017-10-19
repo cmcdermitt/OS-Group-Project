@@ -9,6 +9,7 @@
          disk = Disk();
         ram = new RAM();
        loader = Loader();
+        cpu = new CPU(ram,production);
 	   pcbs = std::list<PCB*>();
 	   log = new Log("Driver"); 
 	   testLog = new Log("Test");

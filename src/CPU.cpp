@@ -13,7 +13,9 @@ bool CPU::Operate() {
     CPU::execute(decoded);
 }
 
-CPU::CPU(RAM* ram) {
+CPU::CPU(RAM* ram,mode m) {
+    this -> cpumode = m;
+    if(m==debug) std::cout<<"--DEBUG--\n";
     this->ram = ram;
     for (int i = 0; i < 16; ++i) {
         this->Register[i]=i;
@@ -21,12 +23,16 @@ CPU::CPU(RAM* ram) {
     this->Register[1] = 0;
 }
 
-bool CPU::RD() {
-    return false;
+bool CPU::RD(int s1, int s2, int address) {
+    if(this->cpumode==debug) return false;
+    Register[s1] = Utility::convertHexToDecimal(ram->read(address));
+
 }
 
-bool CPU::WR() {
-    return false;
+bool CPU::WR(int s1, int s2, int address) {
+    if(this->cpumode==debug) return false;
+    ram->write(address,Utility::convert_decimal_to_hex(Register[s1]));
+
 }
 
 bool CPU::ST(int addr, int regNum) {
@@ -210,8 +216,8 @@ void CPU::execute(Op op) {
         else if(op.opCode=="14")CPU::JMP(op.address);
     }else
     if(op.opType=="11"){
-             if(op.opCode=="00")CPU::RD();
-        else if(op.opCode=="01")CPU::WR();
+             if(op.opCode=="00")CPU::RD(op.sReg1,op.sReg2,op.address);
+        else if(op.opCode=="01")CPU::WR(op.sReg1,op.sReg2,op.address);
     }
 }
 
@@ -250,10 +256,9 @@ void CPU::pass(std::string val){
     std::cout << std::endl;
 }
 void CPU::test(){
-    CPU cpu = CPU(new RAM());
+    CPU cpu = CPU(new RAM(),debug);
     cpu.pass("C050005C");
     cpu.pass("4B060000");
     cpu.pass("4B0A0000");
     cpu.pass("4C0A0004");
-//    cpu.pass(Utility::BinaryToHex("01000"))
 }
