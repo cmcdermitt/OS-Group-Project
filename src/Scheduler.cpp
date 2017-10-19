@@ -38,29 +38,28 @@ void Scheduler::st_sched()
 
     ready_queue.sort(comp_fifo);
 
-    while(!ready_queue.empty()) //Ends on empty ready queue
+    if(!ready_queue.empty())
     {
-
+        printPCBs(ready_queue);
         temp = ready_queue.front(); //Access first sorted PCB
 
-        if(temp == nullptr) //Making sure it's not null
-            break;
-        temp = disp->context_switch(temp);
-        //Send PCB to Dispatcher
-        //Receive PCB on either completion or interrupt
+        if(temp != nullptr) {
+            temp = disp->context_switch(temp);
+            //Send PCB to Dispatcher
+            //Receive PCB on either completion or interrupt
+            std::cout << std::endl << "PERFORMED JOB(S): " << std::endl;
+            std::cout << temp->job_id << "\t" << temp->state << std::endl;
+            std::cout << temp->registers;
 
-        if (temp->state == PCB::PROCESS_STATUS::COMPLETED)
-            ready_queue.pop_front();
+
+            if (temp->state == PCB::PROCESS_STATUS::COMPLETED)
+                ready_queue.pop_front();
             //remove_pcb(temp, *ram); //Not written yet
-        if (temp->state == PCB::PROCESS_STATUS::BLOCKED)
-            ready_queue.pop_front();
+            if (temp->state == PCB::PROCESS_STATUS::BLOCKED)
+                ready_queue.pop_front();
             ready_queue.push_back(temp); //Places PCB at back of queue to reassess next go around
-
-
-        //Will eventually have a method for resorting PCBs on return based on priority and job_size
-
+        }
     }
-
 }
 
 //TODO: test Scheduler, need loader to test
@@ -145,8 +144,8 @@ bool Scheduler::get_ram_start(PCB *p) {
 void Scheduler::load_pcb(PCB *p, RAM &r) { //puts PCB in RAM and ready_queue deal with sorting later
     static int times = 0;
     times++;
-    std::cout << "RUNNING OUT OF TIME:\t" << times << std::endl;
-    std::cout << "START HERE:\t" << p->job_ram_address << std::endl;
+    //std::cout << "RUNNING OUT OF TIME:\t" << times << std::endl;
+    //std::cout << "START HERE:\t" << p->job_ram_address << std::endl;
     ready_queue.push_back(p);
     p->state = PCB::PROCESS_STATUS::READY;
     int ramStart = p->job_ram_address;
@@ -182,7 +181,7 @@ void Scheduler::lt_test() {
 
 //returns true if p1 has a smaller job_id - used for sorting
 bool comp_fifo(PCB* p1, PCB* p2) {
-    return p1->job_id > p2->job_id;
+    return p1->job_id < p2->job_id;
 }
 //returns true if p1 has lower priority than p2 - used for sorting
 bool comp_priority(PCB* p1, PCB* p2) {

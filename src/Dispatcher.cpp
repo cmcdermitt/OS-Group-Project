@@ -16,10 +16,13 @@ void Dispatcher::load_PCB(PCB *p) {
 }
 
 PCB* Dispatcher::unload_PCB() {
-    return cpu->storePCB();
+    PCB* temp = cpu->storePCB();
+    temp->state = PCB::PROCESS_STATUS::COMPLETED;
+    return temp;
 }
 
 PCB* Dispatcher::context_switch(PCB *to_load) {
     load_PCB(to_load);
+    cpu->Operate();
     return unload_PCB();
 }

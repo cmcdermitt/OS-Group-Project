@@ -24,7 +24,8 @@
 
         Scheduler sched = Scheduler(pcbs, disk, *ram, disp);
         sched.lt_sched();
-        sched.lt_test();
+        sched.st_sched();
+
       //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
 		log->turnOff(); 
 		delete log; 
