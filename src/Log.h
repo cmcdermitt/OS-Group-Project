@@ -34,6 +34,7 @@ struct Point
 };
 
 
+
 class Log
 {
 private: 
@@ -48,7 +49,8 @@ private:
 	std::vector<Graph> graphs;
 	static int numOfLogs; // Total number of logs
 	static bool logged;
-	static std::vector<std::string> records; // All records from logs 
+	static std::vector<std::string> records; // All records from logs
+	std::string verboseLog;
 
 	// PRIVATE Functions 
 	void updateAverage(); // Updates Log Information
@@ -71,5 +73,27 @@ public:
 
 
 };
+
+
+
+namespace Debug
+{
+	// Debugging flags; set to true if you want to print debug logs
+	enum Debugging_Places {
+		 DEBUG_ALL = false,
+		 DEBUG_DRIVER = false,
+		 DEBUG_LOADER = false,
+		 DEBUG_DISK = false,
+		 DEBUG_RAM = false,
+		 DEBUG_SCHEDULER = false,
+		 DEBUG_UTILITY = false,
+		 DEBUG_VERBOSE = false,
+	};
+	// Debug Logs; can be turned off adn on by editing the Debugging_Places
+	void debug(Debugging_Places p, std::string message);
+	// verboseDebug is for if you want something to be printed out that is big and that
+	// you would not want printed out during smaller debug times
+	void verboseDebug(Debugging_Places p, std::string message);
+}
 
 #endif
