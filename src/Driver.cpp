@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "Driver.h"
+#include "Dispatcher.h"
 
     Driver::Driver(){
         disk = Disk();
@@ -21,12 +22,13 @@
 		log->turnOn(); 
         loader.init(disk, pcbs);
 
+            Scheduler sched = Scheduler(pcbs, disk, *ram, disp);
+            sched.lt_sched();
+            sched.st_sched();
+            sched.lt_test();
+            //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
+            log->turnOff();
 
-        Scheduler sched = Scheduler(pcbs, disk, *ram, disp);
-        sched.lt_sched();
-        sched.lt_test();
-      //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
-		log->turnOff(); 
 		delete log; 
 
     }

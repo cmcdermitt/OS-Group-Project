@@ -1,8 +1,9 @@
 //
 // Created by Charlie McDermitt on 10/10/2017.
-
+#include <vector>
 
 #include "Scheduler.h"
+
 
 Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher *dispatcher) {
     pcbs = pcb_list;
@@ -151,15 +152,50 @@ void Scheduler::load_pcb(PCB *p, RAM &r) { //puts PCB in RAM and ready_queue dea
     p->state = PCB::PROCESS_STATUS::READY;
     int ramStart = p->job_ram_address;
     int diskStart = p->data_disk_address;
-
+    std::vector<std::string> push_list = std::vector<std::string>();
     // Put on ram
-    for(int i = 0; i < p->total_size; i++){ // may need to be <=
-    ram->write(i + ramStart, disk.read(i + diskStart));
+    for(int i = 0; i < p->total_size; i++) { // may need to be <=
+        push_list.push_back(disk.read(diskStart + i));
     }
+        r.write(diskStart, push_list);
+        //ram->write(i + ramStart, disk.read(i + diskStart));
+
 }
 
+
+// Removes PCB form
+// Needs Testing because written at 3:45 in morning
 void Scheduler::remove_pcb(PCB *p, RAM &r)
 {
+std::vector<std::string> s = std::vector<std::string>(p->total_size, "0") ;
+r.write(p->job_ram_address, s);
+    std::list<free_ram>::iterator ramIterator = std::list<free_ram>::iterator();
+    ramIterator = ram_space.begin();
+    bool foundSpot = false;
+    while(!foundSpot)
+    {
+        if((ramIterator->position >= p->job_disk_address)) {
+            ramIterator->offset = ramIterator->offset + p->job_size;
+            foundSpot = true;
+        }
+        ramIterator++;
+    }
+
+    std::list<PCB*>::iterator readyIt = std::list<PCB*>::iterator();
+     readyIt = ready_queue.begin();
+
+    while(readyIt != ready_queue.end() )
+    {
+        if((*readyIt)->job_id == p->job_id)
+        {
+            ready_queue.erase(readyIt);
+            break;
+        }
+
+
+    }
+
+    p->state = PCB::PROCESS_STATUS::COMPLETED;
 
 }
 

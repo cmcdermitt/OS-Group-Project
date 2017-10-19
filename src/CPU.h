@@ -7,6 +7,7 @@
 #include "Ram.h"
 #include <iostream>
 #include "PCB.h"
+#include <vector>
 struct Op{
     std::string opType;
     std::string opCode;

@@ -1,7 +1,7 @@
 //
 // Created by Eshin Griffith on 9/26/17.
 //
-
+#include <vector>
 #include "Ram.h"
 
     void RAM::write(int address, std::string data)
@@ -19,6 +19,15 @@
         std::string rd =  ram_data[address];
         mutex.unlock();
         return rd;
+    }
+
+    void RAM::write(int address, std::vector<std::string> data)
+    {
+        mutex.lock();
+        for(int i = 0; i < data.size(); i++) {
+        this->ram_data[i + address] =  data[i];
+        }
+        mutex.unlock();
     }
 
     RAM::RAM()
