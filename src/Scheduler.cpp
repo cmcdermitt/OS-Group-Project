@@ -8,25 +8,18 @@ Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_u
     pcbs = pcb_list;
     disk = disk_in_use;
     ram = &ram_in_use;
-    ram_space.push_back(free_ram ());
-    ram_space[0].position = 0;
-    ram_space[0].offset = ram->SIZE;
 
-    
-}
-
-void Scheduler::lt_sched()
-{
+    ram_space.push_front(free_ram(0, ram->SIZE));
     PCB *temp;
     int count = 0;
 // Continues until no more jobs can be loaded or there are no more jobs
-    while(1)
+    while(true)
     {
-       temp = lt_get_next_pcb(pcbs);
+        temp = lt_get_next_pcb(pcbs);
         if(temp == nullptr)
             break;
-       if(!get_ram_start(temp))
-           break;
+        if(!get_ram_start(temp))
+            break;
         load_pcb(temp, *ram);
         count++;
     }
@@ -112,25 +105,24 @@ PCB* Scheduler::lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority) {
 //sets p->job_ram_address to start location
 //if there's no room, p->job_ram_address will stay unset
 bool Scheduler::get_ram_start(PCB *p) {
-    int i = 0;
     bool is_space = false;
-    while (i < ram_space.size() && !is_space) {
-        if (ram_space[i].offset >= p->total_size)
+    std::list<free_ram>::iterator it = ram_space.begin();
+    while (it != ram_space.end() && !is_space) {
+        if (it->offset >= p->total_size)
         {
             is_space = true;
-            p->job_ram_address = ram_space[i].position;
+            p->job_ram_address = it->position;
 
             //modify ram_space to take out space process uses
-            if (ram_space[i].offset == p->total_size) {
-                ram_space.erase(ram_space.begin() + i);
+            if (it->offset == p->total_size) {
+                ram_space.erase(it++);
             }
             else //free_ram[i].offset > next.total_size
             {
-                ram_space[i].position = ram_space[i].position + p->total_size;
-                ram_space[i].offset = ram_space[i].offset - p->total_size;
+                it->position = it->position + p->total_size;
+                it->offset = it->offset - p->total_size;
             }
         }
-        ++i;
     }
   //  std::cout << "Current Position:\t" << ram_space[0].position << "\nCurrent Offset\t" << ram_space[0].offset << std::endl;
     return is_space;

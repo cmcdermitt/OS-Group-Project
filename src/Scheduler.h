@@ -14,6 +14,7 @@
 struct free_ram {
     int position;
     int offset;
+    free_ram(int pos, int off) {position = pos; offset = off;}
 };
 
 class Scheduler {
@@ -21,7 +22,7 @@ private:
     std::list<PCB*> pcbs;
     Disk disk;
     RAM* ram;
-    std::vector<free_ram> ram_space;
+    std::list<free_ram> ram_space;
     std::list<PCB*> ready_queue;
 
 

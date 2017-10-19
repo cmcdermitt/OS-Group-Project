@@ -10,7 +10,7 @@
 
 	std::string Utility::HexToBinary(std::string hexinput)
 	{
-		char temp; // Temporry character
+		char temp; // Temporary character
 		std::string binaryVersion = "";
 
 		for (int i = 0; i < 8; i++)
@@ -126,7 +126,6 @@
 	std::string Utility::BinaryToHex(std::string binaryinput)
 	{
 		std::string hexVersion = "";
-
 
 		for (int i = 0; i < binaryinput.length(); i = i + 4)
 		{
