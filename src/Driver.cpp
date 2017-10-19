@@ -29,6 +29,9 @@
             //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
             log->turnOff();
 
+      //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
+
+
 		delete log; 
 
     }

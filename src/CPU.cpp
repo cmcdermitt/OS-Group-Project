@@ -223,12 +223,14 @@ void CPU::execute(Op op) {
 
 void CPU::loadPCB(PCB *p) {
     this->state = *p;
+    PC = p->prgm_counter;
     for (int i = 0; i < 16; ++i) {
         this->Register[i] = this->state.registers[i];
     }
 }
 PCB* CPU::storePCB() {
     PCB* out = &state;
+    out->prgm_counter = PC;
     for (int i = 0; i < 16; ++i) {
         this->state.registers[i] = this->Register[i];
     }
