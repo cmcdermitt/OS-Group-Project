@@ -4,11 +4,11 @@
 
 #include "Scheduler.h"
 
-Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher &dispatcher) {
+Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher *dispatcher) {
     pcbs = pcb_list;
     disk = disk_in_use;
     ram = &ram_in_use;
-
+    disp = dispatcher;
     ram_space.push_front(free_ram(0, ram->SIZE));
 }
 
@@ -45,8 +45,7 @@ void Scheduler::st_sched()
 
         if(temp == nullptr) //Making sure it's not null
             break;
-        Dispatcher disp = Dispatcher()
-        temp = disp.context_switch(temp, ram);
+        temp = disp->context_switch(temp);
         //Send PCB to Dispatcher
         //Receive PCB on either completion or interrupt
 

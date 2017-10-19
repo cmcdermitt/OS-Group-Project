@@ -30,12 +30,13 @@ void run();
 void test();
 std::list<PCB*> pcbs;
 private:
-   Loader loader;
-   Disk disk;
+    Loader loader;
+    Disk disk;
     RAM *ram;
-   Log *log; 
-   Log *testLog;
+    Log *log;
+    Log *testLog;
     CPU *cpu;
+    Dispatcher* disp;
 };
 
 

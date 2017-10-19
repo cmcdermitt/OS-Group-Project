@@ -6,7 +6,6 @@
 #include <chrono>
 #include <ctime>
 #include <iomanip>
-
 // Static variable initialization
 int Log::numOfLogs = 0;
 std::vector<std::string> Log::records = std::vector<std::string>(); 

@@ -4,7 +4,7 @@
 
 #include "Dispatcher.h"
 
-Dispatcher::Dispatcher(CPU& c, RAM *r) {
+Dispatcher::Dispatcher(CPU *c, RAM *r) {
     cpu = c;
     ram = r;
 }
@@ -12,14 +12,14 @@ Dispatcher::Dispatcher(CPU& c, RAM *r) {
 void Dispatcher::load_PCB(PCB *p) {
     current = p;
     current->state = PCB::PROCESS_STATUS::RUNNING;
-    cpu.loadPCB(p);
+    cpu->loadPCB(p);
 }
 
 PCB* Dispatcher::unload_PCB() {
-    return cpu.storePCB();
+    return cpu->storePCB();
 }
 
 PCB* Dispatcher::context_switch(PCB *to_load) {
-    load_PCB(to_load, ram);
+    load_PCB(to_load);
     return unload_PCB();
 }

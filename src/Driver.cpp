@@ -6,13 +6,14 @@
 #include "Driver.h"
 
     Driver::Driver(){
-         disk = Disk();
+        disk = Disk();
         ram = new RAM();
-       loader = Loader();
-        cpu = new CPU(ram,production);
-	   pcbs = std::list<PCB*>();
-	   log = new Log("Driver"); 
-	   testLog = new Log("Test");
+        loader = Loader();
+        cpu = new CPU(ram, production);
+	    pcbs = std::list<PCB*>();
+	    log = new Log("Driver");
+	    testLog = new Log("Test");
+        disp = new Dispatcher(cpu, ram);
 
     }
 
@@ -21,7 +22,7 @@
         loader.init(disk, pcbs);
 
 
-        Scheduler sched = Scheduler(pcbs, disk, *ram);
+        Scheduler sched = Scheduler(pcbs, disk, *ram, disp);
         sched.lt_sched();
         sched.lt_test();
       //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;

@@ -14,10 +14,10 @@ class Dispatcher
 private:
     RAM* ram;
     PCB* current;
-    CPU& cpu;
+    CPU* cpu;
 
 public:
-    Dispatcher(CPU& to_run, RAM *r);
+    Dispatcher(CPU* c, RAM *r);
     void load_PCB(PCB *p); //Singular for now
     PCB* unload_PCB();
     PCB* context_switch(PCB* to_load);

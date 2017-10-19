@@ -24,6 +24,7 @@ private:
     std::list<PCB*> pcbs;
     Disk disk;
     RAM* ram;
+    Dispatcher *disp;
     std::list<free_ram> ram_space;
     std::list<PCB*> ready_queue;
 
@@ -35,7 +36,7 @@ private:
 
 
 public:
-    Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher &dispatcher);
+    Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher *dispatcher);
     void lt_sched();
     PCB* lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority = false); //returns pointer to next PCB
     void st_sched();
