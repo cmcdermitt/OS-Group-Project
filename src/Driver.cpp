@@ -32,8 +32,7 @@
     void Driver::test()
     {
         CPU::test();
-		testLog->turnOn();for(int i= 0; i < 2048; i++)
-           std::cout << disk.read(i) << std::endl;
+//		testLog->turnOn();for(int i= 0; i < 2048; i++) std::cout << disk.read(i) << std::endl;
 		testLog->turnOff(); 
 		delete testLog;
     }

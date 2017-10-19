@@ -127,10 +127,10 @@
 	{
 		std::string hexVersion = "";
 
-
+        while(binaryinput.length()%4!=0)binaryinput = '0' + binaryinput;
 		for (int i = 0; i < binaryinput.length(); i = i + 4)
 		{
-			hexVersion += binaryinput.substr(i, 4);
+			hexVersion += convertFourBitsToHexChar(binaryinput.substr(i, 4));
 		}
 		return hexVersion;
 	}
