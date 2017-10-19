@@ -21,6 +21,9 @@ void printPCBs(std::list<PCB*> p)
         std::cout << "State:\t" << pcb->state << std::endl;
     }
 
+    if (p.empty())
+        std::cout << ("No PCBs to print.") << std::endl;
+
 }
 
 

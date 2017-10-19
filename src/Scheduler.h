@@ -40,4 +40,11 @@ public:
     void lt_test();
 };
 
+
+//returns true if p1 has a smaller job_id - used for sorting
+bool comp_fifo(PCB* p1, PCB* p2);
+//returns true if p1 has higher priority than p2 - used for sorting
+bool comp_priority(PCB* p1, PCB* p2);
+
+
 #endif //OS_GROUP_PROJECT_LT_SCHEDULER_H

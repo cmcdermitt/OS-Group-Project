@@ -10,6 +10,9 @@ Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_u
     ram = &ram_in_use;
 
     ram_space.push_front(free_ram(0, ram->SIZE));
+}
+
+void Scheduler::lt_sched() {
     PCB *temp;
     int count = 0;
 // Continues until no more jobs can be loaded or there are no more jobs
@@ -23,15 +26,21 @@ Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_u
         load_pcb(temp, *ram);
         count++;
     }
-    // std::cout << "count:\t" << count << std::endl;
+    std::cout << "count:\t" << count << std::endl;
 
 }
+
+
 
 void Scheduler::st_sched()
 {
     PCB *temp;
+
+    ready_queue.sort(comp_priority);
+
     while(!ready_queue.empty()) //Ends on empty ready queue
     {
+
         temp = ready_queue.front(); //Access first sorted PCB
         ready_queue.pop_front();
 
@@ -42,9 +51,11 @@ void Scheduler::st_sched()
         //Receive PCB on either completion or interrupt
 
         if (temp->state == PCB::PROCESS_STATUS::COMPLETED)
-            remove_pcb(temp, *ram); //Not written yet
+            //remove_pcb(temp, *ram); //Not written yet
         if (temp->state == PCB::PROCESS_STATUS::BLOCKED)
-            ready_queue.push_front(temp); //Places PCB back at the front to reassess next go around
+            ready_queue.push_back(temp); //Places PCB at back of queue to reassess next go around
+
+
         //Will eventually have a method for resorting PCBs on return based on priority and job_size
 
     }
@@ -123,6 +134,7 @@ bool Scheduler::get_ram_start(PCB *p) {
                 it->offset = it->offset - p->total_size;
             }
         }
+        ++it;
     }
   //  std::cout << "Current Position:\t" << ram_space[0].position << "\nCurrent Offset\t" << ram_space[0].offset << std::endl;
     return is_space;
@@ -151,7 +163,10 @@ void Scheduler::remove_pcb(PCB *p, RAM &r)
 }
 
 void Scheduler::lt_test() {
-    for(free_ram r : ram_space)
+    ready_queue.sort(comp_priority);
+    printPCBs(ready_queue);
+
+    /*for(free_ram r : ram_space)
     {
         std::cout << "Position:\t" << r.position << "\nOffset:\t" << r.offset << std::endl;
     }
@@ -159,9 +174,18 @@ void Scheduler::lt_test() {
     for(int i = 0; i < 1024; i++)
     {
         std::cout << ram->read(i) << std::endl;
-    }
+    }*/
 
 
+}
+
+//returns true if p1 has a smaller job_id - used for sorting
+bool comp_fifo(PCB* p1, PCB* p2) {
+    return p1->job_id > p2->job_id;
+}
+//returns true if p1 has lower priority than p2 - used for sorting
+bool comp_priority(PCB* p1, PCB* p2) {
+    return p1->job_pri > p2->job_pri;
 }
 
 //OLD FUNCTION
@@ -226,5 +250,7 @@ void Scheduler::lt_test() {
 //    ready_queue.push_front(next);
 //
 //}
+
+
 
 
