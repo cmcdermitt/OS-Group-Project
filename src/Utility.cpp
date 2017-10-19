@@ -139,7 +139,7 @@ std::string Utility::BinaryToHex(std::string binaryinput)
     return hexVersion;
 }
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 // Converts individual bits to a hex Char
 char Utility::convertFourBitsToHexChar(std::string binary)
 {
@@ -180,7 +180,7 @@ char Utility::convertFourBitsToHexChar(std::string binary)
             return 'F';
     }
 }
-=======
+//=======
 	// Converts Binary to decimal
 	int Utility::convertBinaryToDecimal(std::string binaryInput)
 	{
@@ -192,21 +192,8 @@ char Utility::convertFourBitsToHexChar(std::string binary)
         }
 		return decimal;
 	}
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 
-// Converts Binary to decimal
-int Utility::convertBinaryToDecimal(std::string binaryInput)
-{
-    int decimal = 0;
-    int place = 1;
-    for (int i = 0; i < binaryInput.length(); i++)
-    {
-        if (binaryInput.at(i) == '1')
-            decimal += place;
-        place *= 2;
-    }
-    return decimal;
-}
 
 std::string Utility::convert_decimal_to_hex(int input) {
     std::string output = "";
