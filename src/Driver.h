@@ -34,7 +34,8 @@ private:
    Disk disk;
     RAM *ram;
    Log *log; 
-   Log *testLog; 
+   Log *testLog;
+    CPU *cpu;
 };
 
 

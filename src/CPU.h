@@ -16,13 +16,15 @@ struct Op{
     int bReg;
     int address;
 };
+enum mode{debug,production};
 class CPU {
     private:
         int Register[16];
         int PC;
         RAM* ram;
-        bool RD();
-        bool WR();
+        mode cpumode;
+        bool RD(int s1, int s2, int address);
+        bool WR(int s1, int s2, int address);
         bool ST(int addr, int regNum);
         bool LW(int addr, int regNum);
         bool MOV(int fromReg, int toReg);
@@ -52,7 +54,7 @@ class CPU {
     public:
         PCB state;
         bool Operate();
-        CPU(RAM* ram);
+        CPU(RAM* ram,mode);
         void loadPCB(PCB p);
         PCB storePCB();
         int* dump_registers();

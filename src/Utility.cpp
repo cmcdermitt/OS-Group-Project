@@ -4,9 +4,7 @@
 
 #include "Utility.h"
 #include <bitset>
-#include <string>
 #include <iostream>
-#include <algorithm>
 #include <cmath>
 // ******** NOT TESTED ************
 // Hex to Binary
