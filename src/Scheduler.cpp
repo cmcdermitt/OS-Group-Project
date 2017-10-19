@@ -36,23 +36,25 @@ void Scheduler::st_sched()
 {
     PCB *temp;
 
-    ready_queue.sort(comp_priority);
+    ready_queue.sort(comp_fifo);
 
     while(!ready_queue.empty()) //Ends on empty ready queue
     {
 
         temp = ready_queue.front(); //Access first sorted PCB
-        ready_queue.pop_front();
 
         if(temp == nullptr) //Making sure it's not null
             break;
-
-        //temp = Dispatcher(temp);  //Send PCB to Dispatcher
+        Dispatcher disp = Dispatcher()
+        temp = disp.context_switch(temp, ram);
+        //Send PCB to Dispatcher
         //Receive PCB on either completion or interrupt
 
         if (temp->state == PCB::PROCESS_STATUS::COMPLETED)
+            ready_queue.pop_front();
             //remove_pcb(temp, *ram); //Not written yet
         if (temp->state == PCB::PROCESS_STATUS::BLOCKED)
+            ready_queue.pop_front();
             ready_queue.push_back(temp); //Places PCB at back of queue to reassess next go around
 
 

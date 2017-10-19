@@ -26,9 +26,9 @@ private:
     std::list<PCB*> ready_queue;
 
 
-    bool get_ram_start(PCB *p); //sets *p->ramStartAddress
+    bool get_ram_start(PCB *p); //sets *p->ramStartAddress to an open space in RAM
     void load_pcb(PCB *p, RAM &r); //puts PCB in RAM
-    void remove_pcb(PCB *p, RAM &r);
+    void remove_pcb(PCB *p, RAM &r); //removes PCB from RAM
 
 
 

@@ -14,11 +14,16 @@ class Dispatcher
 private:
     RAM* ram;
     PCB* current;
-    CPU comp;
+    CPU& cpu;
 
 public:
-    void load_PCB(PCB *p, RAM *r); //Singular for now
-    void stop_jobs(); //Singular
+    Dispatcher(CPU& to_run, RAM *r);
+    void load_PCB(PCB *p); //Singular for now
+    PCB* unload_PCB();
+    PCB* context_switch(PCB* to_load);
+
+
+    //void stop_jobs(); //Singular
 
 };
 #endif //OS_GROUP_PROJECT_DISPATCHER_H

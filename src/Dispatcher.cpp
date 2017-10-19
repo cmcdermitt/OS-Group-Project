@@ -4,9 +4,22 @@
 
 #include "Dispatcher.h"
 
-void Dispatcher::load_PCB(PCB *p, RAM *r) {
+Dispatcher::Dispatcher(CPU& c, RAM *r) {
+    cpu = c;
     ram = r;
+}
+
+void Dispatcher::load_PCB(PCB *p) {
     current = p;
     current->state = PCB::PROCESS_STATUS::RUNNING;
-    //computer loads PCB and begins operations
+    cpu.loadPCB(p);
+}
+
+PCB* Dispatcher::unload_PCB() {
+    return cpu.storePCB();
+}
+
+PCB* Dispatcher::context_switch(PCB *to_load) {
+    load_PCB(to_load, ram);
+    return unload_PCB();
 }
