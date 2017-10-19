@@ -234,7 +234,6 @@ PCB* CPU::storePCB() {
     if(this->state.state != PCB::COMPLETED) this->state.state = PCB::READY;
     out->prgm_counter = PC;
     for (int i = 0; i < 16; ++i) {
-        std::cout << this->Register[i] << "\t";
         this->state.registers[i] = this->Register[i];
     }
     return out;
