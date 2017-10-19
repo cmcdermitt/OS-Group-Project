@@ -54,12 +54,15 @@ void Scheduler::st_sched()
                 std::cout << i << "\t";
             std::cout << std::endl;
 
-            if (temp->state == PCB::PROCESS_STATUS::COMPLETED)
+            remove_pcb(temp, ram);
+
+            /*Now implemented in remove_pcb
+             * if (temp->state == PCB::PROCESS_STATUS::COMPLETED)
                 ready_queue.pop_front();
             //remove_pcb(temp, *ram); //Not written yet
             if (temp->state == PCB::PROCESS_STATUS::BLOCKED)
                 ready_queue.pop_front();
-            ready_queue.push_back(temp); //Places PCB at back of queue to reassess next go around
+            ready_queue.push_back(temp); //Places PCB at back of queue to reassess next go around*/
         }
     }
 }
@@ -165,37 +168,53 @@ void Scheduler::load_pcb(PCB *p, RAM &r) { //puts PCB in RAM and ready_queue dea
 
 // Removes PCB form
 // Needs Testing because written at 3:45 in morning
-void Scheduler::remove_pcb(PCB *p, RAM &r)
+void Scheduler::remove_pcb(PCB *p, RAM *r)
 {
-std::vector<std::string> s = std::vector<std::string>(p->total_size, "0") ;
-r.write(p->job_ram_address, s);
-    std::list<free_ram>::iterator ramIterator = std::list<free_ram>::iterator();
-    ramIterator = ram_space.begin();
-    bool foundSpot = false;
-    while(!foundSpot)
-    {
-        if((ramIterator->position >= p->job_disk_address)) {
-            ramIterator->offset = ramIterator->offset + p->job_size;
-            foundSpot = true;
-        }
-        ramIterator++;
+    if (p->state == PCB::PROCESS_STATUS::READY) {
+        return;
+        //return b/c nothing to remove - PCB still needs to run
     }
 
-    std::list<PCB*>::iterator readyIt = std::list<PCB*>::iterator();
-     readyIt = ready_queue.begin();
-
-    while(readyIt != ready_queue.end() )
-    {
-        if((*readyIt)->job_id == p->job_id)
-        {
-            ready_queue.erase(readyIt);
-            break;
-        }
-
-
+    if (p->state == PCB::PROCESS_STATUS::BLOCKED) {
+        //send p to back to RQ - maybe not right idea but works for now
+        ready_queue.pop_front();
+        ready_queue.push_back(p);
     }
 
-    p->state = PCB::PROCESS_STATUS::COMPLETED;
+    if (p->state == PCB::PROCESS_STATUS::COMPLETED) {
+        //write 0s over process location in RAM
+        std::vector<std::string> s = std::vector<std::string>(p->total_size, "0");
+        r->write(p->job_ram_address, s);
+
+
+        std::list<free_ram>::iterator ramIterator;
+        ramIterator = ram_space.begin();
+        bool foundSpot = false;
+        while (!foundSpot) {
+            if (ramIterator->position >= p->job_disk_address && ramIterator->position < p->job_disk_address) {
+                ramIterator->offset = ramIterator->offset + p->job_size;
+                foundSpot = true;
+            }
+            ramIterator++;
+        }
+
+        if (!foundSpot)
+            ram_space.insert();
+
+        std::list<PCB *>::iterator readyIt;
+        readyIt = ready_queue.begin();
+
+        while (readyIt != ready_queue.end()) {
+            if ((*readyIt)->job_id == p->job_id) {
+                ready_queue.erase(readyIt);
+                readyIt++;
+                break;
+            }
+
+
+        }
+
+    }
 
 }
 
