@@ -4,7 +4,7 @@
 
 #include "Scheduler.h"
 
-Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use) {
+Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher &dispatcher) {
     pcbs = pcb_list;
     disk = disk_in_use;
     ram = &ram_in_use;

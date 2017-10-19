@@ -10,6 +10,8 @@
 #include "PCB.h"
 #include <list>
 #include <vector>
+#include "Scheduler.h"
+#include "Dispatcher.h"
 
 struct free_ram {
     int position;
@@ -33,7 +35,7 @@ private:
 
 
 public:
-    Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use);
+    Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher &dispatcher);
     void lt_sched();
     PCB* lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority = false); //returns pointer to next PCB
     void st_sched();

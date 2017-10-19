@@ -14,11 +14,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3d66059b-158b-49a3-93bc-c1bccf0ee211" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CPU.cpp" afterPath="$PROJECT_DIR$/src/CPU.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CPU.h" afterPath="$PROJECT_DIR$/src/CPU.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Driver.cpp" afterPath="$PROJECT_DIR$/src/Driver.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Driver.h" afterPath="$PROJECT_DIR$/src/Driver.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utility.cpp" afterPath="$PROJECT_DIR$/src/Utility.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Scheduler.cpp" afterPath="$PROJECT_DIR$/src/Scheduler.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Scheduler.h" afterPath="$PROJECT_DIR$/src/Scheduler.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,8 +49,8 @@
       <file leaf-file-name="Scheduler.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Scheduler.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+            <state relative-caret-position="199">
+              <caret line="37" column="101" selection-start-line="37" selection-start-column="101" selection-end-line="37" selection-end-column="101" />
               <folding>
                 <element signature="e#135#152#0" expanded="true" />
               </folding>
@@ -61,13 +58,27 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Scheduler.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Scheduler.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="109" selection-start-line="6" selection-start-column="109" selection-end-line="6" selection-end-column="109" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Driver.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Driver.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+            <state relative-caret-position="150">
+              <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
               <folding>
-                <element signature="e#48#67#0" expanded="true" />
+                <marker date="1508392395000" expanded="true" signature="0:46" ph="//..." />
+                <marker date="1508392395000" expanded="true" signature="57:87" ph="..." />
+                <marker date="1508392395000" expanded="true" signature="109:322" ph="{...}" />
+                <marker date="1508392395000" expanded="true" signature="347:621" ph="{...}" />
+                <marker date="1508392395000" expanded="true" signature="651:811" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -131,24 +142,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CPU.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CPU.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CPU.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="219" column="70" selection-start-line="219" selection-start-column="70" selection-end-line="219" selection-end-column="70" />
+            <state relative-caret-position="45">
+              <caret line="220" column="5" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
               <folding>
                 <element signature="e#48#64#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Program-File.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Program-File.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="10" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="10" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -165,8 +166,6 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/PCB.h" />
         <option value="$PROJECT_DIR$/src/Ram.h" />
-        <option value="$PROJECT_DIR$/src/Scheduler.h" />
-        <option value="$PROJECT_DIR$/src/Scheduler.cpp" />
         <option value="$PROJECT_DIR$/src/Ram.cpp" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/src/Utility.cpp" />
@@ -174,6 +173,8 @@
         <option value="$PROJECT_DIR$/src/Driver.h" />
         <option value="$PROJECT_DIR$/src/CPU.h" />
         <option value="$PROJECT_DIR$/src/CPU.cpp" />
+        <option value="$PROJECT_DIR$/src/Scheduler.h" />
+        <option value="$PROJECT_DIR$/src/Scheduler.cpp" />
       </list>
     </option>
   </component>
@@ -487,12 +488,12 @@
       <workItem from="1508181058045" duration="1899000" />
       <workItem from="1508204915901" duration="8188000" />
       <workItem from="1508264018698" duration="11732000" />
-      <workItem from="1508378144110" duration="11781000" />
+      <workItem from="1508378144110" duration="12160000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38687000" />
+    <option name="totallyTimeSpent" value="39066000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1436" height="877" extended-state="6" />
@@ -500,12 +501,12 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24930362" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5259901" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5259901" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -607,9 +608,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -634,7 +633,7 @@
         <state relative-caret-position="120">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -850,9 +849,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#19#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -895,20 +892,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scheduler.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1745">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -935,16 +924,6 @@
           <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
           <folding>
             <element signature="e#110#129#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scheduler.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-          <folding>
-            <element signature="e#135#152#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -981,10 +960,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Driver.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        <state relative-caret-position="150">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
           <folding>
-            <element signature="e#48#67#0" expanded="true" />
+            <marker date="1508392395000" expanded="true" signature="0:46" ph="//..." />
+            <marker date="1508392395000" expanded="true" signature="57:87" ph="..." />
+            <marker date="1508392395000" expanded="true" signature="109:322" ph="{...}" />
+            <marker date="1508392395000" expanded="true" signature="347:621" ph="{...}" />
+            <marker date="1508392395000" expanded="true" signature="651:811" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1001,11 +984,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CPU.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="219" column="70" selection-start-line="219" selection-start-column="70" selection-end-line="219" selection-end-column="70" />
+        <state relative-caret-position="45">
+          <caret line="220" column="5" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
           <folding>
             <element signature="e#48#64#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scheduler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="37" column="101" selection-start-line="37" selection-start-column="101" selection-end-line="37" selection-end-column="101" />
+          <folding>
+            <element signature="e#135#152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scheduler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="109" selection-start-line="6" selection-start-column="109" selection-end-line="6" selection-end-column="109" />
+          <folding />
         </state>
       </provider>
     </entry>
