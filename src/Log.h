@@ -90,10 +90,10 @@ namespace Debug
 		 DEBUG_VERBOSE = false,
 	};
 	// Debug Logs; can be turned off adn on by editing the Debugging_Places
-	std::string debug(Debugging_Places p, std::string message);
+	void debug(Debugging_Places p, std::string message);
 	// verboseDebug is for if you want something to be printed out that is big and that
 	// you would not want printed out during smaller debug times
-	std::string verboseDebug(Debugging_Places p, std::string message);
+	void verboseDebug(Debugging_Places p, std::string message);
 }
 
 #endif
