@@ -224,12 +224,14 @@ void CPU::execute(Op op) {
 void CPU::loadPCB(PCB *p) {
     this->state = *p;
     PC = p->prgm_counter;
+    this->state.state = PCB::RUNNING;
     for (int i = 0; i < 16; ++i) {
         this->Register[i] = this->state.registers[i];
     }
 }
 PCB* CPU::storePCB() {
     PCB* out = &state;
+    if(this->state.state != PCB::COMPLETED) this->state.state = PCB::READY;
     out->prgm_counter = PC;
     for (int i = 0; i < 16; ++i) {
         std::cout << this->Register[i] << "\t";
@@ -253,8 +255,8 @@ void CPU::pass(std::string val){
         std::cout << i <<"\t";
     }
     std::cout << std::endl;
-    for(int i=0;i<16;i++){
-        std::cout << this->Register[i] <<"\t";
+    for (int i : this->Register) {
+        std::cout << i <<"\t";
     }
     std::cout << std::endl;
 }

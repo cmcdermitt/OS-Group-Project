@@ -19,7 +19,7 @@ void printPCBs(std::list<PCB*> p)
         std::cout << "TempSize:\t" << pcb->temp_buf_size << std::endl;
         std::cout << "Total Size:\t" << pcb->total_size << std::endl;
         std::string s;
-        switch(pcb->state)
+        switch((int)pcb->state)
         {
             case 0: {
                 s = "RUNNING";

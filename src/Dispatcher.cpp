@@ -23,6 +23,6 @@ PCB* Dispatcher::unload_PCB() {
 
 PCB* Dispatcher::context_switch(PCB *to_load) {
     load_PCB(to_load);
-    cpu->Operate();
+    while(cpu->state.state == PCB::RUNNING) cpu->Operate();
     return unload_PCB();
 }
