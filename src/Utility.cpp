@@ -107,18 +107,16 @@ int Utility::convertIndividualHexToDecimal(char hex)
 
 int Utility::convertHexToDecimal(std::string hexInput)
 {
-    int it = hexInput.length() - 1;
+    int i = hexInput.length() - 1;
     int place = 0;
     int final = 0;
-    while (it != 0)
+    while (i >= 0)
     {
-        final += pow(16, place) * convertIndividualHexToDecimal(hexInput.at(it));
+        final += pow(16, place) * convertIndividualHexToDecimal(hexInput.at(i));
         place++;
-        --it;
-
+        --i;
     }
 
-    final += pow(16, place) * convertIndividualHexToDecimal(hexInput.at(0));
     return final;
 }
 
