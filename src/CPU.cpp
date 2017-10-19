@@ -215,17 +215,18 @@ void CPU::execute(Op op) {
     }
 }
 
-void CPU::loadPCB(PCB p) {
-    this->state = p;
+void CPU::loadPCB(PCB *p) {
+    this->state = *p;
     for (int i = 0; i < 16; ++i) {
         this->Register[i] = this->state.registers[i];
     }
 }
-PCB CPU::storePCB() {
+PCB* CPU::storePCB() {
+    PCB* out = &state;
     for (int i = 0; i < 16; ++i) {
         this->state.registers[i] = this->Register[i];
     }
-    return state;
+    return out;
 }
 void CPU::pass(std::string val){
     Op decoded = CPU::decode(val);

@@ -53,8 +53,8 @@ class CPU {
         PCB state;
         bool Operate();
         CPU(RAM* ram);
-        void loadPCB(PCB p);
-        PCB storePCB();
+        void loadPCB(PCB *p);
+        PCB* storePCB();
         int* dump_registers();
         void pass(std::string val);
         static void test();
