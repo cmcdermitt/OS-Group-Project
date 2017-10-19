@@ -151,3 +151,21 @@ bool Log::removeGraph(std::string label) {
 
 	}
 }
+
+// Logging function
+std::string Debug::debug(Debugging_Places p, std::string message)
+{
+	if(p && Debugging_Places::DEBUG_ALL)
+		return message;
+	else
+		return "";
+}
+
+// Logging function for verbose output that you might not always want
+std::string Debug::verboseDebug(Debugging_Places p, std::string message)
+{
+	if(Debugging_Places::DEBUG_VERBOSE)
+	{
+		Debug::debug(p, message);
+	}
+}
