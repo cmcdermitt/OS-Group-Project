@@ -6,6 +6,9 @@
 #include <chrono>
 #include <ctime>
 #include <iomanip>
+
+
+bool Log::logged = false;
 // Static variable initialization
 int Log::numOfLogs = 0;
 std::vector<std::string> Log::records = std::vector<std::string>(); 
@@ -17,17 +20,13 @@ Log::Log(std::string label)
 	on = false;
 	numOfLogs++;
 	average = 0; 
-	total = 0; 
+	total = 0;
+	graphs = std::vector<Graph>();
 }
 
 Log::~Log()
 {
-	numOfLogs--; 
-	createIndividualLog(); 
-	if (numOfLogs == 0)
-	{
-		recordLogs();
-	}	
+
 }
 
 // Records the current average time for 
@@ -75,9 +74,80 @@ void Log::recordLogs()
 	log.close(); 
 }
 
+bool Log::logEverything()
+{
+	if(Log::logged)
+		return false;
+	else
+	{
+		recordLogs();
+		Log::logged = true;
+		return  true;
+	}
+
+}
+
 void Log::createIndividualLog()
 {
 	std::string log = "Label:\t\t" + label + "\nTotal:\t\t" + std::to_string(total) + "\nAverage:\t" + std::to_string(average) + " seconds\nLast:\t\t"
 		+ std::to_string(last) + " seconds";
+	std::string graphString;
+	log += "\nGraphs:\t";
+	for(int i = 0; i < graphs.size(); i++)
+	{
+		std::cout << "\n";
+		graphString += graphs[i].label + ":\t";
+		for(int j = 0; j < graphs[i].points.size(); j++)
+		{
+			graphString += "(" + std::to_string(graphs[i].points[j].x) + "," + std::to_string(graphs[i].points[j].y) + "),";
+		}
+		graphString.erase(graphString.end());
+
+	}
+	log = log + graphString;
+
 	Log::records.push_back(log); 
+}
+
+bool Log::recordData()
+{
+	logIt.lock();
+	this->createIndividualLog();
+	logIt.unlock();
+}
+
+bool Log::addGraph(std::string label)
+{
+	Graph g;
+	g.label = label;
+	g.points = std::vector<Point>();
+	return  true;
+}
+
+bool Log::addPoint(std::string label, int yCoord)
+{
+	for(Graph g : graphs)
+	{
+		if(g.label == label)
+		{
+			Point p;
+			p.x = time(0);
+			p.y = yCoord;
+			g.points.push_back(p);
+			return true;
+		}
+
+	}
+	return false;
+}
+
+bool Log::removeGraph(std::string label) {
+	for(int i = 0; i < graphs.size(); i++)
+	{
+		if(label == graphs[i].label)
+		{
+			graphs.erase(graphs.begin() + i);
+		}
+
+	}
 }
