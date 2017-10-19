@@ -6,6 +6,7 @@
 #include "Driver.h"
 #include "Dispatcher.h"
 
+//Sets up disk, ram, loader, cpu, pcb lists, log files, and dispatcher
     Driver::Driver(){
         disk = Disk();
         ram = new RAM();
@@ -17,14 +18,14 @@
         disp = new Dispatcher(cpu, ram);
 
     }
-
+//Runs driver and schedulers
     void Driver::run() {
 		log->turnOn(); 
         loader.init(disk, pcbs);
 
-            Scheduler sched = Scheduler(pcbs, disk, *ram, disp);
-            sched.lt_sched();
-            sched.st_sched();
+            Scheduler sched = Scheduler(pcbs, disk, *ram, disp); //Passes list of pcbs to scheduler
+            sched.lt_sched(); //Calls long term scheduler
+            sched.st_sched(); //Calls short term scheduler
             //sched.lt_test();
             //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
             log->turnOff();

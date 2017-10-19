@@ -6,10 +6,8 @@
 #include <bitset>
 #include <iostream>
 #include <cmath>
-// ******** NOT TESTED ************
-// Hex to Binary
-// Converts hex to binary
 
+// Converts HEX to Binary
 std::string Utility::HexToBinary(std::string hexinput)
 {
     char temp; // Temporry character
@@ -22,8 +20,7 @@ std::string Utility::HexToBinary(std::string hexinput)
     return binaryVersion;
 }
 
-
-// Converts individual hex to binary
+// Converts individual HEX chars to Binary
 std::string Utility::convertHexCharToBinary(char hex)
 {
     switch (hex)
@@ -63,7 +60,6 @@ std::string Utility::convertHexCharToBinary(char hex)
             return "1111";
     }
 }
-
 
 // Hex to Decimal
 int Utility::convertIndividualHexToDecimal(char hex)
@@ -105,6 +101,7 @@ int Utility::convertIndividualHexToDecimal(char hex)
     }
 }
 
+// HEX to Decimal from string input
 int Utility::convertHexToDecimal(std::string hexInput)
 {
     int i = hexInput.length() - 1;
@@ -120,9 +117,7 @@ int Utility::convertHexToDecimal(std::string hexInput)
     return final;
 }
 
-// Binary to Hex
-
-// Converts Binary to hex
+// Converts Binary to HEX
 std::string Utility::BinaryToHex(std::string binaryinput)
 {
     std::string hexVersion = "";
@@ -135,8 +130,7 @@ std::string Utility::BinaryToHex(std::string binaryinput)
     return hexVersion;
 }
 
-//<<<<<<< Updated upstream
-// Converts individual bits to a hex Char
+// Converts individual bits to a HEX Char
 char Utility::convertFourBitsToHexChar(std::string binary)
 {
     int decimal = convertBinaryToDecimal(binary);
@@ -176,21 +170,20 @@ char Utility::convertFourBitsToHexChar(std::string binary)
             return 'F';
     }
 }
-//=======
-	// Converts Binary to decimal
-	int Utility::convertBinaryToDecimal(std::string binaryInput)
-	{
-		int decimal = 0;
-        for (int i = 0; i < binaryInput.length(); ++i) {
-            decimal*=2;
-            decimal+=(binaryInput.at(i)=='0')?0:1;
 
-        }
-		return decimal;
-	}
-//>>>>>>> Stashed changes
+// Converts Binary to decimal
+int Utility::convertBinaryToDecimal(std::string binaryInput)
+{
+    int decimal = 0;
+    for (int i = 0; i < binaryInput.length(); ++i) {
+        decimal*=2;
+        decimal+=(binaryInput.at(i)=='0')?0:1;
 
+    }
+    return decimal;
+}
 
+// Converts Decimal to HEX
 std::string Utility::convert_decimal_to_hex(int input) {
     std::string output = "";
     int temp;
