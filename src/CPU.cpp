@@ -24,25 +24,30 @@ CPU::CPU(RAM* ram,mode m) {
 }
 
 bool CPU::RD(int s1, int s2, int address) {
+
     if(this->cpumode==debug) return false;
-    Register[s1] = Utility::convertHexToDecimal(ram->read(address));
+    if(address==0)Register[s1] = Utility::convertHexToDecimal(ram->read(Register[s2]/4));
+    else Register[s1] = Utility::convertHexToDecimal(ram->read((address)/4));
 
 }
 
 bool CPU::WR(int s1, int s2, int address) {
     if(this->cpumode==debug) return false;
-    ram->write(address,Utility::convert_decimal_to_hex(Register[s1]));
+    ram->write(address/4,Utility::convert_decimal_to_hex(Register[s1]));
 
 }
 
-bool CPU::ST(int addr, int regNum) {
+bool CPU::ST(int addr, int breg, int dreg) {
 //    this ->ram.write(addr,this->Register[regNum]);
     //Utility::convert_decimal_to_hex
+    if(addr==0) ram->write(Register[dreg]/4, Utility::convert_decimal_to_hex(Register[breg]));
+    else ram->write(addr/4, Utility::convert_decimal_to_hex(Register[breg]));
     return true;
 }
 
-bool CPU::LW(int addr, int regNum) {
-    this->Register[regNum] = Utility::convertHexToDecimal(this->ram->read(addr));
+bool CPU::LW(int addr, int breg, int dreg) {
+    if(addr==0)this->Register[dreg] = Utility::convertHexToDecimal(this->ram->read(Register[breg]/4));
+    else this->Register[dreg] = Utility::convertHexToDecimal(this->ram->read(addr/4));
     return true;
 }
 
@@ -111,31 +116,31 @@ bool CPU::NOP(){
     return true;
 }
 bool CPU::JMP(int lineNo){
-    PC = lineNo;
+    PC = lineNo/4;
     return true;
 }
 bool CPU::BEQ(int B, int D, int addr){
-    if(this->Register[B]==this->Register[D]) return true; // What is addr?
+    if(this->Register[B]==this->Register[D]) JMP(addr);
     return true;
 }
 bool CPU::BNE(int B, int D, int addr){
-    if(this->Register[B]!=this->Register[D]) return true; // What is addr?
+    if(this->Register[B]!=this->Register[D]) JMP(addr);
     return true;
 }
 bool CPU::BEZ(int B, int addr){
-    if(this->Register[B]==0) return true; // What is addr?
+    if(this->Register[B]==0) JMP(addr);
     return true;
 }
 bool CPU::BNZ(int B, int addr){
-    if(this->Register[B]!=0) return true; // What is addr?
+    if(this->Register[B]!=0) JMP(addr);
     return true;
 }
 bool CPU::BGZ(int B, int addr){
-    if(this->Register[B]>0) return true; // What is addr?
+    if(this->Register[B]>0) JMP(addr);
     return true;
 }
 bool CPU::BLZ(int B, int addr){
-    if(this->Register[B]<0) return true; // What is addr?
+    if(this->Register[B]<0) JMP(addr);
     return true;
 }
 
@@ -193,16 +198,17 @@ void CPU::execute(Op op) {
         else if(op.opCode=="07")CPU::MUL(op.sReg1,op.sReg2,op.dReg);
         else if(op.opCode=="08")CPU::DIV(op.sReg1,op.sReg2,op.dReg);
         else if(op.opCode=="09")CPU::AND(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="10")CPU::SLT(op.sReg1,op.sReg2,op.dReg);
         else if(op.opCode=="0A")CPU::OR(op.sReg1,op.sReg2,op.dReg);
     }else
     if(op.opType=="01"){
-             if(op.opCode=="02")CPU::ST(op.address,op.bReg);
-        else if(op.opCode=="03")CPU::LW(op.address,op.bReg);
+             if(op.opCode=="02")CPU::ST(op.address,op.bReg,op.dReg);
+        else if(op.opCode=="03")CPU::LW(op.address,op.bReg,op.dReg);
         else if(op.opCode=="0B")CPU::MOVI(op.address,op.dReg);
         else if(op.opCode=="0C")CPU::ADDI(op.address,op.dReg);
         else if(op.opCode=="0D")CPU::MULI(op.address,op.dReg);
         else if(op.opCode=="0E")CPU::DIVI(op.address,op.dReg);
-        else if(op.opCode=="0F")CPU::LDI(op.address,op.bReg);
+        else if(op.opCode=="0F")CPU::LDI(op.address,op.dReg);
         else if(op.opCode=="11")CPU::SLTI(op.bReg,op.address,op.dReg);
         else if(op.opCode=="15")CPU::BEQ(op.bReg,op.dReg,op.address);
         else if(op.opCode=="16")CPU::BNE(op.bReg,op.dReg,op.address);

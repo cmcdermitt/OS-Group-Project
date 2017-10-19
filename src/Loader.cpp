@@ -43,6 +43,9 @@
 				if (temp.at(3) == 'J')
 				{
 					p = new PCB();
+                    for (int &j : p->registers) {
+                        j =-1;
+                    }
                     p->job_disk_address = currentPosition;
 					temp = temp.substr(7, std::string::npos);
 

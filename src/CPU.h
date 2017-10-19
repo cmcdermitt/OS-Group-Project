@@ -26,8 +26,8 @@ class CPU {
         mode cpumode;
         bool RD(int s1, int s2, int address);
         bool WR(int s1, int s2, int address);
-        bool ST(int addr, int regNum);
-        bool LW(int addr, int regNum);
+        bool ST(int addr, int breg, int dreg);
+        bool LW(int addr, int breg, int dreg);
         bool MOV(int fromReg, int toReg);
         bool ADD(int S1, int S2, int D);
         bool SUB(int S1, int S2, int D);
