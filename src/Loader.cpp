@@ -19,7 +19,7 @@
 		// Variables for init function
 		int data[10];
         //std::ifstream input("/home/conrad/CPlusPlus/OS-Group-Project/src/Program.txt");
-        std::ifstream input("/home/charlie/source/OS-Group-Project/src/Program.txt");
+        std::ifstream input("../src/Program.txt");
         std::string temp;
         std::string store;
         std::string buildString = "";

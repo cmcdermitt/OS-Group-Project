@@ -41,17 +41,18 @@ void Scheduler::st_sched()
 
     if(!ready_queue.empty())
     {
-        printPCBs(ready_queue);
         temp = ready_queue.front(); //Access first sorted PCB
 
         if(temp != nullptr) {
             temp = disp->context_switch(temp);
             //Send PCB to Dispatcher
             //Receive PCB on either completion or interrupt
-            std::cout << std::endl << "PERFORMED JOB(S): " << std::endl;
-            std::cout << temp->job_id << "\t" << temp->state << std::endl;
-            std::cout << temp->registers;
 
+            std::cout << "ID: " << temp->job_id << "\tState " << temp->state << std::endl;
+            std::cout << "Registers:\t";
+            for (int i : temp->registers)
+                std::cout << i << "\t";
+            std::cout << std::endl;
 
             if (temp->state == PCB::PROCESS_STATUS::COMPLETED)
                 ready_queue.pop_front();

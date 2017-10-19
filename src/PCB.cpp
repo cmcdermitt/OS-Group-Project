@@ -18,7 +18,32 @@ void printPCBs(std::list<PCB*> p)
         std::cout << "OutSize:\t" << pcb->out_buf_size << std::endl;
         std::cout << "TempSize:\t" << pcb->temp_buf_size << std::endl;
         std::cout << "Total Size:\t" << pcb->total_size << std::endl;
-        std::cout << "State:\t" << pcb->state << std::endl;
+        std::string s;
+        switch(pcb->state)
+        {
+            case 0: {
+                s = "RUNNING";
+                break;
+            }
+            case 1: {
+                s = "READY";
+                break;
+            }
+            case 2: {
+                s = "BLOCKED";
+                break;
+            }
+            case 3: {
+                s = "NEW";
+                break;
+            }
+            case 4: {
+                s = "COMPLETED";
+                break;
+            }
+        }
+        std::cout << "State:\t" << s << std::endl;
+        std::cout << std::endl;
     }
 
     if (p.empty())

@@ -232,6 +232,7 @@ PCB* CPU::storePCB() {
     PCB* out = &state;
     out->prgm_counter = PC;
     for (int i = 0; i < 16; ++i) {
+        std::cout << this->Register[i] << "\t";
         this->state.registers[i] = this->Register[i];
     }
     return out;

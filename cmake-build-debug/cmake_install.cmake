@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Charlie/Documents/CLionProjects/OS-Group-Project
+# Install script for directory: /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/OS_Group_Project")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Charlie/Documents/CLionProjects/OS-Group-Project/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
