@@ -7,15 +7,18 @@
 
 
 bool CPU::Operate() {
-    std::string instruction = CPU::fetch(this->Register[0]);
-    Register[0]++;
+    std::string instruction = CPU::fetch(this->PC);
+    ++PC;
     Op decoded = CPU::decode(instruction);
     CPU::execute(decoded);
 }
 
 CPU::CPU(RAM* ram) {
     this->ram = ram;
-    this->Register[1]=0;
+    for (int i = 0; i < 16; ++i) {
+        this->Register[i]=i;
+    }
+    this->Register[1] = 0;
 }
 
 bool CPU::RD() {
@@ -66,8 +69,8 @@ bool CPU::OR(int S1, int S2, int D){
     this->Register[D] = this->Register[S1] | this->Register[S2];
     return true;
 }
-bool CPU::MOVI(int val, int toReg){
-    this -> Register[toReg] = val;
+bool CPU::MOVI(int val, int D){
+    this -> Register[D] = val;
     return true;
 }
 bool CPU::ADDI(int val, int D){
@@ -102,7 +105,7 @@ bool CPU::NOP(){
     return true;
 }
 bool CPU::JMP(int lineNo){
-    Register[0] = lineNo;
+    PC = lineNo;
     return true;
 }
 bool CPU::BEQ(int B, int D, int addr){
@@ -187,15 +190,12 @@ void CPU::execute(Op op) {
         else if(op.opCode=="0A")CPU::OR(op.sReg1,op.sReg2,op.dReg);
     }else
     if(op.opType=="01"){
-        if(op.dReg!=0){
-            op.address = op.address + op.dReg;
-        }
              if(op.opCode=="02")CPU::ST(op.address,op.bReg);
         else if(op.opCode=="03")CPU::LW(op.address,op.bReg);
-        else if(op.opCode=="0B")CPU::MOVI(op.address,op.bReg);
-        else if(op.opCode=="0C")CPU::ADDI(op.address,op.bReg);
-        else if(op.opCode=="0D")CPU::MULI(op.address,op.bReg);
-        else if(op.opCode=="0E")CPU::DIVI(op.address,op.bReg);
+        else if(op.opCode=="0B")CPU::MOVI(op.address,op.dReg);
+        else if(op.opCode=="0C")CPU::ADDI(op.address,op.dReg);
+        else if(op.opCode=="0D")CPU::MULI(op.address,op.dReg);
+        else if(op.opCode=="0E")CPU::DIVI(op.address,op.dReg);
         else if(op.opCode=="0F")CPU::LDI(op.address,op.bReg);
         else if(op.opCode=="11")CPU::SLTI(op.bReg,op.address,op.dReg);
         else if(op.opCode=="15")CPU::BEQ(op.bReg,op.dReg,op.address);
@@ -251,5 +251,8 @@ void CPU::pass(std::string val){
 void CPU::test(){
     CPU cpu = CPU(new RAM());
     cpu.pass("C050005C");
+    cpu.pass("4B060000");
+    cpu.pass("4B0A0000");
+    cpu.pass("4C0A0004");
 //    cpu.pass(Utility::BinaryToHex("01000"))
 }

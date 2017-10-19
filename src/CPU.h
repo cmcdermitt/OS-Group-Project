@@ -19,6 +19,7 @@ struct Op{
 class CPU {
     private:
         int Register[16];
+        int PC;
         RAM* ram;
         bool RD();
         bool WR();
@@ -31,10 +32,10 @@ class CPU {
         bool MUL(int S1, int S2, int D);
         bool AND(int S1, int S2, int D);
         bool OR(int S1, int S2, int D);
-        bool MOVI(int val, int toReg);
-        bool ADDI(int val, int toReg);
-        bool DIVI(int val, int toReg);
-        bool MULI(int val, int toReg);
+        bool MOVI(int val, int D);
+        bool ADDI(int val, int D);
+        bool DIVI(int val, int D);
+        bool MULI(int val, int D);
         bool JMP(int lineNo);
         bool LDI(int val, int D);
         bool SLT(int S, int B, int D);
