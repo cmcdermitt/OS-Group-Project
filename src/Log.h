@@ -15,6 +15,25 @@
 #include <chrono>
 #include <ctime>
 #include <iomanip>
+#include <mutex>
+#include <vector>
+
+struct Point;
+
+struct Graph
+
+{
+	std::string label;
+	std::vector<Point> points;
+};
+
+struct Point
+{
+	time_t x;
+	int y;
+};
+
+
 class Log
 {
 private: 
@@ -26,19 +45,28 @@ private:
 	std::clock_t currentEndTime; // Last time process ended 
 	bool on; // The function has started
 	std::string label; // What the log is describing
+	std::vector<Graph> graphs;
 	static int numOfLogs; // Total number of logs
+	static bool logged;
 	static std::vector<std::string> records; // All records from logs 
 
 	// PRIVATE Functions 
 	void updateAverage(); // Updates Log Information
  	static void recordLogs(); // Stores All of the Log information in a Text File 
-	void createIndividualLog(); // Generates individual log string for log object to be stored 
+	void createIndividualLog(); // Generates individual log string for log object to be stored
+	bool logEverything();
+
 public: 
 	//static const std::string STORAGE_NAME = "AccountingData.txt";
 	Log(std::string label);
 	bool turnOn();
-	bool turnOff(); 
-	~Log(); 
+	bool turnOff();
+	bool recordData();
+	std::mutex logIt;
+	~Log();
+	bool addGraph(std::string label);
+	bool addPoint(std::string label, int yCoord);
+	bool removeGraph(std::string label);
 
 
 
