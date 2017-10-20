@@ -6,7 +6,7 @@
 #include <chrono>
 #include <ctime>
 #include <iomanip>
-
+#include "termcolor.hpp"
 
 bool Log::logged = false;
 // Static variable initialization
@@ -158,9 +158,27 @@ bool Log::removeGraph(std::string label) {
 // Logging function
 void Debug::debug(Debugging_Places p, std::string message)
 {
-	if(p && Debugging_Places::DEBUG_ALL)
-        std::cout << message << std::endl;
+	if(p && Debugging_Places::DEBUG_ALL) {
+		char color = message[0];
+		message = message.substr(1);
 
+		switch(color){
+			case 'R':
+				std::cout << termcolor::red << message << std::endl;
+				break;
+			case 'G':
+				std::cout << termcolor::green << message << std::endl;
+				break;
+			case 'B':
+				std::cout << termcolor::blue << message << std::endl;
+				break;
+			case 'Y':
+				std::cout << termcolor::yellow << message << std::endl;
+			default:
+				std::cout << message << std::endl;
+		}
+
+	}
 
 }
 
