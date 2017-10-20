@@ -14,7 +14,7 @@ void Dispatcher::load_PCB(PCB *p) {
     current = p;
     current->wait_time->turnOff();
     current->wait_time->recordData();
-    current->wait_time->recordLogs();
+    //current->wait_time->recordLogs();
     current->comp_time->turnOn();
     current->state = PCB::PROCESS_STATUS::RUNNING;
     cpu->loadPCB(p);
@@ -25,7 +25,7 @@ PCB* Dispatcher::unload_PCB() {
     PCB* temp = cpu->storePCB();
     temp->comp_time->turnOff();
     temp->comp_time->recordData();
-    temp->comp_time->recordLogs();
+    //temp->comp_time->recordLogs();
     temp->state = PCB::PROCESS_STATUS::COMPLETED;
     Debug::debug(Debug::DEBUG_DISPATCHER, "Unloading");
     return temp;

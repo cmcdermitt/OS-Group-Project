@@ -46,7 +46,7 @@ void Scheduler::st_sched(bool *st_still_has_work)
     std::cout << "\nREADY QUEUE START SIZE " << ready_queue.size();
     PCB *temp;
 
-    ready_queue.sort(comp_priority);
+    ready_queue.sort(comp_fifo);
 
     if(!ready_queue.empty())
     {
