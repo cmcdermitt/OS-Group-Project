@@ -121,7 +121,7 @@ bool Log::addGraph(std::string label)
 	Graph *g  = new Graph();
 	g->label = label;
 	g->points = std::vector<Point>();
-	g->origin = time(0); 
+	g->origin = time(0);
 	graphs.push_back(*g);
 	return  true;
 }

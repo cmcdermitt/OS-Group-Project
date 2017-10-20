@@ -4,14 +4,7 @@
 #include <vector>
 #include "Ram.h"
 
-    void RAM::write(int address, std::string data)
-    {
-        mutex.lock();
-        if(address >= SIZE || address < 0)
-            exit(EXIT_FAILURE);
-        ram_data[address] = data;
-        mutex.unlock();
-    }
+
 
     std::string RAM::read(int address)
     {
@@ -21,9 +14,26 @@
         return rd;
     }
 
+    void RAM::write(int address, std::string data)
+    {
+    mutex.lock();
+        if(data == "0")
+            ram_used -= 1;
+        else
+            ram_used += 1;
+    if(address >= SIZE || address < 0)
+        exit(EXIT_FAILURE);
+    ram_data[address] = data;
+    mutex.unlock();
+    }
+
     void RAM::write(int address, std::vector<std::string> data)
     {
         mutex.lock();
+        if(data[0] == "0")
+            ram_used -= data.size();
+        else
+            ram_used += data.size();
         for(int i = 0; i < data.size(); i++) {
         this->ram_data[i + address] =  data[i];
         }
@@ -35,10 +45,11 @@
     {
         for(int i = 0; i < SIZE; i++)
             ram_data[i] = "0";
+        ram_used = 0;
+
     }
 
-    void RAM::testRam() {
-//       std::cout << "Testing ram" << std::endl;
-//        for(int i = 0; i < 1024; i++)
-//            std::cout << ram_data[i] << std::endl;
+RAM::~Ram(){
+ram_log->recordData();
+
     }

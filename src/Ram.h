@@ -9,6 +9,7 @@
  #include <stdint.h>
  #include <mutex>
 #include <vector>
+#include "Log.h"
 //The RAM will contain a 1024 locations containing a dedicated 8-character Hex word
 //The read(int address) function is called by the Fetch class, which locates
 //a literal address in the RAM array and returns the word at that location.
@@ -25,9 +26,12 @@ public:
     RAM();
     const static int SIZE = 1024;
     void testRam();
+    Log *ram_log = new Log("Ram_Log");
+    ~Ram();
 
 private:
      std::string ram_data[SIZE];
+    int ram_used;
     //not sure what else
 };
 
