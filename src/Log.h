@@ -80,14 +80,15 @@ namespace Debug
 {
 	// Debugging flags; set to true if you want to print debug logs
 	enum Debugging_Places {
-		 DEBUG_ALL = false,
+		 DEBUG_ALL = true,
 		 DEBUG_DRIVER = false,
 		 DEBUG_LOADER = false,
 		 DEBUG_DISK = false,
 		 DEBUG_RAM = false,
-		 DEBUG_SCHEDULER = false,
+		 DEBUG_SCHEDULER = true,
 		 DEBUG_UTILITY = false,
 		 DEBUG_VERBOSE = false,
+		 DEBUG_DISPATCHER = true
 	};
 	// Debug Logs; can be turned off adn on by editing the Debugging_Places
 	void debug(Debugging_Places p, std::string message);

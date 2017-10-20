@@ -28,10 +28,17 @@
         this->ram_data[i + address] =  data[i];
         }
         mutex.unlock();
+        testRam();
     }
 
     RAM::RAM()
     {
         for(int i = 0; i < SIZE; i++)
-            ram_data[i] = "";
+            ram_data[i] = "0";
+    }
+
+    void RAM::testRam() {
+//       std::cout << "Testing ram" << std::endl;
+//        for(int i = 0; i < 1024; i++)
+//            std::cout << ram_data[i] << std::endl;
     }

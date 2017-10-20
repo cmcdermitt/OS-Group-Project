@@ -24,6 +24,7 @@ public:
     void write(int address, std::vector<std::string> s);
     RAM();
     const static int SIZE = 1024;
+    void testRam();
 
 private:
      std::string ram_data[SIZE];

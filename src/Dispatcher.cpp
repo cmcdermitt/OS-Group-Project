@@ -3,29 +3,28 @@
 //
 
 #include "Dispatcher.h"
+#include "Log.h"
 
-// Initalizes Dispatcher with the system cpu and ram
 Dispatcher::Dispatcher(CPU *c, RAM *r) {
     cpu = c;
     ram = r;
 }
 
-// Loads PCB into current PCB being worked on
 void Dispatcher::load_PCB(PCB *p) {
     current = p;
-    current->state = PCB::PROCESS_STATUS::RUNNING; // Sets RUNNING status
+    current->state = PCB::PROCESS_STATUS::RUNNING;
     cpu->loadPCB(p);
 }
 
-// Takes PCB off and stores it in CPU
 PCB* Dispatcher::unload_PCB() {
     PCB* temp = cpu->storePCB();
-    temp->state = PCB::PROCESS_STATUS::COMPLETED; // Sets COMPLETED status
+    temp->state = PCB::PROCESS_STATUS::COMPLETED;
+    Debug::debug(Debug::DEBUG_DISPATCHER, "Unloading");
     return temp;
 }
 
-// Switches context of current PCB/CPU
 PCB* Dispatcher::context_switch(PCB *to_load) {
+    Debug::debug(Debug::DEBUG_DISPATCHER, "BSJNADBKJHBF" + std::to_string(to_load->job_ram_address));
     load_PCB(to_load);
     while(cpu->state.state == PCB::RUNNING) cpu->Operate();
     return unload_PCB();

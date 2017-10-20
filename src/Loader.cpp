@@ -108,6 +108,7 @@
                 p->state = PCB::PROCESS_STATUS::NEW;
                 pcbs.push_back(p);
                 counter = 0;
+
 				}
 				}   
 			// If the data is just raw hexcode, strip off the first few characters and store it as a string
