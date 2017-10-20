@@ -1,6 +1,7 @@
 #ifndef PCB_H_INCLUDED
 #define PCB_H_INCLUDED
 #include<list>
+#include "Log.h"
 //Created by Charlie McDermitt on 10/3/2017
 
 //PCB struct; may replace the class later
@@ -23,6 +24,8 @@ struct PCB {
 	bool has_ran;
 	int registers[16];
 	int dataSectionSize;
+    Log *wait_time;
+    Log *comp_time;
 
 	//Data
 	int data_disk_address;

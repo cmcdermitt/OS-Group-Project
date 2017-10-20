@@ -21,7 +21,7 @@
     }
 
     void Driver::run() {
-		log->turnOn(); 
+		log->turnOn();
         loader.init(disk, pcbs);
 
             Scheduler sched = Scheduler(pcbs, disk, *ram, disp);
@@ -36,11 +36,11 @@
             //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
             log->turnOff();
 
+
       //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
 
 
-		delete log; 
-
+		delete log;
     }
 
     void Driver::test()
