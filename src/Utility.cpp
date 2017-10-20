@@ -15,7 +15,7 @@ std::string Utility::HexToBinary(std::string hexinput)
     char temp; // Temporry character
     std::string binaryVersion = "";
 
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < hexinput.length(); i++)
     {
         binaryVersion = binaryVersion + convertHexCharToBinary(hexinput.at(i));
     }
@@ -259,6 +259,13 @@ std::string Utility::convert_decimal_to_hex(int input) {
     }
 
     return output;
+}
+
+std::string Utility::boolToString(bool s) {
+    if(s)
+        return "True";
+    else
+        return "False";
 }
 
 

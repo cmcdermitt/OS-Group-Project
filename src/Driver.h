@@ -37,6 +37,8 @@ private:
     Log *testLog;
     CPU *cpu;
     Dispatcher* disp;
+    bool lt_still_has_work;
+    bool st_still_has_work;
 };
 
 

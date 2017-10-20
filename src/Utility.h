@@ -27,6 +27,8 @@ namespace Utility
 	std::string convert_decimal_to_hex(int decimalInput);
 
 	// String to decimal
+
+	std::string boolToString(bool s);
 	};
 
 #endif // UTILITY_H_INCLUDED

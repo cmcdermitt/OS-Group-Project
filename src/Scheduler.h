@@ -15,8 +15,8 @@
 
 struct free_ram {
     int position;
-    int offset;
-    free_ram(int pos, int off) {position = pos; offset = off;}
+    bool is_free;
+    free_ram(int pos, bool is_free) {position = pos; is_free = false;}
 };
 
 class Scheduler {
@@ -32,14 +32,18 @@ private:
     bool get_ram_start(PCB *p); //sets *p->ramStartAddress to an open space in RAM
     void load_pcb(PCB *p, RAM &r); //puts PCB in RAM
     void remove_pcb(PCB *p, RAM *r); //removes PCB from RAM
-
+    void clean_ram_space();
+    void describe_ram_space();
+        bool lt_sched_complete;
+     int jobsAllocated;
+     int jobsCompleted;
 
 
 public:
     Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher *dispatcher);
-    void lt_sched();
+    void lt_sched(bool *still_has_work);
     PCB* lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority = false); //returns pointer to next PCB
-    void st_sched();
+    void st_sched(bool *st_still_has_work);
     void lt_test();
 };
 
