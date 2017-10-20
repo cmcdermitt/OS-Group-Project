@@ -175,7 +175,7 @@ void Debug::debug(Debugging_Places p, std::string message)
 			case 'Y':
 				std::cout << termcolor::yellow << message << std::endl;
 			default:
-				std::cout << message << std::endl;
+				std::cout << color + message << std::endl;
 		}
 
 	}
