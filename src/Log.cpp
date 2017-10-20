@@ -121,6 +121,7 @@ bool Log::addGraph(std::string label)
 	Graph *g  = new Graph();
 	g->label = label;
 	g->points = std::vector<Point>();
+	g->origin = time(0); 
 	graphs.push_back(*g);
 	return  true;
 }
@@ -132,7 +133,7 @@ bool Log::addPoint(std::string label, int yCoord)
 		if(g.label == label)
 		{
 			Point *p = new Point();
-			p->x = time(0);
+			p->x = time(0) - g.origin;
 			p->y = yCoord;
 			g.points.push_back(*p);
 			return true;
