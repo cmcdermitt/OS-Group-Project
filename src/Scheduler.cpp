@@ -5,8 +5,7 @@
 #include "Log.h"
 #include "Utility.h"
 
-
-
+// Initalizes the Scheduler and gives it the job list, disk, ram, and dispatcher
 Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher *dispatcher) {
     pcbs = pcb_list;
     disk = disk_in_use;
@@ -18,9 +17,10 @@ Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_u
     lt_sched_complete = false;
 }
 
+// Long Term Scheduler
 void Scheduler::lt_sched(bool *still_has_work) {
     PCB *temp;
-// Continues until no more jobs can be loaded or there are no more jobs
+    // Continues until no more jobs can be loaded or there are no more jobs
     while (true) {
        // describe_ram_space();
         temp = lt_get_next_pcb(pcbs);
@@ -31,24 +31,22 @@ void Scheduler::lt_sched(bool *still_has_work) {
         }
 
         if (!get_ram_start(temp)) {
-            std::cout << "DID NOT GET RAM STARY" << std::endl;
+            std::cout << "DID NOT GET RAM START" << std::endl;
             break;
         }
             load_pcb(temp, *ram);
             jobsAllocated++;
         Debug::debug(Debug::DEBUG_SCHEDULER, "YAllocated " + std::to_string(jobsAllocated));
     }
-    }
+}
 
-
-
-
+// Short Term Scheduler
 void Scheduler::st_sched(bool *st_still_has_work)
 {
     std::cout << "\nREADY QUEUE START SIZE " << ready_queue.size();
     PCB *temp;
 
-    ready_queue.sort(comp_fifo);
+    ready_queue.sort(comp_priority);
 
     if(!ready_queue.empty())
     {
@@ -59,23 +57,10 @@ void Scheduler::st_sched(bool *st_still_has_work)
             //Send PCB to Dispatcher
             //Receive PCB on either completion or interrupt
 
-//            std::cout << "ID: " << temp->job_id << "\tState " << temp->state << std::endl;
-//            std::cout << "Registers:\t";
-//            for (int i : temp->registers)
-//                std::cout << i << "\t";
-//            std::cout << std::endl;
-
             remove_pcb(temp, ram);
             jobsCompleted++;
             Debug::debug(Debug::DEBUG_SCHEDULER, "GCompleted " + std::to_string(jobsCompleted));
 
-            /*Now implemented in remove_pcb
-             * if (temp->state == PCB::PROCESS_STATUS::COMPLETED)
-                ready_queue.pop_front();
-            //remove_pcb(temp, *ram); //Not written yet
-            if (temp->state == PCB::PROCESS_STATUS::BLOCKED)
-                ready_queue.pop_front();
-            ready_queue.push_back(temp); //Places PCB at back of queue to reassess next go around*/
         }
     }
     else
@@ -85,7 +70,6 @@ void Scheduler::st_sched(bool *st_still_has_work)
     std::cout << "\nREADY QUEUE END SIZE " << ready_queue.size();
 }
 
-//TODO: test Scheduler, need loader to test
 //returns pointer to next PCB, returns null pointer if no next PCB
 PCB* Scheduler::lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority) {
     if(is_priority)
@@ -243,6 +227,7 @@ void Scheduler::load_pcb(PCB *p, RAM &r) { //puts PCB in RAM and ready_queue dea
     //std::cout << "RUNNING OUT OF TIME:\t" << times << std::endl;
     //std::cout << "START HERE:\t" << p->job_ram_address << std::endl;
     ready_queue.push_back(p);
+    p->wait_time->turnOff();
     p->state = PCB::PROCESS_STATUS::READY;
     int ramStart = p->job_ram_address;
     int diskStart = p->data_disk_address;

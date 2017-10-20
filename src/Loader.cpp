@@ -106,6 +106,9 @@
 				p->temp_buf_size = data[5];
                 p->total_size = p->job_size + p->in_buf_size + p->out_buf_size + p->temp_buf_size;
                 p->state = PCB::PROCESS_STATUS::NEW;
+                p->wait_time = new Log("Wait Time for " + std::to_string(p->job_id));
+                p->comp_time = new Log("Completion Time for " + std::to_string(p->job_id));
+                p->wait_time->turnOn();
                 pcbs.push_back(p);
                 counter = 0;
 
