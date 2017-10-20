@@ -36,7 +36,7 @@ void Scheduler::lt_sched(bool *still_has_work) {
         }
             load_pcb(temp, *ram);
             jobsAllocated++;
-        Debug::debug(Debug::DEBUG_SCHEDULER, "Allocated " + std::to_string(jobsAllocated));
+        Debug::debug(Debug::DEBUG_SCHEDULER, "YAllocated " + std::to_string(jobsAllocated));
     }
     }
 
@@ -67,7 +67,7 @@ void Scheduler::st_sched(bool *st_still_has_work)
 
             remove_pcb(temp, ram);
             jobsCompleted++;
-            Debug::debug(Debug::DEBUG_SCHEDULER, "Completed " + std::to_string(jobsCompleted));
+            Debug::debug(Debug::DEBUG_SCHEDULER, "GCompleted " + std::to_string(jobsCompleted));
 
             /*Now implemented in remove_pcb
              * if (temp->state == PCB::PROCESS_STATUS::COMPLETED)

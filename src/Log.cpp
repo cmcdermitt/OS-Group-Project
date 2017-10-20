@@ -164,18 +164,19 @@ void Debug::debug(Debugging_Places p, std::string message)
 
 		switch(color){
 			case 'R':
-				std::cout << termcolor::red << message << std::endl;
+				std::cout << termcolor::red << message <<termcolor::reset << std::endl;
 				break;
 			case 'G':
-				std::cout << termcolor::green << message << std::endl;
+				std::cout << termcolor::green << message <<termcolor::reset << std::endl;
 				break;
 			case 'B':
-				std::cout << termcolor::blue << message << std::endl;
+				std::cout << termcolor::blue << message <<termcolor::reset << std::endl;
 				break;
 			case 'Y':
-				std::cout << termcolor::yellow << message << std::endl;
+				std::cout << termcolor::yellow << message <<termcolor::reset << std::endl;
+				break;
 			default:
-				std::cout << color + message << std::endl;
+				std::cout << color + message <<termcolor::reset << std::endl;
 		}
 
 	}
