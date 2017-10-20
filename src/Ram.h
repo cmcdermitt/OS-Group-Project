@@ -27,7 +27,7 @@ public:
     const static int SIZE = 1024;
     void testRam();
     Log *ram_log = new Log("Ram_Log");
-    ~Ram();
+    ~RAM();
 
 private:
      std::string ram_data[SIZE];

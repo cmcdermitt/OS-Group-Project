@@ -38,7 +38,7 @@
         this->ram_data[i + address] =  data[i];
         }
         mutex.unlock();
-        testRam();
+//        testRam();
     }
 
     RAM::RAM()
@@ -49,7 +49,7 @@
 
     }
 
-RAM::~Ram(){
+RAM::~RAM(){
 ram_log->recordData();
 
     }
