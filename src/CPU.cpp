@@ -4,6 +4,7 @@
 
 #include "CPU.h"
 #include "Utility.h"
+#include "Log.h"
 
 
 bool CPU::Operate() {
@@ -28,11 +29,11 @@ bool CPU::RD(int s1, int s2, int address) {
     if(this->cpumode==debug) return false;
     if(address==0)Register[s1] = Utility::convertHexToDecimal(ram->read(Register[s2]/4));
     else Register[s1] = Utility::convertHexToDecimal(ram->read((address)/4));
-
 }
 
 bool CPU::WR(int s1, int s2, int address) {
     if(this->cpumode==debug) return false;
+    Debug::debug(Debug::DEBUG_OUTPUT,"_Job "+std::to_string(state.job_id)+" outputs "+std::to_string(Register[s1]));
     ram->write(address/4,Utility::convert_decimal_to_hex(Register[s1]));
 
 }
