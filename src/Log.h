@@ -23,6 +23,7 @@ struct Point;
 struct Graph
 
 {
+	time_t origin;
 	std::string label;
 	std::vector<Point> points;
 };
@@ -54,7 +55,7 @@ private:
 
 	// PRIVATE Functions 
 	void updateAverage(); // Updates Log Information
- 	static void recordLogs(); // Stores All of the Log information in a Text File 
+ 	// Stores All of the Log information in a Text File
 	void createIndividualLog(); // Generates individual log string for log object to be stored
 	bool logEverything();
 
@@ -69,7 +70,7 @@ public:
 	bool addGraph(std::string label);
 	bool addPoint(std::string label, int yCoord);
 	bool removeGraph(std::string label);
-
+	static void recordLogs();
 
 
 };

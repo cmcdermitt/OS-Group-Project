@@ -118,9 +118,10 @@ bool Log::recordData()
 
 bool Log::addGraph(std::string label)
 {
-	Graph g;
-	g.label = label;
-	g.points = std::vector<Point>();
+	Graph *g  = new Graph();
+	g->label = label;
+	g->points = std::vector<Point>();
+	graphs.push_back(*g);
 	return  true;
 }
 
@@ -130,10 +131,10 @@ bool Log::addPoint(std::string label, int yCoord)
 	{
 		if(g.label == label)
 		{
-			Point p;
-			p.x = time(0);
-			p.y = yCoord;
-			g.points.push_back(p);
+			Point *p = new Point();
+			p->x = time(0);
+			p->y = yCoord;
+			g.points.push_back(*p);
 			return true;
 		}
 
@@ -147,9 +148,11 @@ bool Log::removeGraph(std::string label) {
 		if(label == graphs[i].label)
 		{
 			graphs.erase(graphs.begin() + i);
+			return true;
 		}
 
 	}
+	return false;
 }
 
 // Logging function
