@@ -19,14 +19,13 @@ class RAM {
 
 
 public:
-
-    const static int SIZE = 1024;
     std::mutex mutex;
     std::string read(int address);
     void write(int address, std::string data);
     void write(int address, std::vector<std::string> s);
     RAM();
-
+    const static int SIZE = 1024;
+    void testRam();
     Log *ram_log = new Log("Ram_Log");
     ~RAM();
 

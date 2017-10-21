@@ -11,23 +11,20 @@
 //
 
 #include <iostream>
-#include <vector>
 
+const static int SIZE = 2048;
 
 class Disk {
 
-public:
-    const static int SIZE = 2048;
+  private:
+      std::string diskData[SIZE];
 
+  public:
     std::string read(int address); // Reads string data from an address
     void write(int address, std::string data); // Writes string data to an address
-    void write(int address, std::vector<std::string> s);//writes vector of strings to addresses
     Disk(); // Constructor
 
-    void test(); // Tests the read and write methods of the Disk
-
-private:
-    std::string diskData[SIZE];
+ void test(); // Tests the read and write methods of the Disk
 
 };
 

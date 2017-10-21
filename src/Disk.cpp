@@ -3,9 +3,9 @@
 //
 
 #include "Disk.h"
+#include <iostream>
 #include <stdlib.h>
-
-
+#include <string>
 
 // Writes string data to the array address
 void Disk::write(int address, std::string data)
@@ -13,13 +13,6 @@ void Disk::write(int address, std::string data)
     if(address >= SIZE || address < 0)
         exit(EXIT_FAILURE);
     diskData[address] = data;
-}
-
-void Disk::write(int address, std::vector<std::string> data)
-{
-    for(int i = 0; i < data.size(); i++) {
-        this->diskData[i + address] =  data[i];
-    }
 }
 
 // Reads string data from the array address

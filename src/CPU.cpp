@@ -7,7 +7,7 @@
 #include "Log.h"
 
 
-bool CPU::operate() {
+bool CPU::Operate() {
     std::string instruction = CPU::fetch(this->PC);
     ++PC;
     Op decoded = CPU::decode(instruction);
@@ -27,27 +27,28 @@ CPU::CPU(RAM* ram,mode m) {
 bool CPU::RD(int s1, int s2, int address) {
 
     if(this->cpumode==debug) return false;
-    if(address==0)Register[s1] = Utility::hex_to_decimal(ram->read(Register[s2] / 4));
-    else Register[s1] = Utility::hex_to_decimal(ram->read((address) / 4));
+    if(address==0)Register[s1] = Utility::convertHexToDecimal(ram->read(Register[s2]/4));
+    else Register[s1] = Utility::convertHexToDecimal(ram->read((address)/4));
 }
 
 bool CPU::WR(int s1, int s2, int address) {
     if(this->cpumode==debug) return false;
     Debug::debug(Debug::DEBUG_OUTPUT,"_Job "+std::to_string(state.job_id)+" outputs "+std::to_string(Register[s1]));
-    ram->write(address/4, Utility::decimal_to_hex(Register[s1]));
+    ram->write(address/4,Utility::convert_decimal_to_hex(Register[s1]));
+
 }
 
 bool CPU::ST(int addr, int breg, int dreg) {
 //    this ->ram.write(addr,this->Register[regNum]);
-    //Utility::decimal_to_hex
-    if(addr==0) ram->write(Register[dreg]/4, Utility::decimal_to_hex(Register[breg]));
-    else ram->write(addr/4, Utility::decimal_to_hex(Register[breg]));
+    //Utility::convert_decimal_to_hex
+    if(addr==0) ram->write(Register[dreg]/4, Utility::convert_decimal_to_hex(Register[breg]));
+    else ram->write(addr/4, Utility::convert_decimal_to_hex(Register[breg]));
     return true;
 }
 
 bool CPU::LW(int addr, int breg, int dreg) {
-    if(addr==0)this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(Register[breg] / 4));
-    else this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(addr / 4));
+    if(addr==0)this->Register[dreg] = Utility::convertHexToDecimal(this->ram->read(Register[breg]/4));
+    else this->Register[dreg] = Utility::convertHexToDecimal(this->ram->read(addr/4));
     return true;
 }
 
@@ -153,81 +154,81 @@ std::string CPU::fetch(int i) {
 }
 
 Op CPU::decode(std::string hex) {
-    std::string instruction = Utility::hex_to_binary(hex);
+    std::string instruction = Utility::HexToBinary(hex);
     Op inst;
-    inst.op_type = instruction.substr(0,2);
-    inst.op_code = Utility::binary_to_hex(instruction.substr(2, 6));
-    if(inst.op_type=="00"){
-        inst.sreg1 = Utility::binary_to_decimal(instruction.substr(8, 4));
-        inst.sreg2 = Utility::binary_to_decimal(instruction.substr(12, 4));
-        inst.dreg  = Utility::binary_to_decimal(instruction.substr(16, 4));
+    inst.opType = instruction.substr(0,2);
+    inst.opCode = Utility::BinaryToHex(instruction.substr(2,6));
+    if(inst.opType=="00"){
+        inst.sReg1 = Utility::convertBinaryToDecimal(instruction.substr(8 ,4));
+        inst.sReg2 = Utility::convertBinaryToDecimal(instruction.substr(12,4));
+        inst.dReg  = Utility::convertBinaryToDecimal(instruction.substr(16,4));
         inst.address = -1;
-        inst.breg = -1;
+        inst.bReg = -1;
 
     }
-    else if(inst.op_type=="01"){
-        inst.breg = Utility::binary_to_decimal(instruction.substr(8, 4));
-        inst.dreg = Utility::binary_to_decimal(instruction.substr(12, 4));
-        inst.address = Utility::binary_to_decimal(instruction.substr(16, 16));
-        inst.sreg1 = -1;
-        inst.sreg2 = -1;
+    else if(inst.opType=="01"){
+        inst.bReg = Utility::convertBinaryToDecimal(instruction.substr(8 ,4));
+        inst.dReg = Utility::convertBinaryToDecimal(instruction.substr(12,4));
+        inst.address = Utility::convertBinaryToDecimal(instruction.substr(16,16));
+        inst.sReg1 = -1;
+        inst.sReg2 = -1;
     }
-    else if(inst.op_type=="10"){
-        inst.address = Utility::binary_to_decimal(instruction.substr(8, 24));
-        inst.sreg1 = -1;
-        inst.sreg2 = -1;
-        inst.breg = -1;
-        inst.dreg = -1;
+    else if(inst.opType=="10"){
+        inst.address = Utility::convertBinaryToDecimal(instruction.substr(8,24));
+        inst.sReg1 = -1;
+        inst.sReg2 = -1;
+        inst.bReg = -1;
+        inst.dReg = -1;
 
     }
-    else if(inst.op_type=="11"){
-        inst.sreg1 = Utility::binary_to_decimal(instruction.substr(8, 4));
-        inst.sreg2 = Utility::binary_to_decimal(instruction.substr(12, 4));
-        inst.address  = Utility::binary_to_decimal(instruction.substr(16, 16));
-        inst.breg = -1;
-        inst.dreg = -1;
+    else if(inst.opType=="11"){
+        inst.sReg1 = Utility::convertBinaryToDecimal(instruction.substr(8 ,4));
+        inst.sReg2 = Utility::convertBinaryToDecimal(instruction.substr(12,4));
+        inst.address  = Utility::convertBinaryToDecimal(instruction.substr(16,16));
+        inst.bReg = -1;
+        inst.dReg = -1;
     }
     return inst;
 }
 
 void CPU::execute(Op op) {
-    if(op.op_type=="00"){
-             if(op.op_code=="04")CPU::MOV(op.sreg1,op.sreg2);
-        else if(op.op_code=="05")CPU::ADD(op.sreg1,op.sreg2,op.dreg);
-        else if(op.op_code=="06")CPU::SUB(op.sreg1,op.sreg2,op.dreg);
-        else if(op.op_code=="07")CPU::MUL(op.sreg1,op.sreg2,op.dreg);
-        else if(op.op_code=="08")CPU::DIV(op.sreg1,op.sreg2,op.dreg);
-        else if(op.op_code=="09")CPU::AND(op.sreg1,op.sreg2,op.dreg);
-        else if(op.op_code=="10")CPU::SLT(op.sreg1,op.sreg2,op.dreg);
-        else if(op.op_code=="0A")CPU::OR(op.sreg1,op.sreg2,op.dreg);
+    if(op.opType=="00"){
+             if(op.opCode=="04")CPU::MOV(op.sReg1,op.sReg2);
+        else if(op.opCode=="05")CPU::ADD(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="06")CPU::SUB(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="07")CPU::MUL(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="08")CPU::DIV(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="09")CPU::AND(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="10")CPU::SLT(op.sReg1,op.sReg2,op.dReg);
+        else if(op.opCode=="0A")CPU::OR(op.sReg1,op.sReg2,op.dReg);
     }else
-    if(op.op_type=="01"){
-             if(op.op_code=="02")CPU::ST(op.address,op.breg,op.dreg);
-        else if(op.op_code=="03")CPU::LW(op.address,op.breg,op.dreg);
-        else if(op.op_code=="0B")CPU::MOVI(op.address,op.dreg);
-        else if(op.op_code=="0C")CPU::ADDI(op.address,op.dreg);
-        else if(op.op_code=="0D")CPU::MULI(op.address,op.dreg);
-        else if(op.op_code=="0E")CPU::DIVI(op.address,op.dreg);
-        else if(op.op_code=="0F")CPU::LDI(op.address,op.dreg);
-        else if(op.op_code=="11")CPU::SLTI(op.breg,op.address,op.dreg);
-        else if(op.op_code=="15")CPU::BEQ(op.breg,op.dreg,op.address);
-        else if(op.op_code=="16")CPU::BNE(op.breg,op.dreg,op.address);
-        else if(op.op_code=="17")CPU::BEZ(op.breg,op.address);
-        else if(op.op_code=="18")CPU::BNZ(op.breg,op.address);
-        else if(op.op_code=="19")CPU::BGZ(op.breg,op.address);
-        else if(op.op_code=="1A")CPU::BLZ(op.breg,op.address);
+    if(op.opType=="01"){
+             if(op.opCode=="02")CPU::ST(op.address,op.bReg,op.dReg);
+        else if(op.opCode=="03")CPU::LW(op.address,op.bReg,op.dReg);
+        else if(op.opCode=="0B")CPU::MOVI(op.address,op.dReg);
+        else if(op.opCode=="0C")CPU::ADDI(op.address,op.dReg);
+        else if(op.opCode=="0D")CPU::MULI(op.address,op.dReg);
+        else if(op.opCode=="0E")CPU::DIVI(op.address,op.dReg);
+        else if(op.opCode=="0F")CPU::LDI(op.address,op.dReg);
+        else if(op.opCode=="11")CPU::SLTI(op.bReg,op.address,op.dReg);
+        else if(op.opCode=="15")CPU::BEQ(op.bReg,op.dReg,op.address);
+        else if(op.opCode=="16")CPU::BNE(op.bReg,op.dReg,op.address);
+        else if(op.opCode=="17")CPU::BEZ(op.bReg,op.address);
+        else if(op.opCode=="18")CPU::BNZ(op.bReg,op.address);
+        else if(op.opCode=="19")CPU::BGZ(op.bReg,op.address);
+        else if(op.opCode=="1A")CPU::BLZ(op.bReg,op.address);
     }else
-    if(op.op_type=="10"){
-             if(op.op_code=="12")CPU::HLT();
-        else if(op.op_code=="14")CPU::JMP(op.address);
+    if(op.opType=="10"){
+             if(op.opCode=="12")CPU::HLT();
+        else if(op.opCode=="14")CPU::JMP(op.address);
     }else
-    if(op.op_type=="11"){
-             if(op.op_code=="00")CPU::RD(op.sreg1,op.sreg2,op.address);
-        else if(op.op_code=="01")CPU::WR(op.sreg1,op.sreg2,op.address);
+    if(op.opType=="11"){
+             if(op.opCode=="00")CPU::RD(op.sReg1,op.sReg2,op.address);
+        else if(op.opCode=="01")CPU::WR(op.sReg1,op.sReg2,op.address);
     }
 }
 
-void CPU::load_PCB(PCB *p) {
+void CPU::loadPCB(PCB *p) {
     this->state = *p;
     PC = p->prgm_counter;
     this->state.state = PCB::RUNNING;
@@ -235,7 +236,7 @@ void CPU::load_PCB(PCB *p) {
         this->Register[i] = this->state.registers[i];
     }
 }
-PCB* CPU::store_PCB() {
+PCB* CPU::storePCB() {
     PCB* out = &state;
     if(this->state.state != PCB::COMPLETED) this->state.state = PCB::READY;
     out->prgm_counter = PC;
@@ -246,12 +247,12 @@ PCB* CPU::store_PCB() {
 }
 void CPU::pass(std::string val){
     Op decoded = CPU::decode(val);
-    std::cout << "OpType: " << decoded.op_type << std::endl;
-    std::cout << "OpCode: " << decoded.op_code << std::endl;
-    std::cout << "sreg1: " << decoded.sreg1 << std::endl;
-    std::cout << "sreg2: " << decoded.sreg2 << std::endl;
-    std::cout << "dreg: " << decoded.dreg << std::endl;
-    std::cout << "breg: " << decoded.breg << std::endl;
+    std::cout << "OpType: " << decoded.opType << std::endl;
+    std::cout << "OpCode: " << decoded.opCode << std::endl;
+    std::cout << "sReg1: " << decoded.sReg1 << std::endl;
+    std::cout << "sReg2: " << decoded.sReg2 << std::endl;
+    std::cout << "dReg: " << decoded.dReg << std::endl;
+    std::cout << "bReg: " << decoded.bReg << std::endl;
     std::cout << "address: " << decoded.address << std::endl <<std::endl;
 
 

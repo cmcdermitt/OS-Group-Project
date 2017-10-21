@@ -9,12 +9,12 @@
 #include "PCB.h"
 #include <vector>
 struct Op{
-    std::string op_type;
-    std::string op_code;
-    int sreg1;
-    int sreg2;
-    int dreg;
-    int breg;
+    std::string opType;
+    std::string opCode;
+    int sReg1;
+    int sReg2;
+    int dReg;
+    int bReg;
     int address;
 };
 enum mode{debug,production};
@@ -54,12 +54,12 @@ class CPU {
         void execute(Op op);
     public:
         PCB state;
-        bool operate();
-        void load_PCB(PCB *p);
-        PCB* store_PCB();
-        CPU (RAM* ram, mode);
+        bool Operate();
+        void loadPCB(PCB *p);
+        PCB* storePCB();
+        CPU(RAM* ram,mode);
         int* dump_registers();
-        void pass (std::string val);
+        void pass(std::string val);
         static void test();
 
     std::string fetch(int i);

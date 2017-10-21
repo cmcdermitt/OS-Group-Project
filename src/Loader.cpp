@@ -15,80 +15,89 @@
 
     void Loader::init (Disk &disk_to_load, std::list<PCB*> &pcbs) {
 		l = new Log("init"); 
-		l->turnOn();
-
-        //Variables
+		l->turnOn(); 
+		// Variables for init function
 		int data[10];
+        //std::ifstream input("/home/conrad/CPlusPlus/OS-Group-Project/src/Program.txt");
         std::ifstream input("../src/Program.txt");
         std::string temp;
         std::string store;
-        std::string build_string = "";
+        std::string buildString = "";
         int counter = 0;
-        int current_position = 0;
+        int currentPosition = 0;
+		int tempPosition;
 		int lines = 0;
 		PCB *p = new PCB();
+		// End Variables 
 
 		// Read the file 
-        while(getline(input, temp)) {
-            lines++;
-            build_string = "";
-
-			if(temp.length()  == 0)// If the line is PCB Data
+        while(getline(input, temp))
+{       lines++;
+        buildString = "";
+			// If the line is PCB Data
+			if(temp.length()  == 0)
                 break;
-			if (temp.at(0) == '/' && temp != "// END" && temp != "//END") {
-				if (temp.at(3) == 'J')// Do this if the line is a PCB Job line
+			if (temp.at(0) == '/' && temp != "// END" && temp != "//END")
+			{
+				// Do this if the line is a PCB Job line 
+				if (temp.at(3) == 'J')
 				{
-                    //create a new PCB with registers, and address initialized
 					p = new PCB();
                     for (int &j : p->registers) {
                         j =-1;
                     }
-                    p->job_disk_address = current_position;
+                    p->job_disk_address = currentPosition;
+					temp = temp.substr(7, std::string::npos);
 
-					temp = temp.substr(7, std::string::npos); //drop the characters before index 7
-
-                    //Store the values from the line in data
-					for(int i = 0; i < temp.length(); i++) {
+					for(int i = 0; i < temp.length(); i++)
+                    {
                         if(temp.at(i) != ' ')
-                            build_string += temp.at(i);
-                        else {
-                            if(build_string.length() != 0) {
-                                data[counter] = Utility::hex_to_decimal(build_string);
-                                counter++;
-                                build_string = "";
-                            }
-                        }
-				    }
-
+                            buildString += temp.at(i);
+                        else
+                            {
+                                if(buildString.length() != 0)
+                                {
+                                    data[counter] = Utility::convertHexToDecimal(buildString);
+                                    counter++;
+                                    buildString = "";
+                                }
+                    }
+				}
                     // Last build string must be added
-                    data[counter] = Utility::hex_to_decimal(build_string);
+                    data[counter] = Utility::convertHexToDecimal(buildString);
                     counter++;
-                    build_string = "";
+                    buildString = "";
 
-                } else { //if the line is a data buffer info line ?
-			        int innerIterations = 0;
+                }
+				// Do this if the line is a PCB Data Line
+				else
+			{
+			    int innerIterations = 0;
 
-                    temp = temp.substr(8, std::string::npos);
+             temp = temp.substr(8, std::string::npos);
 
-                    //Store the values from the line in data
-                    for(int i = 0; i < temp.length(); i++) {
-                            innerIterations++;
+             for(int i = 0; i < temp.length(); i++)
+                    {
+                        innerIterations++;
 
-                            if(temp.at(i) != ' ')
-                                build_string += temp.at(i);
-                            else {
-                                // Last buildstring must be added
-                                data[counter] = Utility::hex_to_decimal(build_string);
-                                counter++;
-                                build_string = "";
-                            }
-				    }
+                        if(temp.at(i) != ' ')
+                            buildString += temp.at(i);
+                        else
+                            {
 
-                data[counter] = Utility::hex_to_decimal(build_string);
+                                {
+                           // Last buildstring must be added
+                            data[counter] = Utility::convertHexToDecimal(buildString);
+                            counter++;
+                            buildString = "";
+                                }
+                    }
+				}
+                data[counter] = Utility::convertHexToDecimal(buildString);
                 counter++;
-                build_string = "";
+                buildString = "";
 
-			    // Once a PCB Data Line is recorded, store that into the PCB
+			 // Once a PCB Data Line information is recorded, store that into a pcb
 				p->job_id = data[0];
 				p->job_size = data[1];
 				p->job_pri = data[2];
@@ -102,13 +111,15 @@
                 p->wait_time->turnOn();
                 pcbs.push_back(p);
                 counter = 0;
+
 				}
-            }
+				}   
 			// If the data is just raw hexcode, strip off the first few characters and store it as a string
-			else if(temp.at(0) != '/') {
+			else if(temp.at(0) != '/')
+            {
                 temp = temp.substr(2, std::string::npos);
-                disk_to_load.write(current_position, temp);
-                current_position++;
+                disk_to_load.write(currentPosition, temp);
+                currentPosition++;
             }
         }
 
