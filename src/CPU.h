@@ -9,12 +9,12 @@
 #include "PCB.h"
 #include <vector>
 struct Op{
-    std::string opType;
-    std::string opCode;
-    int sReg1;
-    int sReg2;
-    int dReg;
-    int bReg;
+    std::string op_type;
+    std::string op_code;
+    int sreg1;
+    int sreg2;
+    int dreg;
+    int breg;
     int address;
 };
 enum mode{debug,production};
@@ -28,7 +28,7 @@ class CPU {
         bool WR(int s1, int s2, int address);
         bool ST(int addr, int breg, int dreg);
         bool LW(int addr, int breg, int dreg);
-        bool MOV(int fromReg, int toReg);
+        bool MOV(int from_reg, int to_reg);
         bool ADD(int S1, int S2, int D);
         bool SUB(int S1, int S2, int D);
         bool DIV(int S1, int S2, int D);
@@ -39,7 +39,7 @@ class CPU {
         bool ADDI(int val, int D);
         bool DIVI(int val, int D);
         bool MULI(int val, int D);
-        bool JMP(int lineNo);
+        bool JMP(int line_no);
         bool LDI(int val, int D);
         bool SLT(int S, int B, int D);
         bool SLTI(int S, int val, int D);
@@ -55,8 +55,8 @@ class CPU {
     public:
         PCB state;
         bool Operate();
-        void loadPCB(PCB *p);
-        PCB* storePCB();
+        void load_pcb(PCB *p);
+        PCB* store_pcb();
         CPU(RAM* ram,mode);
         int* dump_registers();
         void pass(std::string val);

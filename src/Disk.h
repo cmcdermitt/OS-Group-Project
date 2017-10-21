@@ -16,15 +16,15 @@ const static int SIZE = 2048;
 
 class Disk {
 
-  private:
-      std::string diskData[SIZE];
+private:
+    std::string disk_data[SIZE];
 
-  public:
+public:
     std::string read(int address); // Reads string data from an address
     void write(int address, std::string data); // Writes string data to an address
     Disk(); // Constructor
 
- void test(); // Tests the read and write methods of the Disk
+    void test(); // Tests the read and write methods of the Disk
 
 };
 

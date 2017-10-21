@@ -181,7 +181,7 @@ void Scheduler::load_pcb(PCB *p) { //puts PCB in RAM and ready_queue deal with s
     //std::cout << "RUNNING OUT OF TIME:\t" << times << std::endl;
     //std::cout << "START HERE:\t" << p->job_ram_address << std::endl;
     ready_queue.push_back(p);
-    p->wait_time->turnOff();
+    p->wait_time->turn_off();
     p->state = PCB::PROCESS_STATUS::READY;
 
     int ram_start = p->job_ram_address;
@@ -239,7 +239,7 @@ void Scheduler::describe_ram_space() { //prints ram_space
     Debug::debug(Debug::DEBUG_SCHEDULER, "Describing Ram Space \n");
     for (free_ram f : ram_space) {
         Debug::debug(Debug::DEBUG_SCHEDULER, "The Position is " + std::to_string(f.position));
-        Debug::debug(Debug::DEBUG_SCHEDULER, "The status of its freedom " + Utility::boolToString(f.is_free));
+        Debug::debug(Debug::DEBUG_SCHEDULER, "The status of its freedom " + Utility::bool_to_string(f.is_free));
     }
 }
 
@@ -256,7 +256,7 @@ void Scheduler::clean_ram_space() { //combines contiguous free spaces in RAM
 
 void Scheduler::lt_test() {
     ready_queue.sort(comp_priority);
-    printPCBs(ready_queue);
+    print_pcbs(ready_queue);
 
     /*for(free_ram r : ram_space)
     {
