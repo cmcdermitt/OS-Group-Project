@@ -6,7 +6,7 @@
 #include "Utility.h"
 
 // Initalizes the Scheduler and gives it the job list, disk, ram, and dispatcher
-Scheduler::Scheduler(std::list<PCB*> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher *dispatcher) {
+Scheduler::Scheduler(std::list<PCB *> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher *dispatcher) {
     pcbs = pcb_list;
     disk = disk_in_use;
     ram = &ram_in_use;
@@ -22,10 +22,9 @@ void Scheduler::lt_sched(bool *still_has_work) {
     PCB *temp;
     // Continues until no more jobs can be loaded or there are no more jobs
     while (true) {
-       // describe_ram_space();
+        // describe_ram_space();
         temp = lt_get_next_pcb(pcbs);
-        if (temp == nullptr)
-        {
+        if (temp == nullptr) {
             *still_has_work = false;
             break;
         }
@@ -34,82 +33,61 @@ void Scheduler::lt_sched(bool *still_has_work) {
             std::cout << "DID NOT GET RAM START" << std::endl;
             break;
         }
-            load_pcb(temp, *ram);
-            jobsAllocated++;
+        load_pcb(temp);
+        jobsAllocated++;
         Debug::debug(Debug::DEBUG_SCHEDULER, "YAllocated " + std::to_string(jobsAllocated));
     }
 }
 
 // Short Term Scheduler
-void Scheduler::st_sched(bool *st_still_has_work)
-{
+void Scheduler::st_sched(bool *st_still_has_work) {
     std::cout << "\nREADY QUEUE START SIZE " << ready_queue.size();
     PCB *temp;
 
     ready_queue.sort(comp_fifo);
 
-    if(!ready_queue.empty())
-    {
-        temp = ready_queue.front(); //Access first sorted PCB
+    if (!ready_queue.empty()) {
+        temp = ready_queue.front(); //Access first PCB in ready queue
 
-        if(temp != nullptr) {
-            temp = disp->context_switch(temp);
-            //Send PCB to Dispatcher
-            //Receive PCB on either completion or interrupt
+        if (temp != nullptr) {
+            temp = disp->context_switch(temp); //send PCB to dispatcher and get it back when done
 
-            remove_pcb(temp, ram);
+            remove_pcb(temp); //remove_pcb handles unloading or return to RQ
             jobsCompleted++;
             Debug::debug(Debug::DEBUG_SCHEDULER, "GCompleted " + std::to_string(jobsCompleted));
-
         }
-    }
-    else
-    {
+    } else {//nothing is in the ready queue
         *st_still_has_work = false;
     }
     std::cout << "\nREADY QUEUE END SIZE " << ready_queue.size();
 }
 
 //returns pointer to next PCB, returns null pointer if no next PCB
-PCB* Scheduler::lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority) {
-    if(is_priority)
-    {
+PCB *Scheduler::lt_get_next_pcb(std::list<PCB *> pcbs, bool is_priority) {
+    if (is_priority) {
         PCB *temp;
         int priority = 1000;
-        for(PCB *p : pcbs)
-        {
-            if(p->state == PCB::PROCESS_STATUS::NEW && p->job_pri < priority)
-            {
+
+        //find new PCB with LOWEST? priority?
+        for (PCB *p : pcbs) {
+            if (p->state == PCB::PROCESS_STATUS::NEW && p->job_pri < priority) {
                 priority = p->job_pri;
                 temp = p;
             }
         }
-        if(priority != 1000)
-        {
+
+        if (priority != 1000) { //i.e. if priority has been set by finding a valid PCB
             return temp;
         }
-        return  nullptr;
-    }
 
-    else {
-
-        PCB* next = new PCB();
+        return nullptr; //if there's no job to run
+    } else { //if FIFO
+        PCB *next = new PCB();
         next->job_id = -1;
-        bool in_ready_queue = false;
-//        for (std::list<PCB*>::iterator cursor = pcbs.begin(); cursor != pcbs.end(); ++cursor) {
-//            for (std::list<PCB*>::iterator it = ready_queue.begin(); it != ready_queue.end(); ++it) {
-//                if ((*cursor)->job_id == (*it)->job_id)
-//                    in_ready_queue = true;
-//            }
-//            if (!in_ready_queue) {
-//                next = *cursor;
-//                return next; //returns a pointer to a PCB in pcbs
-//            }
-//        }
-        for(PCB *p : pcbs)
-        {
-            if(p->state == PCB::PROCESS_STATUS::NEW)
-            {
+
+        //find next new PCB
+        for (PCB *p : pcbs) {
+            if (p->state == PCB::PROCESS_STATUS::NEW) {
                 return p;
             }
         }
@@ -117,111 +95,87 @@ PCB* Scheduler::lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority) {
     }
 }
 
-void Scheduler::describe_ram_space() {
-
-    Debug::debug(Debug::DEBUG_SCHEDULER, "Describing Ram Space \n");
-    for(free_ram f : ram_space)
-    {
-        Debug::debug(Debug::DEBUG_SCHEDULER, "The Position is " + std::to_string(f.position));
-        Debug::debug(Debug::DEBUG_SCHEDULER, "The status of its freedom " + Utility::boolToString(f.is_free));
-    }
-
-}
-
-void Scheduler::clean_ram_space() {
-    std::list<free_ram>::iterator it = ram_space.begin();
-    while(it != ram_space.end())
-    {
-     if(it->is_free )
-         while(std::next(it)->is_free &&  std::next(it) != ram_space.end()) {
-            ram_space.erase(std::next(it));
-         }
-        it++;
-    }
-}
-
 //sets p->job_ram_address to start location
 //if there's no room, p->job_ram_address will stay unset
 bool Scheduler::get_ram_start(PCB *p) {
 
-    clean_ram_space();
+    clean_ram_space(); //combines contiguous free spaces
+
     bool is_space = false;
     std::list<free_ram>::iterator it = ram_space.begin();
-    int nextPos = 0;
-    int currentPos = 0;
+    int next_pos = 0;
+    int current_pos = 0;
 
 
-    while (it != ram_space.end() && !is_space) {
-        if (it->is_free)
+    while (it != ram_space.end() && !is_space) { //while we haven't found anything and we aren't at the end of ram_space
+        if (it->is_free) //if it is a free space
         {
-            currentPos = it->position;
-            // If we have to insert it at the end
-            if(std::next(it) == ram_space.end()) {
+            current_pos = it->position; //store current position
 
-                if (RAM::SIZE - it->position == p->total_size)
+
+            if (std::next(it) == ram_space.end()) { //if we're at the end of the ram space list
+
+                if (RAM::SIZE - it->position ==
+                    p->total_size) //if the free space at the end is exactly the size of the PCB
                 {
+                    //set the address and that the space is used, then return
                     p->job_ram_address = it->position;
                     it->is_free = false;
                     is_space = true;
                     Debug::debug(Debug::DEBUG_SCHEDULER, "Fit exactly at end");
                     return is_space;
 
-                }
+                } else if ((RAM::SIZE - it->position) >
+                           p->job_size) { //if we're at the end of the list and there's more than enough space
 
-                else if(RAM::SIZE - it->position > p->job_size){
-                    // We give part of that to a new used ram_space
-                    free_ram *to_be_added = new free_ram(it->position, false);
-                    p->job_ram_address = it->position;
-                    it->position = it->position + p->total_size;
-                    ram_space.insert(it, *to_be_added);
+                    //set address, insert new space, and return
+                    p->job_ram_address = current_pos;
                     is_space = true;
-                    Debug::debug(Debug::DEBUG_SCHEDULER, "Fit inside at end");
+                    it->is_free = false;
+                    free_ram *to_be_added = new free_ram(current_pos + p->total_size,
+                                                         true); //new space starts in address after end of p
+                    ram_space.insert(std::next(it), *to_be_added);
+                    is_space = true;
+                }
+
+                    // There is not enough space at the end of RAM, so return false
+                else {
                     return is_space;
                 }
 
-                    // There is not enough space at the end of RAM
-                else{
+            } else { //if we aren't at the end of the list
+
+                next_pos = std::next(it)->position; //store position of next space (current_pos initialized at top)
+
+                if (next_pos - current_pos == p->total_size) {//if there's exactly enough room before the next process
+                    //set is_free and address, then return
+                    it->is_free = false;
+                    p->job_ram_address = current_pos;
+                    is_space = true;
+                    Debug::debug(Debug::DEBUG_SCHEDULER, "Fit exactly somewhere in the middle");
                     return is_space;
-                }
 
+                } else if (next_pos - current_pos > p->total_size) { //if there's more than enough room
+                    //set is_free and address, create and insert new space, and return
+                    p->job_ram_address = current_pos;
+                    is_space = true;
+                    it->is_free = false;
+                    free_ram *to_be_added = new free_ram(current_pos + p->total_size + 1, true); //new space starts in address after end of p
+                    ram_space.insert(std::next(it), *to_be_added);
+                    is_space = true;
+                    Debug::debug(Debug::DEBUG_SCHEDULER, "Fit partially somewhere in the middle");
+                    return is_space;
+                } //if we can't fit in this space, we loop again since we aren't at the end yet
             }
-
-                // If we have to insert it at any other place
-            else
-            {
-               currentPos = it->position;
-               nextPos = std::next(it)->position;
-               if(nextPos - currentPos == p->total_size)
-               {
-                   it->is_free = false;
-                   p->job_ram_address = currentPos;
-                   is_space = true;
-                   Debug::debug(Debug::DEBUG_SCHEDULER, "Fit exactly somewhere in the middle");
-                   return is_space;
-               }
-                else if (nextPos - currentPos > p->total_size){
-                   p->job_ram_address = currentPos;
-                   is_space = true;
-                   it->is_free = false;
-                   free_ram *to_be_added = new free_ram(currentPos + p->total_size, true);
-                   ram_space.insert(std::next(it), *to_be_added);
-                   is_space = true;
-                   Debug::debug(Debug::DEBUG_SCHEDULER, "Fit partially somewhere in the middle");
-                   return is_space;
-
-               }
-
-            }
-
         }
         ++it;
     }
-  //  std::cout << "Current Position:\t" << ram_space[0].position << "\nCurrent Offset\t" << ram_space[0].offset << std::endl;
+    //  std::cout << "Current Position:\t" << ram_space[0].position << "\nCurrent Offset\t" << ram_space[0].offset << std::endl;
     return is_space;
 
 }
 
-void Scheduler::load_pcb(PCB *p, RAM &r) { //puts PCB in RAM and ready_queue deal with sorting later
+void Scheduler::load_pcb(PCB *p) { //puts PCB in RAM and ready_queue deal with sorting later
     static int times = 0;
     times++;
     //std::cout << "RUNNING OUT OF TIME:\t" << times << std::endl;
@@ -229,23 +183,23 @@ void Scheduler::load_pcb(PCB *p, RAM &r) { //puts PCB in RAM and ready_queue dea
     ready_queue.push_back(p);
     p->wait_time->turnOff();
     p->state = PCB::PROCESS_STATUS::READY;
-    int ramStart = p->job_ram_address;
-    int diskStart = p->data_disk_address;
+
+    int ram_start = p->job_ram_address;
+    int disk_start = p->data_disk_address;
     std::vector<std::string> push_list = std::vector<std::string>();
     // Put on ram
-    for(int i = 0; i < p->total_size; i++) { // may need to be <=
-        push_list.push_back(disk.read(diskStart + i));
+    for (int i = 0; i < p->total_size; i++) { // may need to be <=
+        push_list.push_back(disk.read(disk_start + i));
     }
-        r.write(ramStart, push_list);
-        //ram->write(i + ramStart, disk.read(i + diskStart));
+    ram->write(ram_start, push_list);
+    //ram->write(i + ram_start, disk.read(i + disk_start));
 
 }
 
 
-// Removes PCB form
+// Removes PCB from RAM, or puts back on ready queue if not completed
 // Needs Testing because written at 3:45 in morning
-void Scheduler::remove_pcb(PCB *p, RAM *r)
-{
+void Scheduler::remove_pcb(PCB *p) {
     if (p->state == PCB::PROCESS_STATUS::READY) {
         return;
         //return b/c nothing to remove - PCB still needs to run
@@ -258,24 +212,47 @@ void Scheduler::remove_pcb(PCB *p, RAM *r)
     }
 
     if (p->state == PCB::PROCESS_STATUS::COMPLETED) {
+        //should copy PCB data to disk
+
         //write 0s over process location in RAM
         std::vector<std::string> s = std::vector<std::string>(p->total_size, "0");
-        r->write(p->job_ram_address, s);
-        std::list<free_ram>::iterator ramIterator = std::list<free_ram>::iterator();
-        ramIterator = ram_space.begin();
-        while(ramIterator->position != p->job_ram_address && ramIterator != ram_space.end())
-            ramIterator++;
-        ramIterator->is_free = true;
-        std::list<PCB*>::iterator queueIterator = std::list<PCB*>::iterator();
-        queueIterator = ready_queue.begin();
-        while((*queueIterator)->job_id != p->job_id)
-            queueIterator++;
-        ready_queue.erase(queueIterator);
+        ram->write(p->job_ram_address, s);
+
+        //free PCB's entry in ram_space
+        std::list<free_ram>::iterator ram_iterator = std::list<free_ram>::iterator();
+        ram_iterator = ram_space.begin();
+        while (ram_iterator->position != p->job_ram_address && ram_iterator != ram_space.end())
+            ram_iterator++;
+        ram_iterator->is_free = true;
+
+        //remove PCB's entry in ready_queue
+        std::list<PCB*>::iterator queue_iterator = std::list<PCB *>::iterator();
+        queue_iterator = ready_queue.begin();
+        while ((*queue_iterator)->job_id != p->job_id)
+            queue_iterator++;
+        ready_queue.erase(queue_iterator);
 
     }
+}
+
+void Scheduler::describe_ram_space() { //prints ram_space
+    Debug::debug(Debug::DEBUG_SCHEDULER, "Describing Ram Space \n");
+    for (free_ram f : ram_space) {
+        Debug::debug(Debug::DEBUG_SCHEDULER, "The Position is " + std::to_string(f.position));
+        Debug::debug(Debug::DEBUG_SCHEDULER, "The status of its freedom " + Utility::boolToString(f.is_free));
     }
+}
 
-
+void Scheduler::clean_ram_space() { //combines contiguous free spaces in RAM
+    std::list<free_ram>::iterator it = ram_space.begin();
+    while (it != ram_space.end()) {
+        if (it->is_free)
+            while (std::next(it) != ram_space.end() && std::next(it)->is_free) {
+                ram_space.erase(std::next(it));
+            }
+        it++;
+    }
+}
 
 void Scheduler::lt_test() {
     ready_queue.sort(comp_priority);
@@ -285,7 +262,6 @@ void Scheduler::lt_test() {
     {
         std::cout << "Position:\t" << r.position << "\nOffset:\t" << r.offset << std::endl;
     }
-
     for(int i = 0; i < 1024; i++)
     {
         std::cout << ram->read(i) << std::endl;
@@ -295,77 +271,11 @@ void Scheduler::lt_test() {
 }
 
 //returns true if p1 has a smaller job_id - used for sorting
-bool comp_fifo(PCB* p1, PCB* p2) {
+bool comp_fifo(PCB *p1, PCB *p2) {
     return p1->job_id < p2->job_id;
 }
+
 //returns true if p1 has lower priority than p2 - used for sorting
-bool comp_priority(PCB* p1, PCB* p2) {
+bool comp_priority(PCB *p1, PCB *p2) {
     return p1->job_pri > p2->job_pri;
 }
-
-//OLD FUNCTION
-//void Scheduler::lt_sched(std::list<PCB*> pcbs, Disk& disk, RAM& ram) {
-//    //if the ready queue is empty, there's nothing in RAM, so all the space is free
-//    //the ready queue should always be empty the first time lt_sched is called
-//    if (ready_queue.size() == 0) {
-//        free_ram.clear();
-//        free_ram[0][0] = 0;
-//        free_ram[0][1] = ram.SIZE;
-//    }
-//
-//    PCB next;
-//    //find next job which isn't in ready_queue
-//    bool found = false;
-//    for (std::list<PCB*>::iterator *cursor = pcbs.begin(); cursor != pcbs.end(); ++cursor) {
-//
-//        for (std::list<PCB*>::iterator it = ready_queue.begin(); it != ready_queue.end(); ++it) {
-//            if (cursor->job_id = it->job_id)
-//                found = true;
-//        }
-//        if (found) {
-//            next = *cursor;
-//            break; //if we have the next one, leave the loop
-//        }
-//    }
-//
-//    //if there isn't a next job (i.e. all jobs are in ready_queue or no jobs left), return - nothing else to schedule
-//    if (!found)
-//        return;
-//
-//    //find free space for job and set next.job_ram_address
-//    //currently first-fit method
-//    int i = 0;
-//    bool is_space = false;
-//    while (i < free_ram.size() && !is_space) {
-//        if (free_ram[i][1] >= next.total_size)
-//        {
-//            is_space = true;
-//            next.job_ram_address = free_ram[i][0];
-//
-//            //modify free_ram to take out space process uses
-//            if (free_ram[i][1] == next.total_size)
-//                free_ram.erase(free_ram.begin() + i);
-//            else //free_ram[i][1] > next.total_size
-//                free_ram[i][1] = free_ram[i][1] + next.total_size;
-//        }
-//        ++i;
-//    }
-//
-//    //if there's no space for the next job, return - can't schedule it
-//    if (!is_space)
-//        return;
-//
-//
-//    //copy each item in the job to RAM and put it on the ready queue
-//    std::string temp;
-//    for (int j = 0; j < next.total_size; j++) {
-//        temp = disk.read(next.job_disk_address + j);
-//        ram.write(next.job_ram_address + j, temp);
-//    }
-//    ready_queue.push_front(next);
-//
-//}
-
-
-
-

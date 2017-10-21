@@ -22,13 +22,17 @@
 #include "Scheduler.h"
 #include "Ram.h"
 #include "CPU.h"
+
 class Driver {
 
 public:
-Driver();
-void run();
-void test();
-std::list<PCB*> pcbs;
+    Driver();
+
+    void run();
+
+    void test();
+
+    std::list<PCB *> pcbs;
 private:
     Loader loader;
     Disk disk;
@@ -36,7 +40,7 @@ private:
     Log *log;
     Log *testLog;
     CPU *cpu;
-    Dispatcher* disp;
+    Dispatcher *disp;
     bool lt_still_has_work;
     bool st_still_has_work;
 };
