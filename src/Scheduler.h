@@ -30,13 +30,13 @@ private:
 
 
     bool get_ram_start(PCB *p); //sets *p->ramStartAddress to an open space in RAM
-    void load_pcb(PCB *p, RAM &r); //puts PCB in RAM
-    void remove_pcb(PCB *p, RAM *r); //removes PCB from RAM
+    void load_pcb(PCB *p); //puts PCB in RAM
+    void remove_pcb(PCB *p); //removes PCB from RAM
     void clean_ram_space();
     void describe_ram_space();
         bool lt_sched_complete;
-     int jobsAllocated;
-     int jobsCompleted;
+     int jobs_allocated;
+     int jobs_completed;
 
 
 public:

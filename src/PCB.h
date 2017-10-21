@@ -21,15 +21,12 @@ struct PCB {
 	int job_disk_address;
 	int job_ram_address;
 	int prgm_counter;
-	bool has_ran;
 	int registers[16];
-	int dataSectionSize;
     Log *wait_time;
     Log *comp_time;
 
-	//Data
-	int data_disk_address;
-	int data_memory_address;
+    int data_disk_address;
+    int data_ram_address;
 
 };
 
