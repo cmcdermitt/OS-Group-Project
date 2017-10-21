@@ -116,7 +116,7 @@ bool Log::record_data() {
     log_it.unlock();
 }
 
-bool Log::add_graph(std::string label) {    
+bool Log::add_graph(std::string label) {
     Graph *g = new Graph();
     g->label = label;
     g->points = std::vector<Point>();
@@ -207,7 +207,7 @@ void Debug::translate_program_file_to_binary()
             if (current_line.at(0) == '/')
                 of << current_line << std::endl;
             else {
-                current_line = current_line.substr(0, std::string::npos);
+                current_line = current_line.substr(2, std::string::npos);
                 current_line = Utility::hex_to_binary(current_line);
                 of << current_line << std::endl;
             }
