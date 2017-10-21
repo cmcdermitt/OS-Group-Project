@@ -22,7 +22,7 @@ void Scheduler::lt_sched(bool *still_has_work) {
     PCB *temp;
     // Continues until no more jobs can be loaded or there are no more jobs
     while (true) {
-       // describe_ram_space();
+        // describe_ram_space();
         temp = lt_get_next_pcb(pcbs);
         if (temp == nullptr)
         {
@@ -34,8 +34,8 @@ void Scheduler::lt_sched(bool *still_has_work) {
             std::cout << "DID NOT GET RAM START" << std::endl;
             break;
         }
-            load_pcb(temp, *ram);
-            jobsAllocated++;
+        load_pcb(temp, *ram);
+        jobsAllocated++;
         Debug::debug(Debug::DEBUG_SCHEDULER, "YAllocated " + std::to_string(jobsAllocated));
     }
 }
@@ -132,10 +132,10 @@ void Scheduler::clean_ram_space() {
     std::list<free_ram>::iterator it = ram_space.begin();
     while(it != ram_space.end())
     {
-     if(it->is_free )
-         while(std::next(it)->is_free &&  std::next(it) != ram_space.end()) {
-            ram_space.erase(std::next(it));
-         }
+        if(it->is_free)
+            while(std::next(it) != ram_space.end() && std::next(it)->is_free) {
+                ram_space.erase(std::next(it));
+            }
         it++;
     }
 }
@@ -144,22 +144,25 @@ void Scheduler::clean_ram_space() {
 //if there's no room, p->job_ram_address will stay unset
 bool Scheduler::get_ram_start(PCB *p) {
 
-    clean_ram_space();
+    clean_ram_space(); //combines contiguous free spaces
+
     bool is_space = false;
     std::list<free_ram>::iterator it = ram_space.begin();
     int nextPos = 0;
     int currentPos = 0;
 
 
-    while (it != ram_space.end() && !is_space) {
-        if (it->is_free)
+    while (it != ram_space.end() && !is_space) { //while we haven't found anything and we aren't at the end of ram_space
+        if (it->is_free) //if it is a free space
         {
-            currentPos = it->position;
-            // If we have to insert it at the end
-            if(std::next(it) == ram_space.end()) {
+            currentPos = it->position; //store current position
 
-                if (RAM::SIZE - it->position == p->total_size)
+
+            if(std::next(it) == ram_space.end()) { //if we're at the end of the ram space list
+
+                if (RAM::SIZE - it->position == p->total_size) //if the free space at the end is exactly the size of the PCB
                 {
+                    //set the address and that the space is used, then return
                     p->job_ram_address = it->position;
                     it->is_free = false;
                     is_space = true;
@@ -168,55 +171,54 @@ bool Scheduler::get_ram_start(PCB *p) {
 
                 }
 
-                else if(RAM::SIZE - it->position > p->job_size){
-                    // We give part of that to a new used ram_space
-                    free_ram *to_be_added = new free_ram(it->position, false);
-                    p->job_ram_address = it->position;
-                    it->position = it->position + p->total_size;
-                    ram_space.insert(it, *to_be_added);
+                else if((RAM::SIZE - it->position) > p->job_size){ //if we're at the end of the list and there's more than enough space
+
+                    //set address and that space is used, insert new space, and return
+                    p->job_ram_address = currentPos;
                     is_space = true;
-                    Debug::debug(Debug::DEBUG_SCHEDULER, "Fit inside at end");
+                    it->is_free = false;
+                    free_ram *to_be_added = new free_ram(currentPos + p->total_size, true); //new space starts in address after end of p
+                    ram_space.insert(std::next(it), *to_be_added);
+                    is_space = true;
+                }
+
+                // There is not enough space at the end of RAM, so return false
+                else {
                     return is_space;
                 }
 
-                    // There is not enough space at the end of RAM
-                else{
+            } else { //if we aren't at the end of the list
+
+                nextPos = std::next(it)->position; //store position of next space (currentPos initialized at top)
+
+                if(nextPos - currentPos == p->total_size) //if there's exactly enough room before the next process
+                {
+                    //set is_free and address, then return
+                    it->is_free = false;
+                    p->job_ram_address = currentPos;
+                    is_space = true;
+                    Debug::debug(Debug::DEBUG_SCHEDULER, "Fit exactly somewhere in the middle");
                     return is_space;
                 }
+                else if (nextPos - currentPos > p->total_size){ //if there's more than enough room
+                    //set is_free and address, create and insert new space, and return
+                    p->job_ram_address = currentPos;
+                    is_space = true;
+                    it->is_free = false;
+                    free_ram *to_be_added = new free_ram(currentPos + p->total_size + 1, true); //new space starts in address after end of p
+                    ram_space.insert(std::next(it), *to_be_added);
+                    is_space = true;
+                    Debug::debug(Debug::DEBUG_SCHEDULER, "Fit partially somewhere in the middle");
+                    return is_space;
 
-            }
-
-                // If we have to insert it at any other place
-            else
-            {
-               currentPos = it->position;
-               nextPos = std::next(it)->position;
-               if(nextPos - currentPos == p->total_size)
-               {
-                   it->is_free = false;
-                   p->job_ram_address = currentPos;
-                   is_space = true;
-                   Debug::debug(Debug::DEBUG_SCHEDULER, "Fit exactly somewhere in the middle");
-                   return is_space;
-               }
-                else if (nextPos - currentPos > p->total_size){
-                   p->job_ram_address = currentPos;
-                   is_space = true;
-                   it->is_free = false;
-                   free_ram *to_be_added = new free_ram(currentPos + p->total_size, true);
-                   ram_space.insert(std::next(it), *to_be_added);
-                   is_space = true;
-                   Debug::debug(Debug::DEBUG_SCHEDULER, "Fit partially somewhere in the middle");
-                   return is_space;
-
-               }
+                } //if we can't fit in this space, we loop again since we aren't at the end yet
 
             }
 
         }
         ++it;
     }
-  //  std::cout << "Current Position:\t" << ram_space[0].position << "\nCurrent Offset\t" << ram_space[0].offset << std::endl;
+    //  std::cout << "Current Position:\t" << ram_space[0].position << "\nCurrent Offset\t" << ram_space[0].offset << std::endl;
     return is_space;
 
 }
@@ -236,8 +238,8 @@ void Scheduler::load_pcb(PCB *p, RAM &r) { //puts PCB in RAM and ready_queue dea
     for(int i = 0; i < p->total_size; i++) { // may need to be <=
         push_list.push_back(disk.read(diskStart + i));
     }
-        r.write(ramStart, push_list);
-        //ram->write(i + ramStart, disk.read(i + diskStart));
+    r.write(ramStart, push_list);
+    //ram->write(i + ramStart, disk.read(i + diskStart));
 
 }
 
@@ -273,7 +275,7 @@ void Scheduler::remove_pcb(PCB *p, RAM *r)
         ready_queue.erase(queueIterator);
 
     }
-    }
+}
 
 
 
@@ -285,7 +287,6 @@ void Scheduler::lt_test() {
     {
         std::cout << "Position:\t" << r.position << "\nOffset:\t" << r.offset << std::endl;
     }
-
     for(int i = 0; i < 1024; i++)
     {
         std::cout << ram->read(i) << std::endl;
@@ -302,70 +303,3 @@ bool comp_fifo(PCB* p1, PCB* p2) {
 bool comp_priority(PCB* p1, PCB* p2) {
     return p1->job_pri > p2->job_pri;
 }
-
-//OLD FUNCTION
-//void Scheduler::lt_sched(std::list<PCB*> pcbs, Disk& disk, RAM& ram) {
-//    //if the ready queue is empty, there's nothing in RAM, so all the space is free
-//    //the ready queue should always be empty the first time lt_sched is called
-//    if (ready_queue.size() == 0) {
-//        free_ram.clear();
-//        free_ram[0][0] = 0;
-//        free_ram[0][1] = ram.SIZE;
-//    }
-//
-//    PCB next;
-//    //find next job which isn't in ready_queue
-//    bool found = false;
-//    for (std::list<PCB*>::iterator *cursor = pcbs.begin(); cursor != pcbs.end(); ++cursor) {
-//
-//        for (std::list<PCB*>::iterator it = ready_queue.begin(); it != ready_queue.end(); ++it) {
-//            if (cursor->job_id = it->job_id)
-//                found = true;
-//        }
-//        if (found) {
-//            next = *cursor;
-//            break; //if we have the next one, leave the loop
-//        }
-//    }
-//
-//    //if there isn't a next job (i.e. all jobs are in ready_queue or no jobs left), return - nothing else to schedule
-//    if (!found)
-//        return;
-//
-//    //find free space for job and set next.job_ram_address
-//    //currently first-fit method
-//    int i = 0;
-//    bool is_space = false;
-//    while (i < free_ram.size() && !is_space) {
-//        if (free_ram[i][1] >= next.total_size)
-//        {
-//            is_space = true;
-//            next.job_ram_address = free_ram[i][0];
-//
-//            //modify free_ram to take out space process uses
-//            if (free_ram[i][1] == next.total_size)
-//                free_ram.erase(free_ram.begin() + i);
-//            else //free_ram[i][1] > next.total_size
-//                free_ram[i][1] = free_ram[i][1] + next.total_size;
-//        }
-//        ++i;
-//    }
-//
-//    //if there's no space for the next job, return - can't schedule it
-//    if (!is_space)
-//        return;
-//
-//
-//    //copy each item in the job to RAM and put it on the ready queue
-//    std::string temp;
-//    for (int j = 0; j < next.total_size; j++) {
-//        temp = disk.read(next.job_disk_address + j);
-//        ram.write(next.job_ram_address + j, temp);
-//    }
-//    ready_queue.push_front(next);
-//
-//}
-
-
-
-
