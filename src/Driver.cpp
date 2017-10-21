@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Driver.h"
 #include "Dispatcher.h"
+#include "Log.h"
 
 Driver::Driver() {
     disk = Disk();
@@ -31,10 +32,12 @@ void Driver::run() {
 
         sched.st_sched(&st_still_has_work);
 
+
     }
     //sched.lt_test();
     //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
     log->turnOff();
+    log->recordLogs();
 
 
     //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
