@@ -52,25 +52,36 @@ bool CPU::LW(int addr, int breg, int dreg) {
     return true;
 }
 
-bool CPU::MOV(int from_reg, int to_reg) {
-    if(to_reg<0||to_reg>=16||from_reg<0||from_reg>=16) return false;
-    this->Register[to_reg] = this->Register[from_reg];
+bool CPU::MOV(int S1, int S2) {
+    this->Register[S1] = this->Register[S2];
     return true;
 }
 bool CPU::ADD(int S1, int S2, int D) {
     this->Register[D] = this->Register[S1] + this->Register[S2];
+    Debug::debug(Debug::VERBOSE, "CR["+std::to_string(S1)+"]("+std::to_string(Register[S1])
+                                 +") + R["+std::to_string(S2)+"]("+std::to_string(Register[S2])
+                                 +") -> R["+std::to_string(D)+"]("+std::to_string(Register[D])+")");
     return true;
 }
 bool CPU::SUB(int S1, int S2, int D) {
     this->Register[D] = this->Register[S1] - this->Register[S2];
+    Debug::debug(Debug::VERBOSE, "CR["+std::to_string(S1)+"]("+std::to_string(Register[S1])
+                                 +") - R["+std::to_string(S2)+"]("+std::to_string(Register[S2])
+                                 +") -> R["+std::to_string(D)+"]("+std::to_string(Register[D])+")");
     return true;
 }
 bool CPU::MUL(int S1, int S2, int D) {
     this->Register[D] = this->Register[S1] * this->Register[S2];
+    Debug::debug(Debug::VERBOSE, "CR["+std::to_string(S1)+"]("+std::to_string(Register[S1])
+                                 +") * R["+std::to_string(S2)+"]("+std::to_string(Register[S2])
+                                 +") -> R["+std::to_string(D)+"]("+std::to_string(Register[D])+")");
     return true;
 }
 bool CPU::DIV(int S1, int S2, int D) {
     this->Register[D] = this->Register[S1] / this->Register[S2];
+    Debug::debug(Debug::VERBOSE, "CR["+std::to_string(S1)+"]("+std::to_string(Register[S1])
+                                 +") / R["+std::to_string(S2)+"]("+std::to_string(Register[S2])
+                                 +") -> R["+std::to_string(D)+"]("+std::to_string(Register[D])+")");
     return true;
 }
 bool CPU::AND(int S1, int S2, int D) {

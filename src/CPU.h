@@ -28,7 +28,7 @@ class CPU {
         bool WR(int s1, int s2, int address);
         bool ST(int addr, int breg, int dreg);
         bool LW(int addr, int breg, int dreg);
-        bool MOV(int from_reg, int to_reg);
+        bool MOV(int S1, int S2);
         bool ADD(int S1, int S2, int D);
         bool SUB(int S1, int S2, int D);
         bool DIV(int S1, int S2, int D);
