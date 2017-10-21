@@ -9,7 +9,7 @@
 
 bool CPU::Operate() {
     std::string instruction = CPU::fetch(this->PC);
-    ++PC;
+    PC = PC + 1;
     Op decoded = CPU::decode(instruction);
     CPU::execute(decoded);
 }
