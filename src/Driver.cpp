@@ -36,12 +36,9 @@ void Driver::run() {
     }
     //sched.lt_test();
     //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
-<<<<<<< HEAD
-    log->turnOff();
-    log->recordLogs();
-=======
+;
+
     log->turn_off();
->>>>>>> Charlie-branch
 
 
     //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;

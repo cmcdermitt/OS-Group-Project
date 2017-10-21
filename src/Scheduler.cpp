@@ -132,8 +132,9 @@ bool Scheduler::get_ram_start(PCB *p) {
                     p->job_ram_address = current_pos;
                     is_space = true;
                     it->is_free = false;
-                    free_ram *to_be_added = new free_ram(current_pos + p->total_size,
-                                                         true); //new space starts in address after end of p
+                    free_ram *to_be_added = new free_ram(current_pos + p->total_size, true); //new space starts in address after end of p
+                    to_be_added->position = current_pos + p->total_size;
+                    to_be_added->is_free = true;
                     ram_space.insert(std::next(it), *to_be_added);
                     is_space = true;
                 }
@@ -161,6 +162,8 @@ bool Scheduler::get_ram_start(PCB *p) {
                     is_space = true;
                     it->is_free = false;
                     free_ram *to_be_added = new free_ram(current_pos + p->total_size + 1, true); //new space starts in address after end of p
+                    to_be_added->is_free = true;
+                    to_be_added->position = current_pos + p->total_size; 
                     ram_space.insert(std::next(it), *to_be_added);
                     is_space = true;
                     Debug::debug(Debug::DEBUG_SCHEDULER, "Fit partially somewhere in the middle");
