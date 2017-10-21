@@ -8,22 +8,20 @@
 #include <cmath>
 
 // Converts HEX to Binary
-std::string Utility::HexToBinary(std::string hexinput) {
-    char temp; // Temporry character
-    std::string binaryVersion = "";
+std::string Utility::hex_to_binary(std::string hex_input) {
+    std::string output = "";
 
-    for (int i = 0; i < hexinput.length(); i++) {
-        binaryVersion = binaryVersion + convertHexCharToBinary(hexinput.at(i));
+    for (int i = 0; i < hex_input.length(); i++) {
+        output = output + hex_char_to_binary(hex_input.at(i));
     }
-    return binaryVersion;
+    return output;
 }
 
 // Converts individual HEX chars to Binary
-std::string Utility::convertHexCharToBinary(char hex) {
+std::string Utility::hex_char_to_binary(char hex) {
     switch (hex) {
         case '0':
             return "0000";
-            break;
         case '1':
             return "0001";
         case '2':
@@ -58,7 +56,7 @@ std::string Utility::convertHexCharToBinary(char hex) {
 }
 
 // Hex to Decimal
-int Utility::convertIndividualHexToDecimal(char hex) {
+int Utility::hex_char_to_decimal(char hex) {
     switch (hex) {
         case '0':
             return 0;
@@ -96,12 +94,12 @@ int Utility::convertIndividualHexToDecimal(char hex) {
 }
 
 // HEX to Decimal from string input
-int Utility::convertHexToDecimal(std::string hexInput) {
-    int i = hexInput.length() - 1;
+int Utility::hex_to_decimal(std::string hex_input) {
+    int i = hex_input.length() - 1;
     int place = 0;
     int final = 0;
     while (i >= 0) {
-        final += pow(16, place) * convertIndividualHexToDecimal(hexInput.at(i));
+        final += pow(16, place) * hex_char_to_decimal(hex_input.at(i));
         place++;
         --i;
     }
@@ -110,19 +108,19 @@ int Utility::convertHexToDecimal(std::string hexInput) {
 }
 
 // Converts Binary to HEX
-std::string Utility::BinaryToHex(std::string binaryinput) {
-    std::string hexVersion = "";
+std::string Utility::binary_to_hex(std::string bin_input) {
+    std::string output = "";
 
-    while (binaryinput.length() % 4 != 0)binaryinput = '0' + binaryinput;
-    for (int i = 0; i < binaryinput.length(); i = i + 4) {
-        hexVersion += convertFourBitsToHexChar(binaryinput.substr(i, 4));
+    while (bin_input.length() % 4 != 0)bin_input = '0' + bin_input;
+    for (int i = 0; i < bin_input.length(); i = i + 4) {
+        output += four_bits_to_hex(bin_input.substr(i, 4));
     }
-    return hexVersion;
+    return output;
 }
 
 // Converts individual bits to a HEX Char
-char Utility::convertFourBitsToHexChar(std::string binary) {
-    int decimal = convertBinaryToDecimal(binary);
+char Utility::four_bits_to_hex(std::string binary) {
+    int decimal = binary_to_decimal(binary);
     switch (decimal) {
         case 0:
             return '0';
@@ -160,18 +158,18 @@ char Utility::convertFourBitsToHexChar(std::string binary) {
 }
 
 // Converts Binary to decimal
-int Utility::convertBinaryToDecimal(std::string binaryInput) {
+int Utility::binary_to_decimal(std::string bin_input) {
     int decimal = 0;
-    for (int i = 0; i < binaryInput.length(); ++i) {
+    for (int i = 0; i < bin_input.length(); ++i) {
         decimal *= 2;
-        decimal += (binaryInput.at(i) == '0') ? 0 : 1;
+        decimal += (bin_input.at(i) == '0') ? 0 : 1;
 
     }
     return decimal;
 }
 
 // Converts Decimal to HEX
-std::string Utility::convert_decimal_to_hex(int input) {
+std::string Utility::decimal_to_hex(int input) {
     std::string output = "";
     int temp;
     char next;
@@ -240,7 +238,7 @@ std::string Utility::convert_decimal_to_hex(int input) {
     return output;
 }
 
-std::string Utility::boolToString(bool s) {
+std::string Utility::bool_to_string(bool s) {
     if (s)
         return "True";
     else

@@ -12,20 +12,20 @@ Dispatcher::Dispatcher(CPU *c, RAM *r) {
 
 void Dispatcher::load_PCB(PCB *p) {
     current = p;
-    current->wait_time->turnOff();
-    current->wait_time->recordData();
-    //current->wait_time->recordLogs();
-    current->comp_time->turnOn();
+    current->wait_time->turn_off();
+    current->wait_time->record_data();
+    current->wait_time->record_log();
+    current->comp_time->turn_on();
     current->state = PCB::PROCESS_STATUS::RUNNING;
-    cpu->loadPCB(p);
+    cpu->load_pcb(p);
 }
 
 PCB *Dispatcher::unload_PCB() {
 
-    PCB *temp = cpu->storePCB();
-    temp->comp_time->turnOff();
-    temp->comp_time->recordData();
-    //temp->comp_time->recordLogs();
+    PCB *temp = cpu->store_pcb();
+    temp->comp_time->turn_off();
+    temp->comp_time->record_data();
+    temp->comp_time->record_log();
     temp->state = PCB::PROCESS_STATUS::COMPLETED;
     Debug::debug(Debug::DEBUG_DISPATCHER, "Unloading");
     return temp;
