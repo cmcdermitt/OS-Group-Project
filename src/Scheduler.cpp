@@ -15,6 +15,7 @@ Scheduler::Scheduler(std::list<PCB *> &pcb_list, Disk &disk_in_use, RAM &ram_in_
     jobsAllocated = 0;
     jobsCompleted = 0;
     lt_sched_complete = false;
+
 }
 
 // Long Term Scheduler
@@ -44,7 +45,10 @@ void Scheduler::st_sched(bool *st_still_has_work) {
     std::cout << "\nREADY QUEUE START SIZE " << ready_queue.size();
     PCB *temp;
 
-    ready_queue.sort(comp_fifo);
+    if (sched_type == SCHEDULING_TYPE::FIFO)
+        ready_queue.sort(comp_fifo);
+    else if (sched_type == SCHEDULING_TYPE::PRIORITY)
+        ready_queue.sort(comp_priority);
 
     if (!ready_queue.empty()) {
         temp = ready_queue.front(); //Access first PCB in ready queue
@@ -63,8 +67,8 @@ void Scheduler::st_sched(bool *st_still_has_work) {
 }
 
 //returns pointer to next PCB, returns null pointer if no next PCB
-PCB *Scheduler::lt_get_next_pcb(std::list<PCB *> pcbs, bool is_priority) {
-    if (is_priority) {
+PCB* Scheduler::lt_get_next_pcb(std::list<PCB *> pcbs) {
+    if (sched_type == SCHEDULING_TYPE::PRIORITY) {
         PCB *temp;
         int priority = 1000;
 

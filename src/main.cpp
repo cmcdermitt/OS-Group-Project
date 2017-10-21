@@ -1,10 +1,54 @@
-#include <iostream>
-#include "Utility.h"
-#include "Driver.h"
+#include "Loader.h"
+#include<list>
+#include "PCB.h"
+#include "Log.h"
+#include "Scheduler.h"
+#include "Ram.h"
+#include "CPU.h"
 
 int main() {
-    //calls Driver to start
-    Driver *driver = new Driver();
-    driver->run();
+    Disk disk = Disk();
+    RAM *ram = new RAM();
+    Loader loader = Loader();
+    CPU *cpu = new CPU(ram, production);
+    std::list<PCB*> pcbs = std::list<PCB*>();
+    Log *log = new Log("Driver");
+    Log *test_log = new Log("Test");
+    Dispatcher *disp = new Dispatcher(cpu, ram);
+    bool lt_still_has_work = true;
+    bool st_still_has_work = true;
+
+    log->turn_on();
+    loader.init(disk, pcbs);
+
+    Scheduler sched = Scheduler(pcbs, disk, *ram, disp);
+    while (lt_still_has_work || st_still_has_work) {
+
+        sched.lt_sched(&lt_still_has_work);
+
+        sched.st_sched(&st_still_has_work);
+
+
+    }
+    //sched.lt_test();
+    //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
+    ;
+
+    log->turn_off();
+
+
+    //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
+
+
+    delete log;
+
+    //driver_test(test_log)
+}
+
+void driver_test(Log* test_log) {
+    CPU::test();
+//	test_log->turn_on();for(int i= 0; i < 2048; i++) std::cout << disk.read(i) << std::endl;
+    test_log->turn_off();
+    delete test_log;
 }
 

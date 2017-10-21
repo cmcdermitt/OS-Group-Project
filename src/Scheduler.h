@@ -31,6 +31,8 @@ private:
     Dispatcher *disp;
     std::list<free_ram> ram_space;
     std::list<PCB*> ready_queue;
+    enum SCHEDULING_TYPE {FIFO, PRIORITY, SJF};
+    const SCHEDULING_TYPE sched_type = SCHEDULING_TYPE::FIFO;
 
 
     bool get_ram_start(PCB *p); //sets *p->ramStartAddress to an open space in RAM
@@ -50,7 +52,7 @@ public:
 
     void lt_sched(bool *still_has_work);
 
-    PCB *lt_get_next_pcb(std::list<PCB*> pcbs, bool is_priority = false); //returns pointer to next PCB
+    PCB *lt_get_next_pcb(std::list<PCB*> pcbs); //returns pointer to next PCB
     void st_sched(bool *st_still_has_work);
 
     void lt_test();
