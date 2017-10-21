@@ -83,16 +83,16 @@ public:
 namespace Debug {
     // Debugging flags; set to true if you want to print debug logs
     enum Debugging_Places {
-        DEBUG_ALL = true,
-        DEBUG_DRIVER = false,
-        DEBUG_LOADER = false,
-        DEBUG_DISK = false,
-        DEBUG_RAM = false,
-        DEBUG_SCHEDULER = true,
-        DEBUG_UTILITY = false,
-        DEBUG_VERBOSE = false,
-        DEBUG_DISPATCHER = true,
-        DEBUG_OUTPUT = true
+        ALL = true,
+        DRIVER = false,
+        LOADER = false,
+        DISK = false,
+        RAM = false,
+        SCHEDULER = true,
+        UTILITY = false,
+        VERBOSE = false,
+        DISPATCHER = true,
+        OUTPUT = true
     };
 
     // Debug Logs; can be turned off adn on by editing the Debugging_Places
