@@ -7,6 +7,8 @@
 #include "CPU.h"
 
 int main() {
+    std::vector<Log*> logs = std::vector<Log*>();
+    Debug::translate_program_file_to_binary();
     Disk disk = Disk();
     RAM *ram = new RAM();
     Loader loader = Loader();
@@ -19,7 +21,7 @@ int main() {
     bool st_still_has_work = true;
 
     log->turn_on();
-    loader.init(disk, pcbs);
+    loader.init(disk, pcbs, logs);
 
     Scheduler sched = Scheduler(pcbs, disk, *ram, disp);
     while (lt_still_has_work || st_still_has_work) {
