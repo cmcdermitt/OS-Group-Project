@@ -36,7 +36,7 @@ void Scheduler::lt_sched(bool *still_has_work) {
         }
         load_pcb(temp);
         jobsAllocated++;
-        Debug::debug(Debug::DEBUG_SCHEDULER, "YAllocated " + std::to_string(jobsAllocated));
+        Debug::debug(Debug::SCHEDULER, "YAllocated " + std::to_string(jobsAllocated));
     }
 }
 
@@ -58,7 +58,7 @@ void Scheduler::st_sched(bool *st_still_has_work) {
 
             remove_pcb(temp); //remove_pcb handles unloading or return to RQ
             jobsCompleted++;
-            Debug::debug(Debug::DEBUG_SCHEDULER, "GCompleted " + std::to_string(jobsCompleted));
+            Debug::debug(Debug::SCHEDULER, "GCompleted " + std::to_string(jobsCompleted));
         }
     } else {//nothing is in the ready queue
         *st_still_has_work = false;
@@ -126,7 +126,7 @@ bool Scheduler::get_ram_start(PCB *p) {
                     p->job_ram_address = it->position;
                     it->is_free = false;
                     is_space = true;
-                    Debug::debug(Debug::DEBUG_SCHEDULER, "Fit exactly at end");
+                    Debug::debug(Debug::SCHEDULER, "Fit exactly at end");
                     return is_space;
 
                 } else if ((RAM::SIZE - it->position) >
@@ -157,7 +157,7 @@ bool Scheduler::get_ram_start(PCB *p) {
                     it->is_free = false;
                     p->job_ram_address = current_pos;
                     is_space = true;
-                    Debug::debug(Debug::DEBUG_SCHEDULER, "Fit exactly somewhere in the middle");
+                    Debug::debug(Debug::SCHEDULER, "Fit exactly somewhere in the middle");
                     return is_space;
 
                 } else if (next_pos - current_pos > p->total_size) { //if there's more than enough room
@@ -170,7 +170,7 @@ bool Scheduler::get_ram_start(PCB *p) {
                     to_be_added->position = current_pos + p->total_size;
                     ram_space.insert(std::next(it), *to_be_added);
                     is_space = true;
-                    Debug::debug(Debug::DEBUG_SCHEDULER, "Fit partially somewhere in the middle");
+                    Debug::debug(Debug::SCHEDULER, "Fit partially somewhere in the middle");
                     return is_space;
                 } //if we can't fit in this space, we loop again since we aren't at the end yet
             }
@@ -243,10 +243,10 @@ void Scheduler::remove_pcb(PCB *p) {
 }
 
 void Scheduler::describe_ram_space() { //prints ram_space
-    Debug::debug(Debug::DEBUG_SCHEDULER, "Describing Ram Space \n");
+    Debug::debug(Debug::SCHEDULER, "Describing Ram Space \n");
     for (free_ram f : ram_space) {
-        Debug::debug(Debug::DEBUG_SCHEDULER, "The Position is " + std::to_string(f.position));
-        Debug::debug(Debug::DEBUG_SCHEDULER, "The status of its freedom " + Utility::bool_to_string(f.is_free));
+        Debug::debug(Debug::SCHEDULER, "The Position is " + std::to_string(f.position));
+        Debug::debug(Debug::SCHEDULER, "The status of its freedom " + Utility::bool_to_string(f.is_free));
     }
 }
 

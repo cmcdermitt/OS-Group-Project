@@ -27,12 +27,12 @@ PCB *Dispatcher::unload_PCB() {
     temp->comp_time->record_data();
     temp->comp_time->record_log();
     temp->state = PCB::PROCESS_STATUS::COMPLETED;
-    Debug::debug(Debug::DEBUG_DISPATCHER, "Unloading");
+    Debug::debug(Debug::DISPATCHER, "Unloading");
     return temp;
 }
 
 PCB *Dispatcher::context_switch(PCB *to_load) {
-    Debug::debug(Debug::DEBUG_DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
+    Debug::debug(Debug::DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
     load_PCB(to_load);
     while (cpu->state.state == PCB::RUNNING) cpu->Operate();
     return unload_PCB();

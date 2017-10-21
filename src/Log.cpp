@@ -143,7 +143,7 @@ bool Log::remove_graph(std::string label) {
 
 // Logging function
 void Debug::debug(Debugging_Places p, std::string message) {
-    if (p && Debugging_Places::DEBUG_ALL) {
+    if (p && Debugging_Places::ALL) {
         char color = message[0];
         message = message.substr(1);
 
@@ -173,7 +173,7 @@ void Debug::debug(Debugging_Places p, std::string message) {
 
 // Logging function for verbose output that you might not always want
 void Debug::verbose_debug(Debugging_Places p, std::string message) {
-    if (Debugging_Places::DEBUG_VERBOSE) {
+    if (Debugging_Places::VERBOSE) {
         Debug::debug(p, message);
     }
 }

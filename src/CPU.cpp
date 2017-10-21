@@ -33,7 +33,7 @@ bool CPU::RD(int s1, int s2, int address) {
 
 bool CPU::WR(int s1, int s2, int address) {
     if(this->cpumode==debug) return false;
-    Debug::debug(Debug::DEBUG_OUTPUT,"_Job "+std::to_string(state.job_id)+" outputs "+std::to_string(Register[s1]));
+    Debug::debug(Debug::OUTPUT,"_Job "+std::to_string(state.job_id)+" outputs "+std::to_string(Register[s1]));
     ram->write(address/4, Utility::decimal_to_hex(Register[s1]));
 
 }
