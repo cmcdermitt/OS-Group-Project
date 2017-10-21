@@ -43,6 +43,7 @@ private:
     bool on; // The function has started
     std::string label; // What the log is describing
     std::vector<Graph> graphs;
+    std::vector<std::string> rawText;
     static int num_of_logs; // Total number of logs
     static bool logged;
     static std::vector<std::string> records; // All records from logs
@@ -76,6 +77,7 @@ public:
 
     static void record_log();
 
+    void addRawText(std::string addText);
 
 };
 
@@ -90,7 +92,7 @@ namespace Debug {
         RAM = false,
         SCHEDULER = true,
         UTILITY = false,
-        VERBOSE = false,
+        VERBOSE = true,
         DISPATCHER = true,
         OUTPUT = true
     };
@@ -101,6 +103,12 @@ namespace Debug {
     // verbose_debug is for if you want something to be printed out that is big and that
     // you would not want printed out during smaller debug times
     void verbose_debug(Debugging_Places p, std::string message);
+
+    const int ONLY_FOR_TEST = false;
+    void translate_program_file_to_binary();
+
+
+
 }
 
 #endif

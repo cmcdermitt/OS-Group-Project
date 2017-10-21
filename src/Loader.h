@@ -11,7 +11,7 @@
 
 class Loader {
 public:
-    void init(Disk &disk_to_load, std::list<PCB *> &pcbs); // Loads all of the data into the disk and creates a job list
+    void init(Disk &disk_to_load, std::list<PCB *> &pcbs, std::vector<Log*> &logs); // Loads all of the data into the disk and creates a job list
     Loader();
 
 private:

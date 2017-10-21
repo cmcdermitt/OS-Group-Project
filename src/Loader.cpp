@@ -13,7 +13,7 @@
 Loader::Loader() {
 }
 
-void Loader::init(Disk &disk_to_load, std::list<PCB *> &pcbs) {
+void Loader::init(Disk &disk_to_load, std::list<PCB *> &pcbs, std::vector<Log*> &logs) {
     l = new Log("init");
     l->turn_on();
 
@@ -99,6 +99,8 @@ void Loader::init(Disk &disk_to_load, std::list<PCB *> &pcbs) {
                 p->comp_time = new Log("Completion Time for " + std::to_string(p->job_id));
                 p->wait_time->turn_on();
                 pcbs.push_back(p);
+                logs.push_back(p->wait_time);
+                logs.push_back(p->comp_time);
                 counter = 0;
 
             }

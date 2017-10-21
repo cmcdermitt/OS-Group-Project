@@ -7,6 +7,8 @@
 #include <ctime>
 #include <iomanip>
 #include "termcolor.hpp"
+#include "Utility.h"
+#include <fstream>
 
 bool Log::logged = false;
 // Static variable initialization
@@ -21,6 +23,7 @@ Log::Log(std::string label) {
     average = 0;
     total = 0;
     graphs = std::vector<Graph>();
+    rawText = std::vector<std::string>();
 }
 
 Log::~Log() {
@@ -96,6 +99,12 @@ void Log::update_individual_log() {
         graph_string.erase(graph_string.end());
 
     }
+
+    log+= "\nRaw Text\n";
+    for(std::string s : rawText)
+    {
+        log+= s;
+    }
     log = log + graph_string;
 
     Log::records.push_back(log);
@@ -107,7 +116,7 @@ bool Log::record_data() {
     log_it.unlock();
 }
 
-bool Log::add_graph(std::string label) {
+bool Log::add_graph(std::string label) {    
     Graph *g = new Graph();
     g->label = label;
     g->points = std::vector<Point>();
@@ -141,6 +150,10 @@ bool Log::remove_graph(std::string label) {
     return false;
 }
 
+void Log::addRawText(std::string addText) {
+    rawText.push_back(addText);
+}
+
 // Logging function
 void Debug::debug(Debugging_Places p, std::string message) {
     if (p && Debugging_Places::ALL) {
@@ -154,8 +167,8 @@ void Debug::debug(Debugging_Places p, std::string message) {
             case 'G':
                 std::cout << termcolor::green << message << termcolor::reset << std::endl;
                 break;
-            case 'B':
-                std::cout << termcolor::blue << message << termcolor::reset << std::endl;
+            case 'C':
+                std::cout << termcolor::cyan << message << termcolor::reset << std::endl;
                 break;
             case 'Y':
                 std::cout << termcolor::yellow << message << termcolor::reset << std::endl;
@@ -171,9 +184,37 @@ void Debug::debug(Debugging_Places p, std::string message) {
 
 }
 
+
+
 // Logging function for verbose output that you might not always want
 void Debug::verbose_debug(Debugging_Places p, std::string message) {
     if (Debugging_Places::VERBOSE) {
         Debug::debug(p, message);
     }
 }
+
+void Debug::translate_program_file_to_binary()
+{
+    std::ifstream input("../src/Program.txt");
+    std::ofstream of("../src/ProgramTranslate.txt");
+    std::string current_line = "";
+    int line_count = 0;
+
+    while(getline(input, current_line))
+    {
+        if(current_line.length() != 0) {
+            line_count++;
+            if (current_line.at(0) == '/')
+                of << current_line << std::endl;
+            else {
+                current_line = current_line.substr(0, std::string::npos);
+                current_line = Utility::hex_to_binary(current_line);
+                of << current_line << std::endl;
+            }
+        }
+    }
+    of.close();
+    input.close();
+
+}
+
