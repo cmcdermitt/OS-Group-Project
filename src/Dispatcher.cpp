@@ -20,9 +20,9 @@ void Dispatcher::load_PCB(PCB *p) {
     cpu->loadPCB(p);
 }
 
-PCB* Dispatcher::unload_PCB() {
+PCB *Dispatcher::unload_PCB() {
 
-    PCB* temp = cpu->storePCB();
+    PCB *temp = cpu->storePCB();
     temp->comp_time->turnOff();
     temp->comp_time->recordData();
     temp->comp_time->recordLogs();
@@ -31,9 +31,9 @@ PCB* Dispatcher::unload_PCB() {
     return temp;
 }
 
-PCB* Dispatcher::context_switch(PCB *to_load) {
+PCB *Dispatcher::context_switch(PCB *to_load) {
     Debug::debug(Debug::DEBUG_DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
     load_PCB(to_load);
-    while(cpu->state.state == PCB::RUNNING) cpu->Operate();
+    while (cpu->state.state == PCB::RUNNING) cpu->Operate();
     return unload_PCB();
 }
