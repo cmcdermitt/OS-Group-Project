@@ -24,6 +24,8 @@ class CPU {
     private:
         int Register[16];
         int PC;
+        std::mutex sLock;
+        std::mutex FullLock;
         RAM* ram;
         mode cpumode;
         Cache* cache;
@@ -55,6 +57,8 @@ class CPU {
         bool BGZ(int B, int addr);
         bool BLZ(int B, int addr);
         void execute(Op op);
+
+        void setState(PCB::PROCESS_STATUS);
     public:
         PCB state;
         bool Operate();
@@ -64,7 +68,11 @@ class CPU {
         int* dump_registers();
         void pass(std::string val);
         static void test();
-
+        bool isOpen();
+        void shutDown();
+        void lock();
+        void unlock();
+        static void runCPU(CPU* c);
     std::string fetch(int i);
 
     Op decode(std::string basic_string);
