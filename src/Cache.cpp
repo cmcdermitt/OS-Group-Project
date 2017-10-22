@@ -8,6 +8,14 @@ std::string Cache::read(int address) {
     std::string rd = cache_data[address];
     return rd;
 }
+std::vector<std::string> Cache::read(int address, int length){
+   std::vector<std::string> strList = std::vector<>();
+    for (int i = 0; i < length; ++i) {
+        strList.push_back(cache_data[address+i]);
+    }
+    return strList;
+}
+
 
 void Cache::write(int address, std::string data) {
     if (address >= SIZE || address < 0)
