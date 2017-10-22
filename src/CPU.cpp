@@ -262,6 +262,19 @@ PCB* CPU::store_pcb() {
     ram->write(state.total_size-state.out_buf_size,output);
     return out;
 }
+
+void CPU::runCPU(CPU* c) {
+    while (true) {
+        if (state == PCB::DONE)
+            return;
+        while (c->state == NULL || c->state == PCB::COMPLETED) {
+            c->lock();
+            c->unlock();
+        }
+        c->Operate();
+    }
+}
+
 void CPU::pass(std::string val) {
     Op decoded = CPU::decode(val);
     std::cout << "OpType: " << decoded.op_type << std::endl;
@@ -308,7 +321,7 @@ void CPU::unlock() {
 }
 
 void CPU::setState(PCB::PROCESS_STATUS p) {
-    sLock->lock()
+    sLock->lock();
     state.state = p;
     sLock->unlock();
 }
