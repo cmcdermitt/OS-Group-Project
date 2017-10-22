@@ -12,11 +12,11 @@ int main() {
     Disk disk = Disk();
     RAM *ram = new RAM();
     Loader loader = Loader();
-    CPU *cpu = new CPU(ram, production);
+    CPU **cpu = new CPU*[4];
     std::list<PCB*> pcbs = std::list<PCB*>();
     Log *log = new Log("Driver");
     Log *test_log = new Log("Test");
-    Dispatcher *disp = new Dispatcher(cpu, ram);
+    Dispatcher *disp = new Dispatcher(cpu, ram, 1);
     bool lt_still_has_work = true;
     bool st_still_has_work = true;
 

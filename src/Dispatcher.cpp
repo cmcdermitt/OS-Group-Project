@@ -4,36 +4,40 @@
 
 #include "Dispatcher.h"
 #include "Log.h"
+#include "Cache.h"
 
-Dispatcher::Dispatcher(CPU *c, RAM *r) {
-    cpu = c;
+Dispatcher::Dispatcher(CPU **c, RAM *r, int size) {
+    cpuList  = c;
     ram = r;
+    coreLength = size;
+    current = new PCB();
 }
 
-void Dispatcher::load_PCB(PCB *p) {
-    current = p;
-    current->wait_time->turn_off();
-    current->wait_time->record_data();
-    current->wait_time->record_log();
-    current->comp_time->turn_on();
-    current->state = PCB::PROCESS_STATUS::RUNNING;
-    cpu->load_pcb(p);
-}
+Cache *Dispatcher::buildCache(PCB *p, RAM *r) {
+    Cache* c = new Cache();
+    std::vector<std::string> data;
 
-PCB *Dispatcher::unload_PCB() {
-
-    PCB *temp = cpu->store_pcb();
-    temp->comp_time->turn_off();
-    temp->comp_time->record_data();
-    temp->comp_time->record_log();
-    temp->state = PCB::PROCESS_STATUS::COMPLETED;
-    Debug::debug(Debug::DISPATCHER, "Unloading");
-    return temp;
+    data = ram->read(p->job_ram_address, p->total_size);
+    c->write(p->job_ram_address, data);
+    return c;
 }
 
 PCB *Dispatcher::context_switch(PCB *to_load) {
     Debug::debug(Debug::DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
-    load_PCB(to_load);
-    while (cpu->state.state == PCB::RUNNING) cpu->Operate();
-    return unload_PCB();
+    Cache *cache = buildCache(to_load, ram);
+    CPU *c = cpuList[awaitCPU()];
+    c->load_pcb(to_load,cache);
+    while (c->state.state == PCB::RUNNING) c->Operate();
+    return c->store_pcb();
 }
+
+int Dispatcher::awaitCPU() {
+      while(1)
+      {
+          for (int i = 0; i < coreLength; ++i) {
+              if(cpuList[i]->isOpen())
+                  return i;
+          }
+      }
+}
+

@@ -12,6 +12,18 @@ std::string RAM::read(int address) {
     return rd;
 }
 
+std::vector<std::string> RAM::read(int address, int size)
+{
+    std::vector<std::string> s = std::vector<std::string>();
+    for(int i = address; i < address + size; i++)
+    {
+        mutex.lock();
+        s.push_back(ram_data[address]);
+        mutex.unlock();
+    }
+}
+
+
 void RAM::write(int address, std::string data) {
     mutex.lock();
     if (data == "0")

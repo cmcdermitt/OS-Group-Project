@@ -22,6 +22,7 @@ class RAM {
 public:
     std::mutex mutex;
     std::string read(int address);
+    std::vector<std::string> read(int address, int size);
     void write(int address, std::string data);
     void write(int address, std::vector<std::string> s);
     const static int SIZE = 1024;

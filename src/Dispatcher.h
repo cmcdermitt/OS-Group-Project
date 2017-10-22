@@ -20,9 +20,12 @@ private:
     int coreLength;
 
 public:
+    Cache* buildCache(PCB *pcb, RAM *r);
+    PCB *context_switch(PCB *to_load);
+    int awaitCPU();
     Dispatcher(CPU **c, RAM *r, int size);
-    PCB *context_switch(PCB *to_load, CPU **c);
-    void awaitCPU();
+
+
 };
 
 #endif //OS_GROUP_PROJECT_DISPATCHER_H

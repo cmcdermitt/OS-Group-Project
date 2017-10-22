@@ -9,7 +9,7 @@ std::string Cache::read(int address) {
     return rd;
 }
 std::vector<std::string> Cache::read(int address, int length){
-   std::vector<std::string> strList = std::vector<>();
+   std::vector<std::string> strList = std::vector<std::string>();
     for (int i = 0; i < length; ++i) {
         strList.push_back(cache_data[address+i]);
     }
