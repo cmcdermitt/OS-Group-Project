@@ -22,7 +22,7 @@ Log::Log(std::string label) {
     num_of_logs++;
     average = 0;
     total = 0;
-    graphs = std::vector<Graph>();
+    graphs = std::vector<Graph*>();
     rawText = std::vector<std::string>();
 }
 
@@ -62,7 +62,7 @@ bool Log::turn_off() {
 
 void Log::record_log() {
     std::ofstream log = std::ofstream();
-    log.open("LogFile" + std::to_string(time(0)) + ".txt");
+    log.open("LogFile.txt");
     log << "Log Data for " + std::to_string(time(0)) << "\n\n";
     for (std::string element : Log::records) {
         log << element;
@@ -91,12 +91,12 @@ void Log::update_individual_log() {
     log += "\nGraphs:\t";
     for (int i = 0; i < graphs.size(); i++) {
         std::cout << "\n";
-        graph_string += graphs[i].label + ":\t";
-        for (int j = 0; j < graphs[i].points.size(); j++) {
+        graph_string += graphs[i]->label + ":\t";
+        for (int j = 0; j < graphs[i]->points.size(); j++) {
             graph_string +=
-                    "(" + std::to_string(graphs[i].points[j].x) + "," + std::to_string(graphs[i].points[j].y) + "),";
+                    "(" + std::to_string(graphs[i]->points[j]->x) + "," + std::to_string(graphs[i]->points[j]->y) + "),";
         }
-        graph_string.erase(graph_string.end());
+
 
     }
 
@@ -119,19 +119,19 @@ bool Log::record_data() {
 bool Log::add_graph(std::string label) {
     Graph *g = new Graph();
     g->label = label;
-    g->points = std::vector<Point>();
-    g->origin = time(0);
-    graphs.push_back(*g);
+    g->points = std::vector<Point*>();
+    g->origin = std::clock() / CLOCKS_PER_SEC;
+    graphs.push_back(g);
     return true;
 }
 
 bool Log::add_point(std::string label, int y_coord) {
-    for (Graph g : graphs) {
-        if (g.label == label) {
+    for (Graph *g : graphs) {
+        if (g->label == label) {
             Point *p = new Point();
-            p->x = time(0) - g.origin;
+            p->x = (std::clock()/static_cast<double>(CLOCKS_PER_SEC)) - g->origin;
             p->y = y_coord;
-            g.points.push_back(*p);
+            g->points.push_back(p);
             return true;
         }
 
@@ -141,7 +141,7 @@ bool Log::add_point(std::string label, int y_coord) {
 
 bool Log::remove_graph(std::string label) {
     for (int i = 0; i < graphs.size(); i++) {
-        if (label == graphs[i].label) {
+        if (label == graphs[i]->label) {
             graphs.erase(graphs.begin() + i);
             return true;
         }
@@ -152,6 +152,31 @@ bool Log::remove_graph(std::string label) {
 
 void Log::addRawText(std::string addText) {
     rawText.push_back(addText);
+}
+
+double Log::getAverage() { return  average;}
+double Log::getLast() { return last;}
+std::string Log::total_average_wait_time(std::vector<Log *> l) {
+    double waitTime = 0;
+    double completeTime = 0;
+    double jobCount = 0;
+    for(int i = 0; i < l.size(); i = i + 2)
+    {
+        waitTime += l.at(i)->getLast();
+        completeTime += l.at(i + 1)->getLast();
+        jobCount++;
+    }
+    waitTime /= jobCount;
+    completeTime /= jobCount;
+    Log *finalLog = new Log("All Jobs");
+    finalLog->addRawText("Average wait time " + std::to_string(waitTime) + "\n");
+    finalLog->addRawText("Average complete time " + std::to_string(completeTime) + "\n");
+    finalLog->turn_on();
+    finalLog->turn_off();
+    finalLog->record_data();
+
+
+
 }
 
 // Logging function
@@ -215,6 +240,5 @@ void Debug::translate_program_file_to_binary()
     }
     of.close();
     input.close();
-
 }
 

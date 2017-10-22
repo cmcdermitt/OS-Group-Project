@@ -23,11 +23,11 @@ struct Point;
 struct Graph {
     time_t origin;
     std::string label;
-    std::vector<Point> points;
+    std::vector<Point*> points;
 };
 
 struct Point {
-    time_t x;
+    double x;
     int y;
 };
 
@@ -42,7 +42,7 @@ private:
     std::clock_t current_end_time; // Last time process ended
     bool on; // The function has started
     std::string label; // What the log is describing
-    std::vector<Graph> graphs;
+    std::vector<Graph*> graphs;
     std::vector<std::string> rawText;
     static int num_of_logs; // Total number of logs
     static bool logged;
@@ -53,17 +53,18 @@ private:
     void update_average(); // Updates Log Information
     // Stores All of the Log information in a Text File
     void update_individual_log(); // Generates individual log string for log object to be stored
-    bool logEverything();
+    static void record_log();
+
 
 public:
     //static const std::string STORAGE_NAME = "AccountingData.txt";
     Log(std::string label);
 
     bool turn_on();
-
+    bool record_data();
     bool turn_off();
 
-    bool record_data();
+    static bool logEverything();
 
     std::mutex log_it;
 
@@ -75,9 +76,15 @@ public:
 
     bool remove_graph(std::string label);
 
-    static void record_log();
+
 
     void addRawText(std::string addText);
+
+    double getAverage();
+
+    double getLast();
+
+  static  std::string total_average_wait_time(std::vector<Log*> l);
 
 };
 

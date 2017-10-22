@@ -43,8 +43,10 @@ int main() {
 
 
     delete log;
-
+    delete ram;
     //driver_test(test_log)
+     Log::total_average_wait_time(logs);
+    Log::logEverything();
 }
 
 void driver_test(Log* test_log) {

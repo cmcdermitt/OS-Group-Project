@@ -14,10 +14,8 @@ std::string RAM::read(int address) {
 
 void RAM::write(int address, std::string data) {
     mutex.lock();
-    if (data == "0")
-        ram_used -= 1;
-    else
-        ram_used += 1;
+  
+    ram_log->add_point("Ram", ram_used);
     if (address >= SIZE || address < 0)
         exit(EXIT_FAILURE);
     ram_data[address] = data;
@@ -30,6 +28,7 @@ void RAM::write(int address, std::vector<std::string> data) {
         ram_used -= data.size();
     else
         ram_used += data.size();
+    ram_log->add_point("Ram", ram_used);
     for (int i = 0; i < data.size(); i++) {
         this->ram_data[i + address] = data[i];
     }
@@ -40,10 +39,11 @@ RAM::RAM() {
     for (int i = 0; i < SIZE; i++)
         ram_data[i] = "0";
     ram_used = 0;
+    ram_log = new Log("Ram");
+    ram_log->add_graph("Ram");
 
 }
 
 RAM::~RAM() {
     ram_log->record_data();
-
 }
