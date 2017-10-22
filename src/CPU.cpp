@@ -58,18 +58,30 @@ bool CPU::MOV(int S1, int S2) {
 }
 bool CPU::ADD(int S1, int S2, int D) {
     this->Register[D] = this->Register[S1] + this->Register[S2];
+    Debug::debug(Debug::VERBOSE, "CR["+std::to_string(S1)+"]("+std::to_string(Register[S1])
+                                 +") + R["+std::to_string(S2)+"]("+std::to_string(Register[S2])
+                                 +") -> R["+std::to_string(D)+"]("+std::to_string(Register[D])+")");
     return true;
 }
 bool CPU::SUB(int S1, int S2, int D) {
     this->Register[D] = this->Register[S1] - this->Register[S2];
+    Debug::debug(Debug::VERBOSE, "CR["+std::to_string(S1)+"]("+std::to_string(Register[S1])
+                                 +") - R["+std::to_string(S2)+"]("+std::to_string(Register[S2])
+                                 +") -> R["+std::to_string(D)+"]("+std::to_string(Register[D])+")");
     return true;
 }
 bool CPU::MUL(int S1, int S2, int D) {
     this->Register[D] = this->Register[S1] * this->Register[S2];
+    Debug::debug(Debug::VERBOSE, "CR["+std::to_string(S1)+"]("+std::to_string(Register[S1])
+                                 +") * R["+std::to_string(S2)+"]("+std::to_string(Register[S2])
+                                 +") -> R["+std::to_string(D)+"]("+std::to_string(Register[D])+")");
     return true;
 }
 bool CPU::DIV(int S1, int S2, int D) {
     this->Register[D] = this->Register[S1] / this->Register[S2];
+    Debug::debug(Debug::VERBOSE, "CR["+std::to_string(S1)+"]("+std::to_string(Register[S1])
+                                 +") / R["+std::to_string(S2)+"]("+std::to_string(Register[S2])
+                                 +") -> R["+std::to_string(D)+"]("+std::to_string(Register[D])+")");
     return true;
 }
 bool CPU::AND(int S1, int S2, int D) {
