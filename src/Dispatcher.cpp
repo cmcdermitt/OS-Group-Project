@@ -8,8 +8,8 @@
 #include <thread>
 #include "Dispatcher.h"
 
-
-
+          static std::mutex jobs_protection;
+   std::vector<int> *Dispatcher::completed_jobs = new std::vector<int>();
 
 Semaphore::Semaphore(int s){
     this->val = s;
@@ -32,7 +32,7 @@ Semaphore *Dispatcher::coreSemaphore  = new Semaphore(4);
  void Dispatcher::operateCPU(CPU *cpu, RAM *ram, Semaphore *sem) {
 
     while (cpu->state.state == PCB::RUNNING) cpu->Operate(); coreSemaphore->signal();
-
+                                  add_completed_job(cpu->state.job_id);
 
 }
 
@@ -87,13 +87,17 @@ PCB *Dispatcher::context_switch(PCB *to_load, CPU **cpu) {
         coreSemaphore->wait();
         for(int i = 0; i < coreLength; i++)
         {
-            if(cpu[i]->state.state == PCB::READY || !(cpu[i]->get_has_been_used()))
+            if(cpu[i]->state.state == PCB::COMPLETED || !(cpu[i]->get_has_been_used()))
             {
-                to_load->state = PCB::RUNNING;
-                load_PCB(to_load, cpu[i]);
-                std::thread thread(Dispatcher::operateCPU, cpu[i], ram, coreSemaphore);
-                thread.join();
-                break;
+
+                if(to_load->state == PCB::RUNNING) {
+                    cpu[i]->set_to_used(); 
+                    to_load->state = PCB::RUNNING;
+                    load_PCB(to_load, cpu[i]);
+                    std::thread thread(Dispatcher::operateCPU, cpu[i], ram, coreSemaphore);
+                    thread.join();
+                    break;
+                }
             }
         }
 
@@ -104,6 +108,18 @@ PCB *Dispatcher::context_switch(PCB *to_load, CPU **cpu) {
         while (cpu[0]->state.state == PCB::RUNNING) cpu[0]->Operate();
         return unload_PCB();
     }
+}
+
+void Dispatcher::add_completed_job(int i) {
+                  jobs_protection.lock();
+    completed_jobs->push_back(i);
+    jobs_protection.unlock();
+}
+
+void Dispatcher::remove_completed_job(int i) {
+                             for(int i = 0; i < completed_jobs->size(); i++)
+                                 if(i == completed_jobs->at(i))
+                                     completed_jobs->erase(completed_jobs->begin() + i);
 }
 
 

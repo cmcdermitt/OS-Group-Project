@@ -125,6 +125,7 @@ bool CPU::SLTI(int S, int val, int D) {
     return true;
 }
 bool CPU::HLT() {
+    Debug::debug(Debug::SCHEDULER, "Finished a job");
     this->state.state = state.COMPLETED;
     return true; //end program?
 }

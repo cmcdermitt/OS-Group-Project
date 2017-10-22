@@ -6,10 +6,12 @@
 #include "Ram.h"
 #include "CPU.h"
 #include <mutex>
+#include <vector>
 
 std::mutex scheduler;
 const int CORES = 2;
-
+static std::mutex completed_jobs;
+static std::vector<int> *completedJobs = new std::vector<int>();
 int main() {
     std::vector<Log*> logs = std::vector<Log*>();
     Debug::translate_program_file_to_binary();

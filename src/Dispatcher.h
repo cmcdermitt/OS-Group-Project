@@ -47,7 +47,10 @@ public:
 
    static void operateCPU(CPU *cpu, RAM *ram, Semaphore *sem);
 
+    static void add_completed_job(int i);
+    static void remove_completed_job(int i);
 
+    static std::vector<int> *completed_jobs;
 };
 
 #endif //OS_GROUP_PROJECT_DISPATCHER_H
