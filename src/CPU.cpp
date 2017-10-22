@@ -31,13 +31,13 @@ bool CPU::set_to_used() {has_been_used = true; }
 bool CPU::RD(int s1, int s2, int address) {
 
     if(this->cpumode==debug) return false;
-    if(address==0)Register[s1] = Utility::hex_to_decimal(ram->read(Register[s2] / 4 +state.job_ram_address));
-    else Register[s1] = Utility::hex_to_decimal(ram->read((address) / 4 +state.job_ram_address));
+    if(address==0)Register[s1] = Utility::hex_to_decimal(ram->read(Register[s2] / 4 +state->job_ram_address));
+    else Register[s1] = Utility::hex_to_decimal(ram->read((address) / 4 +state->job_ram_address));
 }
 
 bool CPU::WR(int s1, int s2, int address) {
     if(this->cpumode==debug) return false;
-    Debug::debug(Debug::OUTPUT,"_Job "+std::to_string(state.job_id)+" outputs "+std::to_string(Register[s1]));
+    Debug::debug(Debug::OUTPUT,"_Job "+std::to_string(state->job_id)+" outputs "+std::to_string(Register[s1]));
     ram->write(address/4, Utility::decimal_to_hex(Register[s1]));
 
 }
@@ -45,14 +45,14 @@ bool CPU::WR(int s1, int s2, int address) {
 bool CPU::ST(int addr, int breg, int dreg) {
 //    this ->ram.write(addr,this->Register[regNum]);
     //Utility::decimal_to_hex
-    if(addr==0) ram->write(Register[dreg]/4+state.job_ram_address, Utility::decimal_to_hex(Register[breg]));
-    else ram->write(addr/4 +state.job_ram_address, Utility::decimal_to_hex(Register[breg]));
+    if(addr==0) ram->write(Register[dreg]/4+state->job_ram_address, Utility::decimal_to_hex(Register[breg]));
+    else ram->write(addr/4 +state->job_ram_address, Utility::decimal_to_hex(Register[breg]));
     return true;
 }
 
 bool CPU::LW(int addr, int breg, int dreg) {
-    if(addr==0)this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(Register[breg] / 4+state.job_ram_address));
-    else this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(addr / 4 +state.job_ram_address));
+    if(addr==0)this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(Register[breg] / 4+state->job_ram_address));
+    else this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(addr / 4 +state->job_ram_address));
     return true;
 }
 
@@ -126,7 +126,7 @@ bool CPU::SLTI(int S, int val, int D) {
 }
 bool CPU::HLT() {
     Debug::debug(Debug::SCHEDULER, "Finished a job");
-    this->state.state = state.COMPLETED;
+    this->state->state = state->COMPLETED;
     return true; //end program?
 }
 bool CPU::NOP() {
@@ -166,7 +166,7 @@ int *CPU::dump_registers() {
 }
 
 std::string CPU::fetch(int i) {
-    return this->ram->read(i+state.job_ram_address);
+    return this->ram->read(i+state->job_ram_address);
 }
 
 Op CPU::decode(std::string hex) {
@@ -245,19 +245,19 @@ void CPU::execute(Op op) {
 }
 
 void CPU::load_pcb(PCB *p) {
-    this->state = *p;
+    this->state = p;
     PC = p->prgm_counter;
-    this->state.state = PCB::RUNNING;
+    this->state->state = PCB::RUNNING;
     for (int i = 0; i < 16; ++i) {
-        this->Register[i] = this->state.registers[i];
+        this->Register[i] = this->state->registers[i];
     }
 }
 PCB* CPU::store_pcb() {
-    PCB* out = &state;
-    if(this->state.state != PCB::COMPLETED) this->state.state = PCB::READY;
+    PCB* out = state;
+    if(this->state->state != PCB::COMPLETED) this->state->state = PCB::READY;
     out->prgm_counter = PC;
     for (int i = 0; i < 16; ++i) {
-        this->state.registers[i] = this->Register[i];
+        this->state->registers[i] = this->Register[i];
     }
     return out;
 }

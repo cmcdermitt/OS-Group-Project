@@ -54,7 +54,7 @@ class CPU {
         void execute(Op op);
     bool has_been_used;
     public:
-        PCB state;
+        PCB *state;
         bool Operate();
         void load_pcb(PCB *p);
         PCB* store_pcb();

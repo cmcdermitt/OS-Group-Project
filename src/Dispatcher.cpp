@@ -31,8 +31,8 @@ Semaphore *Dispatcher::coreSemaphore  = new Semaphore(4);
 
  void Dispatcher::operateCPU(CPU *cpu, RAM *ram, Semaphore *sem) {
 
-    while (cpu->state.state == PCB::RUNNING) cpu->Operate(); coreSemaphore->signal();
-                                  add_completed_job(cpu->state.job_id);
+    while (cpu->state->state == PCB::RUNNING) cpu->Operate(); coreSemaphore->signal();
+                                  add_completed_job(cpu->state->job_id);
 
 }
 
@@ -87,7 +87,7 @@ PCB *Dispatcher::context_switch(PCB *to_load, CPU **cpu) {
         coreSemaphore->wait();
         for(int i = 0; i < coreLength; i++)
         {
-            if(cpu[i]->state.state == PCB::COMPLETED || !(cpu[i]->get_has_been_used()))
+            if(  !(cpu[i]->get_has_been_used()) || cpu[i]->state->state == PCB::COMPLETED)
             {
 
                 if(to_load->state == PCB::RUNNING) {
@@ -105,7 +105,7 @@ PCB *Dispatcher::context_switch(PCB *to_load, CPU **cpu) {
     else{
         Debug::debug(Debug::DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
         load_PCB(to_load, cpu[0]);
-        while (cpu[0]->state.state == PCB::RUNNING) cpu[0]->Operate();
+        while (cpu[0]->state->state == PCB::RUNNING) cpu[0]->Operate();
         return unload_PCB();
     }
 }
