@@ -22,7 +22,11 @@ CPU::CPU(RAM* ram,mode m) {
         this->Register[i]=i;
     }
     this->Register[1] = 0;
+    has_been_used = false;
 }
+
+bool CPU::get_has_been_used() { return has_been_used;}
+bool CPU::set_to_used() {has_been_used = true; }
 
 bool CPU::RD(int s1, int s2, int address) {
 

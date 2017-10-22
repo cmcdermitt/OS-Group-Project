@@ -6,27 +6,35 @@
 #include "Log.h"
 #include <mutex>
 #include <thread>
-
-class Semaphore{
-    int val;
-    std::mutex j;
-public: Semaphore(int val){
-        this->val = val;
-    }
-    void wait(){
-        j.lock();
-        while(val<=0);
-        val--;
-        j.unlock();
-    }
-    void signal(){
-        j.lock();
-        val++;
-        j.unlock();
-    }
-};
+#include "Dispatcher.h"
 
 
+
+
+Semaphore::Semaphore(int s){
+    this->val = s;
+}
+void Semaphore::wait(){
+    j.lock();
+    while(val<=0);
+    val--;
+    j.unlock();
+}
+void Semaphore::signal(){
+    j.lock();
+    val++;
+    j.unlock();
+}
+
+Semaphore *Dispatcher::coreSemaphore  = new Semaphore(4);
+
+
+ void Dispatcher::operateCPU(CPU *cpu, RAM *ram, Semaphore *sem) {
+
+    while (cpu->state.state == PCB::RUNNING) cpu->Operate(); coreSemaphore->signal();
+
+
+}
 
 Dispatcher::Dispatcher(CPU *c, RAM *r,int size=1) {
     ram = r;
@@ -35,19 +43,19 @@ Dispatcher::Dispatcher(CPU *c, RAM *r,int size=1) {
         cpu = c;
         this->mode=MULTI;
         coreLength = size;
-        coreSemaphore = new Semaphore(coreLength);
+
     }
 
 }
 
-void Dispatcher::load_PCB(PCB *p) {
-    current = p;
-    current->wait_time->turn_off();
-    current->wait_time->record_data();
-    current->wait_time->record_log();
-    current->comp_time->turn_on();
-    current->state = PCB::PROCESS_STATUS::RUNNING;
-    cpu->load_pcb(p);
+ void Dispatcher::load_PCB(PCB *p, CPU *c) {
+
+    p->wait_time->turn_off();
+    p->wait_time->record_data();
+    p->wait_time->record_log();
+    p->comp_time->turn_on();
+    p->state = PCB::PROCESS_STATUS::RUNNING;
+    c->load_pcb(p);
 }
 
 PCB *Dispatcher::unload_PCB() {
@@ -61,7 +69,7 @@ PCB *Dispatcher::unload_PCB() {
     return temp;
 }
 
-PCB *Dispatcher::context_switch(PCB *to_load) {
+PCB *Dispatcher::context_switch(PCB *to_load, CPU **cpu) {
     /* get PCB
      * Wait for a CPU
      * - Await AVAILABLE_CORES semaphore
@@ -76,15 +84,26 @@ PCB *Dispatcher::context_switch(PCB *to_load) {
 
 
     if(this->mode==MULTI){
+        coreSemaphore->wait();
+        for(int i = 0; i < coreLength; i++)
+        {
+            if(cpu[i]->state.state == PCB::READY || !(cpu[i]->get_has_been_used()))
+            {
+                to_load->state = PCB::RUNNING;
+                load_PCB(to_load, cpu[i]);
+                std::thread thread(Dispatcher::operateCPU, cpu[i], ram, coreSemaphore);
+                thread.join();
+                break;
+            }
+        }
 
     }
     else{
         Debug::debug(Debug::DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
-        load_PCB(to_load);
-        while (cpu->state.state == PCB::RUNNING) cpu->Operate();
+        load_PCB(to_load, cpu[0]);
+        while (cpu[0]->state.state == PCB::RUNNING) cpu[0]->Operate();
         return unload_PCB();
     }
-
 }
 
 

@@ -41,7 +41,7 @@ void Scheduler::lt_sched(bool *still_has_work) {
 }
 
 // Short Term Scheduler
-void Scheduler::st_sched(bool *st_still_has_work) {
+void Scheduler::st_sched(bool *st_still_has_work, CPU **cpu) {
     std::cout << "\nREADY QUEUE START SIZE " << ready_queue.size();
     PCB *temp;
 
@@ -54,11 +54,29 @@ void Scheduler::st_sched(bool *st_still_has_work) {
         temp = ready_queue.front(); //Access first PCB in ready queue
 
         if (temp != nullptr) {
-            temp = disp->context_switch(temp); //send PCB to dispatcher and get it back when done
+            std::list<PCB*>::iterator i = std::list<PCB*>::iterator();
+            i = ready_queue.begin();
+            while( i != ready_queue.end())
+            {
+                if((*i)->state == PCB::READY)
+                    break;
+                else if((*i)->state == PCB::COMPLETED)
+                    remove_pcb((*i));
+            i++;
+            }
 
-            remove_pcb(temp); //remove_pcb handles unloading or return to RQ
-            jobsCompleted++;
-            Debug::debug(Debug::SCHEDULER, "GCompleted " + std::to_string(jobsCompleted));
+            if(i != ready_queue.end()) {
+                (*i)->state = PCB::RUNNING;
+                Debug::debug(Debug::SCHEDULER ,"Job " + std::to_string((*i)->job_id) + "is running");
+                 disp->context_switch((*i), cpu);
+
+            }
+            //send PCB to dispatcher and get it back when done
+            if(i != ready_queue.end()) {
+                remove_pcb((*i)); //remove_pcb handles unloading or return to RQ
+               jobsCompleted++;
+                Debug::debug(Debug::SCHEDULER, "GCompleted " + std::to_string(jobsCompleted));
+            }
         }
     } else {//nothing is in the ready queue
         *st_still_has_work = false;

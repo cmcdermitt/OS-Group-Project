@@ -52,6 +52,7 @@ class CPU {
         bool BGZ(int B, int addr);
         bool BLZ(int B, int addr);
         void execute(Op op);
+    bool has_been_used;
     public:
         PCB state;
         bool Operate();
@@ -61,6 +62,10 @@ class CPU {
         int* dump_registers();
         void pass(std::string val);
         static void test();
+
+
+    bool get_has_been_used();
+    bool set_to_used();
 
     std::string fetch(int i);
 

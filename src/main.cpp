@@ -5,7 +5,11 @@
 #include "Scheduler.h"
 #include "Ram.h"
 #include "CPU.h"
+#include <mutex>
+
+std::mutex scheduler;
 const int CORES = 2;
+
 int main() {
     std::vector<Log*> logs = std::vector<Log*>();
     Debug::translate_program_file_to_binary();
@@ -34,7 +38,7 @@ int main() {
 
         sched.lt_sched(&lt_still_has_work);
 
-        sched.st_sched(&st_still_has_work);
+        sched.st_sched(&st_still_has_work, cpu);
 
 
     }
