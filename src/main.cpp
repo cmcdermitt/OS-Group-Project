@@ -36,13 +36,14 @@ int main() {
     loader.init(disk, pcbs, logs);
 
     Scheduler sched = Scheduler(pcbs, disk, *ram, disp);
+    int count = 0;
     while (lt_still_has_work || st_still_has_work) {
 
-        sched.lt_sched(&lt_still_has_work);
+        if (count % 5 == 0)
+            sched.lt_sched(&lt_still_has_work);
 
         sched.st_sched(&st_still_has_work, cpu);
-
-
+        ++count;
     }
     //sched.lt_test();
     //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
