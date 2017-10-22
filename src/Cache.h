@@ -22,6 +22,7 @@ public:
     Cache();
     ~Cache();
 
+
 private:
     std::string cache_data[SIZE];
 };

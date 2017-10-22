@@ -13,6 +13,7 @@ void Cache::write(int address, std::string data) {
     if (address >= SIZE || address < 0)
         exit(EXIT_FAILURE);
     cache_data[address] = data;
+
 }
 
 void Cache::write(int address, std::vector<std::string> data) {
