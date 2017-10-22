@@ -52,6 +52,8 @@ std::string Utility::hex_char_to_binary(char hex) {
             return "1110";
         case 'F':
             return "1111";
+        case ' ':
+            return "";
     }
 }
 

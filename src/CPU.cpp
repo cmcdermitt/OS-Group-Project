@@ -9,7 +9,7 @@
 
 bool CPU::Operate() {
     std::string instruction = CPU::fetch(this->PC);
-    PC = PC + 1;
+    ++PC;
     Op decoded = CPU::decode(instruction);
     CPU::execute(decoded);
 }
@@ -27,8 +27,8 @@ CPU::CPU(RAM* ram,mode m) {
 bool CPU::RD(int s1, int s2, int address) {
 
     if(this->cpumode==debug) return false;
-    if(address==0)Register[s1] = Utility::hex_to_decimal(ram->read(Register[s2] / 4));
-    else Register[s1] = Utility::hex_to_decimal(ram->read((address) / 4));
+    if(address==0)Register[s1] = Utility::hex_to_decimal(ram->read(Register[s2] / 4 +state.job_ram_address));
+    else Register[s1] = Utility::hex_to_decimal(ram->read((address) / 4 +state.job_ram_address));
 }
 
 bool CPU::WR(int s1, int s2, int address) {
@@ -41,14 +41,14 @@ bool CPU::WR(int s1, int s2, int address) {
 bool CPU::ST(int addr, int breg, int dreg) {
 //    this ->ram.write(addr,this->Register[regNum]);
     //Utility::decimal_to_hex
-    if(addr==0) ram->write(Register[dreg]/4, Utility::decimal_to_hex(Register[breg]));
-    else ram->write(addr/4, Utility::decimal_to_hex(Register[breg]));
+    if(addr==0) ram->write(Register[dreg]/4+state.job_ram_address, Utility::decimal_to_hex(Register[breg]));
+    else ram->write(addr/4 +state.job_ram_address, Utility::decimal_to_hex(Register[breg]));
     return true;
 }
 
 bool CPU::LW(int addr, int breg, int dreg) {
-    if(addr==0)this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(Register[breg] / 4));
-    else this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(addr / 4));
+    if(addr==0)this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(Register[breg] / 4+state.job_ram_address));
+    else this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(addr / 4 +state.job_ram_address));
     return true;
 }
 
