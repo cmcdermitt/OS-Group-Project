@@ -52,9 +52,8 @@ bool CPU::LW(int addr, int breg, int dreg) {
     return true;
 }
 
-bool CPU::MOV(int from_reg, int to_reg) {
-    if(to_reg<0||to_reg>=16||from_reg<0||from_reg>=16) return false;
-    this->Register[to_reg] = this->Register[from_reg];
+bool CPU::MOV(int S1, int S2) {
+    this->Register[S1] = this->Register[S2];
     return true;
 }
 bool CPU::ADD(int S1, int S2, int D) {
