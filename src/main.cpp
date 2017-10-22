@@ -13,10 +13,13 @@ int main() {
     RAM *ram = new RAM();
     Loader loader = Loader();
     CPU **cpu = new CPU*[4];
+    for(int i=0;i<4;i++){
+        cpu[i] = new CPU(ram,production);
+    }
     std::list<PCB*> pcbs = std::list<PCB*>();
     Log *log = new Log("Driver");
     Log *test_log = new Log("Test");
-    Dispatcher *disp = new Dispatcher(cpu, ram, 1);
+    Dispatcher *disp = new Dispatcher(cpu, ram, 4);
     bool lt_still_has_work = true;
     bool st_still_has_work = true;
 

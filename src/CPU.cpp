@@ -16,6 +16,8 @@ bool CPU::Operate() {
 }
 
 CPU::CPU(RAM* ram,mode m) {
+    this->sLock = new std::mutex();
+    this->FullLock = new std::mutex();
     this -> cpumode = m;
     if(m==debug) std::cout<<"--DEBUG--\n";
     this->ram = ram;
@@ -23,6 +25,8 @@ CPU::CPU(RAM* ram,mode m) {
         this->Register[i]=i;
     }
     this->Register[1] = 0;
+    this->state = PCB ();
+    this->state.state = PCB::UNLOADED;
 }
 
 bool CPU::RD(int s1, int s2, int address) {
@@ -265,9 +269,9 @@ PCB* CPU::store_pcb() {
 
 void CPU::runCPU(CPU* c) {
     while (true) {
-        if (state == PCB::DONE)
+        if (c->state.state == PCB::DONE)
             return;
-        while (c->state == NULL || c->state == PCB::COMPLETED) {
+        while (c->state.state == PCB::UNLOADED || c->state.state == PCB::COMPLETED) {
             c->lock();
             c->unlock();
         }

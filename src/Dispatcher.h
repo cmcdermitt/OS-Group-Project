@@ -8,6 +8,7 @@
 #include "CPU.h"
 #include "PCB.h"
 #include "Ram.h"
+#include <thread>
 
 
 class Dispatcher {

@@ -8,6 +8,9 @@
 
 Dispatcher::Dispatcher(CPU **c, RAM *r, int size) {
     cpuList  = c;
+    for(int i=0;i<size;i++){
+        std::thread (CPU::runCPU,c[i]);
+    }
     ram = r;
     coreLength = size;
     current = new PCB();
