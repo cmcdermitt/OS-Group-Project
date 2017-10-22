@@ -8,15 +8,18 @@
 #include "CPU.h"
 #include "PCB.h"
 #include "Ram.h"
-
+class Semaphore;
 class Dispatcher {
 private:
+    enum threadMode{SINGLE,MULTI};
     RAM *ram;
     PCB *current;
     CPU *cpu;
-
+    threadMode mode;
+    int coreLength;
+    Semaphore* coreSemaphore;
 public:
-    Dispatcher(CPU *c, RAM *r);
+    Dispatcher(CPU *c, RAM *r, int size);
 
     void load_PCB(PCB *p); //Singular for now
     PCB *unload_PCB();
@@ -26,6 +29,7 @@ public:
 
     //void stop_jobs(); //Singular
 
+    void awaitAvailable();
 };
 
 #endif //OS_GROUP_PROJECT_DISPATCHER_H

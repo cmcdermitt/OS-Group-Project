@@ -5,18 +5,24 @@
 #include "Scheduler.h"
 #include "Ram.h"
 #include "CPU.h"
-
+const int CORES = 2;
 int main() {
     std::vector<Log*> logs = std::vector<Log*>();
     Debug::translate_program_file_to_binary();
     Disk disk = Disk();
     RAM *ram = new RAM();
     Loader loader = Loader();
-    CPU *cpu = new CPU(ram, production);
+    CPU **cpu = new CPU*[CORES];
+    for (int i = 0; i < CORES; ++i) {
+        cpu[i]= (new CPU(ram,production));
+    }
+
+
+
     std::list<PCB*> pcbs = std::list<PCB*>();
     Log *log = new Log("Driver");
     Log *test_log = new Log("Test");
-    Dispatcher *disp = new Dispatcher(cpu, ram);
+    Dispatcher *disp = new Dispatcher(*cpu, ram,CORES);
     bool lt_still_has_work = true;
     bool st_still_has_work = true;
 
@@ -34,7 +40,7 @@ int main() {
     }
     //sched.lt_test();
     //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
-    ;
+
 
     log->turn_off();
 

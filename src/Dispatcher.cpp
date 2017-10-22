@@ -4,10 +4,40 @@
 
 #include "Dispatcher.h"
 #include "Log.h"
+#include <mutex>
+#include <thread>
 
-Dispatcher::Dispatcher(CPU *c, RAM *r) {
-    cpu = c;
+class Semaphore{
+    int val;
+    std::mutex j;
+public: Semaphore(int val){
+        this->val = val;
+    }
+    void wait(){
+        j.lock();
+        while(val<=0);
+        val--;
+        j.unlock();
+    }
+    void signal(){
+        j.lock();
+        val++;
+        j.unlock();
+    }
+};
+
+
+
+Dispatcher::Dispatcher(CPU *c, RAM *r,int size=1) {
     ram = r;
+    if(size==1){cpu = c; this->mode=SINGLE;}
+    else{
+        cpu = c;
+        this->mode=MULTI;
+        coreLength = size;
+        coreSemaphore = new Semaphore(coreLength);
+    }
+
 }
 
 void Dispatcher::load_PCB(PCB *p) {
@@ -32,8 +62,29 @@ PCB *Dispatcher::unload_PCB() {
 }
 
 PCB *Dispatcher::context_switch(PCB *to_load) {
-    Debug::debug(Debug::DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
-    load_PCB(to_load);
-    while (cpu->state.state == PCB::RUNNING) cpu->Operate();
-    return unload_PCB();
+    /* get PCB
+     * Wait for a CPU
+     * - Await AVAILABLE_CORES semaphore
+     * - iterate over cores, look for first completed core (thread::isJoinable?)
+     * assign core with new constructor using the PCB
+     * - loads onto that CPU
+     * - Operates continuously
+     * - unload_PCB increments the semaphore
+     * decrements the semaphore
+     *
+     */
+
+
+    if(this->mode==MULTI){
+
+    }
+    else{
+        Debug::debug(Debug::DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
+        load_PCB(to_load);
+        while (cpu->state.state == PCB::RUNNING) cpu->Operate();
+        return unload_PCB();
+    }
+
 }
+
+
