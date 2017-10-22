@@ -8,6 +8,7 @@
 #include <iostream>
 #include "PCB.h"
 #include <vector>
+#include "Cache.h"
 struct Op{
     std::string op_type;
     std::string op_code;
@@ -24,6 +25,7 @@ class CPU {
         int PC;
         RAM* ram;
         mode cpumode;
+        Cache cache;
         bool RD(int s1, int s2, int address);
         bool WR(int s1, int s2, int address);
         bool ST(int addr, int breg, int dreg);
