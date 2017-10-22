@@ -14,8 +14,10 @@
 6. ~~:tennis: Implement Utility functions~~
 7. ~~:frog: Implement CPU Compute functions~~
 8. ~~:frog: Implement Decoder~~
-9. debug, debug, debug!
-10. Add aditional logging functionality
+9. ~~debug, debug, debug!~~
+10. ~~Add aditional logging functionality~~
+11. Add support for multithreading
+12. Write report
 
 ## Goal
 ![Doc](./assets/block.jpg)
