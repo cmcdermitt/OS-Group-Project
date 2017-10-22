@@ -123,7 +123,7 @@ bool CPU::SLTI(int S, int val, int D) {
 }
 bool CPU::HLT() {
     Debug::debug(Debug::SCHEDULER, "Finished a job");
-    this->state.state = state.COMPLETED;
+    setState(PCB::COMPLETED);
     return true; //end program?
 }
 bool CPU::NOP() {
@@ -290,3 +290,30 @@ void CPU::test() {
     cpu.pass("4B0A0000");
     cpu.pass("4C0A0004");
 }
+
+bool CPU::isOpen() {
+    bool op;
+    sLock->lock();
+    op= state.state == PCB::COMPLETED;
+    sLock->unlock();
+    return op;
+}
+
+void CPU::lock() {
+    FullLock->lock();
+}
+
+void CPU::unlock() {
+    FullLock->unlock();
+}
+
+void CPU::setState(PCB::PROCESS_STATUS p) {
+    sLock->lock()
+    state.state = p;
+    sLock->unlock();
+}
+
+void CPU::shutDown() {
+    setState(PCB::DONE);
+}
+

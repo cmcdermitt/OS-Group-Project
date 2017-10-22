@@ -24,8 +24,8 @@ class CPU {
     private:
         int Register[16];
         int PC;
-        std::mutex sLock;
-        std::mutex FullLock;
+        std::mutex* sLock;
+        std::mutex* FullLock;
         RAM* ram;
         mode cpumode;
         Cache* cache;
