@@ -94,9 +94,9 @@ void Log::update_individual_log() {
         graph_string += graphs[i].label + ":\t";
         for (int j = 0; j < graphs[i].points.size(); j++) {
             graph_string +=
-                    "(" + std::to_string(graphs[i].points[j].x) + "," + std::to_string(graphs[i].points[j].y) + "),";
+                    "(" + std::to_string(graphs[i].points[j]->x) + "," + std::to_string(graphs[i].points[j]->y) + "),";
         }
-        graph_string.erase(graph_string.end());
+
 
     }
 
@@ -119,7 +119,7 @@ bool Log::record_data() {
 bool Log::add_graph(std::string label) {
     Graph *g = new Graph();
     g->label = label;
-    g->points = std::vector<Point>();
+    g->points = std::vector<Point*>();
     g->origin = time(0);
     graphs.push_back(*g);
     return true;
@@ -131,7 +131,7 @@ bool Log::add_point(std::string label, int y_coord) {
             Point *p = new Point();
             p->x = time(0) - g.origin;
             p->y = y_coord;
-            g.points.push_back(*p);
+            g.points.push_back(p);
             return true;
         }
 
