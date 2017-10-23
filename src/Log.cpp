@@ -155,7 +155,9 @@ void Log::addRawText(std::string addText) {
 }
 
 // Logging function
+std::mutex debugLock;
 void Debug::debug(Debugging_Places p, std::string message) {
+    debugLock.lock();
     if (p && Debugging_Places::ALL) {
         char color = message[0];
         message = message.substr(1);
@@ -181,7 +183,7 @@ void Debug::debug(Debugging_Places p, std::string message) {
         }
 
     }
-
+    debugLock.unlock();
 }
 
 

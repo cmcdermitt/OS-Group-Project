@@ -56,7 +56,7 @@ void Scheduler::st_sched(bool *st_still_has_work, CPU **cpu) {
         temp = ready_queue.front(); //Access first PCB in ready queue
 
         if (temp != nullptr) {
-            std::list<PCB*>::iterator i = std::list<PCB*>::iterator();
+            std::list<PCB*>::iterator i;
             i = ready_queue.begin();
             while( i != ready_queue.end())
             {
@@ -75,7 +75,6 @@ void Scheduler::st_sched(bool *st_still_has_work, CPU **cpu) {
 
             if(i != ready_queue.end()) {
                 if(((*i)->state != PCB::COMPLETED))
-                (*i)->state = PCB::RUNNING;
                 Debug::debug(Debug::SCHEDULER ,"Job " + std::to_string((*i)->job_id) + "is running");
                  disp->context_switch((*i), cpu);
 
