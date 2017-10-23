@@ -15,8 +15,9 @@ Semaphore::Semaphore(int s){
     this->val = s;
 }
 void Semaphore::wait(){
-    j.lock();
+
     while(val<=0);
+    j.lock();
     val--;
     j.unlock();
 }
@@ -30,7 +31,9 @@ Semaphore *Dispatcher::coreSemaphore  = new Semaphore(4);
 
  void Dispatcher::operateCPU(CPU *cpu, RAM *ram, Semaphore *sem) {
     while (cpu->state->state == PCB::RUNNING) cpu->Operate();
+     cpu->store_pcb();
      coreSemaphore->signal();
+
 }
 
 Dispatcher::Dispatcher(CPU *c, RAM *r,int size=1) {

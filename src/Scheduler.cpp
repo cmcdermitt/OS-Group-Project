@@ -27,7 +27,7 @@ void Scheduler::lt_sched(bool *still_has_work) {
     while (true) {
         // describe_ram_space();
         temp = lt_get_next_pcb(pcbs);
-        if (temp == nullptr) {
+        if (temp == NULL) {
             *still_has_work = false;
             break;
         }

@@ -44,6 +44,7 @@ RAM::RAM() {
 }
 
 RAM::~RAM() {
+    ram_log->record_log();
     ram_log->record_data();
 
 }

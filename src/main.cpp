@@ -54,7 +54,7 @@ int main() {
 
     //  std::cout << sched.lt_get_next_pcb(pcbs)->job_id << std::endl;
 
-
+    delete ram;
     delete log;
 
     //driver_test(test_log)
