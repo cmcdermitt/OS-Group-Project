@@ -9,7 +9,7 @@
 #include <vector>
 
 std::mutex scheduler;
-const int CORES = 2;
+const int CORES = 4;
 static std::mutex completed_jobs;
 static std::vector<int> *completedJobs = new std::vector<int>();
 int main() {

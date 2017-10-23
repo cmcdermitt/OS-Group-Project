@@ -82,31 +82,44 @@ PCB *Dispatcher::context_switch(PCB *to_load, CPU **cpu) {
      *
      */
 
+    static int count = 0;
 
-    if(this->mode==MULTI){
+    if (this->mode == MULTI) {
         coreSemaphore->wait();
-        for(int i = 0; i < coreLength; i++)
-        {
-            if(  !(cpu[i]->get_has_been_used()) || cpu[i]->state->state == PCB::COMPLETED)
-            {
-
-                if(to_load->state == PCB::RUNNING) {
-                    cpu[i]->set_to_used(); 
+        for (int i = 0; i < coreLength; i++) {
+//            if (!(cpu[count]->get_has_been_used()) || cpu[count]->state->state == PCB::COMPLETED) {
+//                Debug::debug(Debug::DISPATCHER, "Using CPU " + std::to_string(count));
+//                cpu[count]->set_to_used();
+//                if (to_load->state == PCB::RUNNING) {
+//                    cpu[count]->set_to_used();
+//                    to_load->state = PCB::RUNNING;
+//                    load_PCB(to_load, cpu[count]);
+//                    std::thread thread(Dispatcher::operateCPU, cpu[count], ram, coreSemaphore);
+//                    thread.join();
+//                    count++;
+//                    if(count == 4) count = 0;
+//                    break;
+//                }
+//            }
+            if (!(cpu[i]->get_has_been_used()) || cpu[i]->state->state == PCB::COMPLETED) {
+                Debug::debug(Debug::DISPATCHER, "Using CPU " + std::to_string(i));
+                cpu[i]->set_to_used();
+                if (to_load->state == PCB::RUNNING) {
+                    cpu[i]->set_to_used();
                     to_load->state = PCB::RUNNING;
                     load_PCB(to_load, cpu[i]);
                     std::thread thread(Dispatcher::operateCPU, cpu[i], ram, coreSemaphore);
-                    thread.join();
+                    thread.detach();
+                    count++;
                     break;
                 }
+            } else {
+                Debug::debug(Debug::DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
+                load_PCB(to_load, cpu[0]);
+                while (cpu[0]->state->state == PCB::RUNNING) cpu[0]->Operate();
+                return unload_PCB();
             }
         }
-
-    }
-    else{
-        Debug::debug(Debug::DISPATCHER, " Job RAM Address " + std::to_string(to_load->job_ram_address));
-        load_PCB(to_load, cpu[0]);
-        while (cpu[0]->state->state == PCB::RUNNING) cpu[0]->Operate();
-        return unload_PCB();
     }
 }
 

@@ -5,13 +5,15 @@
 #include "CPU.h"
 #include "Utility.h"
 #include "Log.h"
-
-
+#include <thread>
+#include <chrono>
 bool CPU::Operate() {
+
     std::string instruction = CPU::fetch(this->PC);
     ++PC;
     Op decoded = CPU::decode(instruction);
     CPU::execute(decoded);
+   // std::this_thread::sleep_for(std::chrono::seconds(2));
 }
 
 CPU::CPU(RAM* ram,mode m) {
