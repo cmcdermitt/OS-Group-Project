@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/conrad/Clion/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
+RM = /home/conrad/Clion/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project
+CMAKE_SOURCE_DIR = /home/conrad/CPlusPlus/OS-Group-Project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug
+CMAKE_BINARY_DIR = /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupPro
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/conrad/Clion/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/conrad/Clion/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,33 +123,6 @@ MyTarget/fast:
 	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/build
 .PHONY : MyTarget/fast
 
-src/CPU.o: src/CPU.cpp.o
-
-.PHONY : src/CPU.o
-
-# target to build an object file
-src/CPU.cpp.o:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/CPU.cpp.o
-.PHONY : src/CPU.cpp.o
-
-src/CPU.i: src/CPU.cpp.i
-
-.PHONY : src/CPU.i
-
-# target to preprocess a source file
-src/CPU.cpp.i:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/CPU.cpp.i
-.PHONY : src/CPU.cpp.i
-
-src/CPU.s: src/CPU.cpp.s
-
-.PHONY : src/CPU.s
-
-# target to generate assembly for a file
-src/CPU.cpp.s:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/CPU.cpp.s
-.PHONY : src/CPU.cpp.s
-
 src/Disk.o: src/Disk.cpp.o
 
 .PHONY : src/Disk.o
@@ -176,60 +149,6 @@ src/Disk.s: src/Disk.cpp.s
 src/Disk.cpp.s:
 	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Disk.cpp.s
 .PHONY : src/Disk.cpp.s
-
-src/Dispatcher.o: src/Dispatcher.cpp.o
-
-.PHONY : src/Dispatcher.o
-
-# target to build an object file
-src/Dispatcher.cpp.o:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Dispatcher.cpp.o
-.PHONY : src/Dispatcher.cpp.o
-
-src/Dispatcher.i: src/Dispatcher.cpp.i
-
-.PHONY : src/Dispatcher.i
-
-# target to preprocess a source file
-src/Dispatcher.cpp.i:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Dispatcher.cpp.i
-.PHONY : src/Dispatcher.cpp.i
-
-src/Dispatcher.s: src/Dispatcher.cpp.s
-
-.PHONY : src/Dispatcher.s
-
-# target to generate assembly for a file
-src/Dispatcher.cpp.s:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Dispatcher.cpp.s
-.PHONY : src/Dispatcher.cpp.s
-
-src/Driver.o: src/Driver.cpp.o
-
-.PHONY : src/Driver.o
-
-# target to build an object file
-src/Driver.cpp.o:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Driver.cpp.o
-.PHONY : src/Driver.cpp.o
-
-src/Driver.i: src/Driver.cpp.i
-
-.PHONY : src/Driver.i
-
-# target to preprocess a source file
-src/Driver.cpp.i:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Driver.cpp.i
-.PHONY : src/Driver.cpp.i
-
-src/Driver.s: src/Driver.cpp.s
-
-.PHONY : src/Driver.s
-
-# target to generate assembly for a file
-src/Driver.cpp.s:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Driver.cpp.s
-.PHONY : src/Driver.cpp.s
 
 src/Loader.o: src/Loader.cpp.o
 
@@ -312,60 +231,6 @@ src/PCB.cpp.s:
 	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/PCB.cpp.s
 .PHONY : src/PCB.cpp.s
 
-src/Ram.o: src/Ram.cpp.o
-
-.PHONY : src/Ram.o
-
-# target to build an object file
-src/Ram.cpp.o:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Ram.cpp.o
-.PHONY : src/Ram.cpp.o
-
-src/Ram.i: src/Ram.cpp.i
-
-.PHONY : src/Ram.i
-
-# target to preprocess a source file
-src/Ram.cpp.i:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Ram.cpp.i
-.PHONY : src/Ram.cpp.i
-
-src/Ram.s: src/Ram.cpp.s
-
-.PHONY : src/Ram.s
-
-# target to generate assembly for a file
-src/Ram.cpp.s:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Ram.cpp.s
-.PHONY : src/Ram.cpp.s
-
-src/Scheduler.o: src/Scheduler.cpp.o
-
-.PHONY : src/Scheduler.o
-
-# target to build an object file
-src/Scheduler.cpp.o:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Scheduler.cpp.o
-.PHONY : src/Scheduler.cpp.o
-
-src/Scheduler.i: src/Scheduler.cpp.i
-
-.PHONY : src/Scheduler.i
-
-# target to preprocess a source file
-src/Scheduler.cpp.i:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Scheduler.cpp.i
-.PHONY : src/Scheduler.cpp.i
-
-src/Scheduler.s: src/Scheduler.cpp.s
-
-.PHONY : src/Scheduler.s
-
-# target to generate assembly for a file
-src/Scheduler.cpp.s:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Scheduler.cpp.s
-.PHONY : src/Scheduler.cpp.s
-
 src/Utility.o: src/Utility.cpp.o
 
 .PHONY : src/Utility.o
@@ -429,18 +294,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MyTarget"
-	@echo "... src/CPU.o"
-	@echo "... src/CPU.i"
-	@echo "... src/CPU.s"
 	@echo "... src/Disk.o"
 	@echo "... src/Disk.i"
 	@echo "... src/Disk.s"
-	@echo "... src/Dispatcher.o"
-	@echo "... src/Dispatcher.i"
-	@echo "... src/Dispatcher.s"
-	@echo "... src/Driver.o"
-	@echo "... src/Driver.i"
-	@echo "... src/Driver.s"
 	@echo "... src/Loader.o"
 	@echo "... src/Loader.i"
 	@echo "... src/Loader.s"
@@ -450,12 +306,6 @@ help:
 	@echo "... src/PCB.o"
 	@echo "... src/PCB.i"
 	@echo "... src/PCB.s"
-	@echo "... src/Ram.o"
-	@echo "... src/Ram.i"
-	@echo "... src/Ram.s"
-	@echo "... src/Scheduler.o"
-	@echo "... src/Scheduler.i"
-	@echo "... src/Scheduler.s"
 	@echo "... src/Utility.o"
 	@echo "... src/Utility.i"
 	@echo "... src/Utility.s"
