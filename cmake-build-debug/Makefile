@@ -150,6 +150,33 @@ src/CPU.cpp.s:
 	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/CPU.cpp.s
 .PHONY : src/CPU.cpp.s
 
+src/Cache.o: src/Cache.cpp.o
+
+.PHONY : src/Cache.o
+
+# target to build an object file
+src/Cache.cpp.o:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Cache.cpp.o
+.PHONY : src/Cache.cpp.o
+
+src/Cache.i: src/Cache.cpp.i
+
+.PHONY : src/Cache.i
+
+# target to preprocess a source file
+src/Cache.cpp.i:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Cache.cpp.i
+.PHONY : src/Cache.cpp.i
+
+src/Cache.s: src/Cache.cpp.s
+
+.PHONY : src/Cache.s
+
+# target to generate assembly for a file
+src/Cache.cpp.s:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Cache.cpp.s
+.PHONY : src/Cache.cpp.s
+
 src/Disk.o: src/Disk.cpp.o
 
 .PHONY : src/Disk.o
@@ -203,33 +230,6 @@ src/Dispatcher.s: src/Dispatcher.cpp.s
 src/Dispatcher.cpp.s:
 	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Dispatcher.cpp.s
 .PHONY : src/Dispatcher.cpp.s
-
-src/Driver.o: src/Driver.cpp.o
-
-.PHONY : src/Driver.o
-
-# target to build an object file
-src/Driver.cpp.o:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Driver.cpp.o
-.PHONY : src/Driver.cpp.o
-
-src/Driver.i: src/Driver.cpp.i
-
-.PHONY : src/Driver.i
-
-# target to preprocess a source file
-src/Driver.cpp.i:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Driver.cpp.i
-.PHONY : src/Driver.cpp.i
-
-src/Driver.s: src/Driver.cpp.s
-
-.PHONY : src/Driver.s
-
-# target to generate assembly for a file
-src/Driver.cpp.s:
-	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Driver.cpp.s
-.PHONY : src/Driver.cpp.s
 
 src/Loader.o: src/Loader.cpp.o
 
@@ -432,15 +432,15 @@ help:
 	@echo "... src/CPU.o"
 	@echo "... src/CPU.i"
 	@echo "... src/CPU.s"
+	@echo "... src/Cache.o"
+	@echo "... src/Cache.i"
+	@echo "... src/Cache.s"
 	@echo "... src/Disk.o"
 	@echo "... src/Disk.i"
 	@echo "... src/Disk.s"
 	@echo "... src/Dispatcher.o"
 	@echo "... src/Dispatcher.i"
 	@echo "... src/Dispatcher.s"
-	@echo "... src/Driver.o"
-	@echo "... src/Driver.i"
-	@echo "... src/Driver.s"
 	@echo "... src/Loader.o"
 	@echo "... src/Loader.i"
 	@echo "... src/Loader.s"

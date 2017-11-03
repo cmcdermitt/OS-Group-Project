@@ -5,13 +5,15 @@
 #include "CPU.h"
 #include "Utility.h"
 #include "Log.h"
-
-
+#include <thread>
+#include <chrono>
 bool CPU::Operate() {
+
     std::string instruction = CPU::fetch(this->PC);
     ++PC;
     Op decoded = CPU::decode(instruction);
     CPU::execute(decoded);
+   // std::this_thread::sleep_for(std::chrono::seconds(2));
 }
 
 CPU::CPU(RAM* ram,mode m) {
@@ -22,33 +24,37 @@ CPU::CPU(RAM* ram,mode m) {
         this->Register[i]=i;
     }
     this->Register[1] = 0;
+    has_been_used = false;
 }
+
+bool CPU::get_has_been_used() { return has_been_used;}
+bool CPU::set_to_used() {has_been_used = true; }
 
 bool CPU::RD(int s1, int s2, int address) {
 
     if(this->cpumode==debug) return false;
-    if(address==0)Register[s1] = Utility::hex_to_decimal(ram->read(Register[s2] / 4 +state.job_ram_address));
-    else Register[s1] = Utility::hex_to_decimal(ram->read((address) / 4 +state.job_ram_address));
+    if(address==0)Register[s1] = Utility::hex_to_decimal(cache.read(Register[s2] / 4));
+    else Register[s1] = Utility::hex_to_decimal(cache.read((address) / 4));
 }
 
 bool CPU::WR(int s1, int s2, int address) {
     if(this->cpumode==debug) return false;
-    Debug::debug(Debug::OUTPUT,"_Job "+std::to_string(state.job_id)+" outputs "+std::to_string(Register[s1]));
-    ram->write(address/4, Utility::decimal_to_hex(Register[s1]));
+    Debug::debug(Debug::OUTPUT,"_Job "+std::to_string(state->job_id)+" outputs "+std::to_string(Register[s1]));
+    cache.write(address/4, Utility::decimal_to_hex(Register[s1]));
 
 }
 
 bool CPU::ST(int addr, int breg, int dreg) {
 //    this ->ram.write(addr,this->Register[regNum]);
     //Utility::decimal_to_hex
-    if(addr==0) ram->write(Register[dreg]/4+state.job_ram_address, Utility::decimal_to_hex(Register[breg]));
-    else ram->write(addr/4 +state.job_ram_address, Utility::decimal_to_hex(Register[breg]));
+    if(addr==0) cache.write(Register[dreg]/4, Utility::decimal_to_hex(Register[breg]));
+    else cache.write(addr/4, Utility::decimal_to_hex(Register[breg]));
     return true;
 }
 
 bool CPU::LW(int addr, int breg, int dreg) {
-    if(addr==0)this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(Register[breg] / 4+state.job_ram_address));
-    else this->Register[dreg] = Utility::hex_to_decimal(this->ram->read(addr / 4 +state.job_ram_address));
+    if(addr==0)this->Register[dreg] = Utility::hex_to_decimal(this->cache.read(Register[breg] / 4));
+    else this->Register[dreg] = Utility::hex_to_decimal(this->cache.read(addr / 4));
     return true;
 }
 
@@ -130,7 +136,8 @@ bool CPU::SLTI(int S, int val, int D) {
     return true;
 }
 bool CPU::HLT() {
-    this->state.state = state.COMPLETED;
+    Debug::debug(Debug::SCHEDULER, "Finished a job");
+    this->state->state = state->COMPLETED;
     return true; //end program?
 }
 bool CPU::NOP() {
@@ -170,7 +177,7 @@ int *CPU::dump_registers() {
 }
 
 std::string CPU::fetch(int i) {
-    return this->ram->read(i+state.job_ram_address);
+    return this->cache.read(i);
 }
 
 Op CPU::decode(std::string hex) {
@@ -249,20 +256,29 @@ void CPU::execute(Op op) {
 }
 
 void CPU::load_pcb(PCB *p) {
-    this->state = *p;
+    this->state = p;
+    for (int i = 0; i < state->total_size; ++i) {
+        cache.write(i, ram->read(i + state->job_ram_address));
+    }
+
     PC = p->prgm_counter;
-    this->state.state = PCB::RUNNING;
+    this->state->state = PCB::RUNNING;
     for (int i = 0; i < 16; ++i) {
-        this->Register[i] = this->state.registers[i];
+        this->Register[i] = this->state->registers[i];
     }
 }
 PCB* CPU::store_pcb() {
-    PCB* out = &state;
-    if(this->state.state != PCB::COMPLETED) this->state.state = PCB::READY;
+    PCB* out = state;
+    if(this->state->state != PCB::COMPLETED) this->state->state = PCB::READY;
     out->prgm_counter = PC;
     for (int i = 0; i < 16; ++i) {
-        this->state.registers[i] = this->Register[i];
+        this->state->registers[i] = this->Register[i];
     }
+
+    for (int i = 0; i > state->out_buf_size; ++i) {
+        ram->write(i + state->job_ram_address + state->total_size - state->out_buf_size, cache.read(i));
+    }
+
     return out;
 }
 void CPU::pass(std::string val) {

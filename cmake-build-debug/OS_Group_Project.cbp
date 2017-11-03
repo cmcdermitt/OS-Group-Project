@@ -88,6 +88,12 @@
 		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/CPU.h">
 			<Option target="MyTarget"/>
 		</Unit>
+		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Cache.cpp">
+			<Option target="MyTarget"/>
+		</Unit>
+		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Cache.h">
+			<Option target="MyTarget"/>
+		</Unit>
 		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Disk.cpp">
 			<Option target="MyTarget"/>
 		</Unit>
@@ -98,12 +104,6 @@
 			<Option target="MyTarget"/>
 		</Unit>
 		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Dispatcher.h">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Driver.cpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Driver.h">
 			<Option target="MyTarget"/>
 		</Unit>
 		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Loader.cpp">
@@ -143,6 +143,9 @@
 			<Option target="MyTarget"/>
 		</Unit>
 		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/main.cpp">
+			<Option target="MyTarget"/>
+		</Unit>
+		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/termcolor.hpp">
 			<Option target="MyTarget"/>
 		</Unit>
 		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/CMakeLists.txt">

@@ -94,7 +94,7 @@ void Log::update_individual_log() {
         graph_string += graphs[i]->label + ":\t";
         for (int j = 0; j < graphs[i]->points.size(); j++) {
             graph_string +=
-                    std::to_string(graphs[i]->points[j]->x) + "," + std::to_string(graphs[i]->points[j]->y) + "\n";
+                    "(" + std::to_string(graphs[i].points[j]->x) + "," + std::to_string(graphs[i].points[j]->y) + "),";
         }
 
 
@@ -120,8 +120,8 @@ bool Log::add_graph(std::string label) {
     Graph *g = new Graph();
     g->label = label;
     g->points = std::vector<Point*>();
-    g->origin = std::clock() / CLOCKS_PER_SEC;
-    graphs.push_back(g);
+    g->origin = time(0);
+    graphs.push_back(*g);
     return true;
 }
 
@@ -131,7 +131,7 @@ bool Log::add_point(std::string label, int y_coord) {
             Point *p = new Point();
             p->x = (std::clock()/static_cast<double>(CLOCKS_PER_SEC)) - g->origin;
             p->y = y_coord;
-            g->points.push_back(p);
+            g.points.push_back(p);
             return true;
         }
 
@@ -180,7 +180,9 @@ std::string Log::total_average_wait_time(std::vector<Log *> l) {
 }
 
 // Logging function
+std::mutex debugLock;
 void Debug::debug(Debugging_Places p, std::string message) {
+    debugLock.lock();
     if (p && Debugging_Places::ALL) {
         char color = message[0];
         message = message.substr(1);
@@ -206,7 +208,7 @@ void Debug::debug(Debugging_Places p, std::string message) {
         }
 
     }
-
+    debugLock.unlock();
 }
 
 
