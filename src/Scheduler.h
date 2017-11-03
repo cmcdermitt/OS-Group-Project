@@ -23,6 +23,9 @@ struct free_ram {
     }
 };
 
+
+
+
 class Scheduler {
 private:
     std::list<PCB*> pcbs;
@@ -53,7 +56,7 @@ public:
     void lt_sched(bool *still_has_work);
 
     PCB *lt_get_next_pcb(std::list<PCB*> pcbs); //returns pointer to next PCB
-    void st_sched(bool *st_still_has_work);
+    void st_sched(bool *st_still_has_work, CPU **cpu);
 
     void lt_test();
 };

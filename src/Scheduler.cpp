@@ -4,6 +4,7 @@
 #include "Scheduler.h"
 #include "Log.h"
 #include "Utility.h"
+#include <algorithm>
 
 // Initalizes the Scheduler and gives it the job list, disk, ram, and dispatcher
 Scheduler::Scheduler(std::list<PCB *> &pcb_list, Disk &disk_in_use, RAM &ram_in_use, Dispatcher *dispatcher) {
@@ -21,17 +22,18 @@ Scheduler::Scheduler(std::list<PCB *> &pcb_list, Disk &disk_in_use, RAM &ram_in_
 // Long Term Scheduler
 void Scheduler::lt_sched(bool *still_has_work) {
     PCB *temp;
+
     // Continues until no more jobs can be loaded or there are no more jobs
     while (true) {
         // describe_ram_space();
         temp = lt_get_next_pcb(pcbs);
-        if (temp == nullptr) {
+        if (temp == NULL) {
             *still_has_work = false;
             break;
         }
 
         if (!get_ram_start(temp)) {
-            std::cout << "DID NOT GET RAM START" << std::endl;
+       //     std::cout << "DID NOT GET RAM START" << std::endl;
             break;
         }
         load_pcb(temp);
@@ -41,10 +43,10 @@ void Scheduler::lt_sched(bool *still_has_work) {
 }
 
 // Short Term Scheduler
-void Scheduler::st_sched(bool *st_still_has_work) {
-    std::cout << "\nREADY QUEUE START SIZE " << ready_queue.size();
+void Scheduler::st_sched(bool *st_still_has_work, CPU **cpu) {
+  //  std::cout << "\nREADY QUEUE START SIZE " << ready_queue.size();
     PCB *temp;
-
+    std::vector<int>::iterator it;
     if (sched_type == SCHEDULING_TYPE::FIFO)
         ready_queue.sort(comp_fifo);
     else if (sched_type == SCHEDULING_TYPE::PRIORITY)
@@ -54,16 +56,40 @@ void Scheduler::st_sched(bool *st_still_has_work) {
         temp = ready_queue.front(); //Access first PCB in ready queue
 
         if (temp != nullptr) {
-            temp = disp->context_switch(temp); //send PCB to dispatcher and get it back when done
+            std::list<PCB*>::iterator i;
+            i = ready_queue.begin();
+            while( i != ready_queue.end())
+            {
+                if((*i)->state == PCB::READY)
+                    break;
+           it = std::find(Dispatcher::completed_jobs->begin(), Dispatcher::completed_jobs->end(), (*i)->job_id);
+                 if(it != Dispatcher::completed_jobs->end()){
+                 //    Dispatcher::remove_completed_job((*i)->job_id);
+                  //   (*i)->state = PCB::COMPLETED;
+                     remove_pcb((*i));
 
-            remove_pcb(temp); //remove_pcb handles unloading or return to RQ
-            jobsCompleted++;
-            Debug::debug(Debug::SCHEDULER, "GCompleted " + std::to_string(jobsCompleted));
+                 }
+
+            i++;
+            }
+
+            if(i != ready_queue.end()) {
+                if(((*i)->state != PCB::COMPLETED))
+                Debug::debug(Debug::SCHEDULER ,"Job " + std::to_string((*i)->job_id) + "is running");
+                 disp->context_switch((*i), cpu);
+
+            }
+            //send PCB to dispatcher and get it back when done
+            if(i != ready_queue.end()) {
+                remove_pcb((*i)); //remove_pcb handles unloading or return to RQ
+               jobsCompleted++;
+                Debug::debug(Debug::SCHEDULER, "GCompleted " + std::to_string(jobsCompleted));
+            }
         }
     } else {//nothing is in the ready queue
         *st_still_has_work = false;
     }
-    std::cout << "\nREADY QUEUE END SIZE " << ready_queue.size();
+   // std::cout << "\nREADY QUEUE END SIZE " << ready_queue.size();
 }
 
 //returns pointer to next PCB, returns null pointer if no next PCB

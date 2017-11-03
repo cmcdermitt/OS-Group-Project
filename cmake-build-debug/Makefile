@@ -123,6 +123,63 @@ MyTarget/fast:
 	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/build
 .PHONY : MyTarget/fast
 
+<<<<<<< HEAD
+=======
+src/CPU.o: src/CPU.cpp.o
+
+.PHONY : src/CPU.o
+
+# target to build an object file
+src/CPU.cpp.o:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/CPU.cpp.o
+.PHONY : src/CPU.cpp.o
+
+src/CPU.i: src/CPU.cpp.i
+
+.PHONY : src/CPU.i
+
+# target to preprocess a source file
+src/CPU.cpp.i:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/CPU.cpp.i
+.PHONY : src/CPU.cpp.i
+
+src/CPU.s: src/CPU.cpp.s
+
+.PHONY : src/CPU.s
+
+# target to generate assembly for a file
+src/CPU.cpp.s:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/CPU.cpp.s
+.PHONY : src/CPU.cpp.s
+
+src/Cache.o: src/Cache.cpp.o
+
+.PHONY : src/Cache.o
+
+# target to build an object file
+src/Cache.cpp.o:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Cache.cpp.o
+.PHONY : src/Cache.cpp.o
+
+src/Cache.i: src/Cache.cpp.i
+
+.PHONY : src/Cache.i
+
+# target to preprocess a source file
+src/Cache.cpp.i:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Cache.cpp.i
+.PHONY : src/Cache.cpp.i
+
+src/Cache.s: src/Cache.cpp.s
+
+.PHONY : src/Cache.s
+
+# target to generate assembly for a file
+src/Cache.cpp.s:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Cache.cpp.s
+.PHONY : src/Cache.cpp.s
+
+>>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 src/Disk.o: src/Disk.cpp.o
 
 .PHONY : src/Disk.o
@@ -150,6 +207,36 @@ src/Disk.cpp.s:
 	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Disk.cpp.s
 .PHONY : src/Disk.cpp.s
 
+<<<<<<< HEAD
+=======
+src/Dispatcher.o: src/Dispatcher.cpp.o
+
+.PHONY : src/Dispatcher.o
+
+# target to build an object file
+src/Dispatcher.cpp.o:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Dispatcher.cpp.o
+.PHONY : src/Dispatcher.cpp.o
+
+src/Dispatcher.i: src/Dispatcher.cpp.i
+
+.PHONY : src/Dispatcher.i
+
+# target to preprocess a source file
+src/Dispatcher.cpp.i:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Dispatcher.cpp.i
+.PHONY : src/Dispatcher.cpp.i
+
+src/Dispatcher.s: src/Dispatcher.cpp.s
+
+.PHONY : src/Dispatcher.s
+
+# target to generate assembly for a file
+src/Dispatcher.cpp.s:
+	$(MAKE) -f CMakeFiles/MyTarget.dir/build.make CMakeFiles/MyTarget.dir/src/Dispatcher.cpp.s
+.PHONY : src/Dispatcher.cpp.s
+
+>>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 src/Loader.o: src/Loader.cpp.o
 
 .PHONY : src/Loader.o
@@ -294,9 +381,24 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MyTarget"
+<<<<<<< HEAD
 	@echo "... src/Disk.o"
 	@echo "... src/Disk.i"
 	@echo "... src/Disk.s"
+=======
+	@echo "... src/CPU.o"
+	@echo "... src/CPU.i"
+	@echo "... src/CPU.s"
+	@echo "... src/Cache.o"
+	@echo "... src/Cache.i"
+	@echo "... src/Cache.s"
+	@echo "... src/Disk.o"
+	@echo "... src/Disk.i"
+	@echo "... src/Disk.s"
+	@echo "... src/Dispatcher.o"
+	@echo "... src/Dispatcher.i"
+	@echo "... src/Dispatcher.s"
+>>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 	@echo "... src/Loader.o"
 	@echo "... src/Loader.i"
 	@echo "... src/Loader.s"

@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -g   CMakeFiles/MyTarget.dir/src/main.cpp.o CMakeFiles/MyTarget.dir/src/Utility.cpp.o CMakeFiles/MyTarget.dir/src/PCB.cpp.o CMakeFiles/MyTarget.dir/src/Disk.cpp.o CMakeFiles/MyTarget.dir/src/Loader.cpp.o CMakeFiles/MyTarget.dir/src/Log.cpp.o  -o MyTarget 
