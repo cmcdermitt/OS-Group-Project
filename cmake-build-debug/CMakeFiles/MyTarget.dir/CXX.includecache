@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/conrad/CPlusPlus/OS-Group-Project/src/CPU.cpp
-CPU.h
-/home/conrad/CPlusPlus/OS-Group-Project/src/CPU.h
-Utility.h
-/home/conrad/CPlusPlus/OS-Group-Project/src/Utility.h
-Log.h
-/home/conrad/CPlusPlus/OS-Group-Project/src/Log.h
-
 /home/conrad/CPlusPlus/OS-Group-Project/src/CPU.h
 Ram.h
 /home/conrad/CPlusPlus/OS-Group-Project/src/Ram.h
@@ -23,6 +15,16 @@ PCB.h
 /home/conrad/CPlusPlus/OS-Group-Project/src/PCB.h
 vector
 -
+Cache.h
+/home/conrad/CPlusPlus/OS-Group-Project/src/Cache.h
+
+/home/conrad/CPlusPlus/OS-Group-Project/src/Cache.h
+string
+-
+vector
+-
+Log.h
+/home/conrad/CPlusPlus/OS-Group-Project/src/Log.h
 
 /home/conrad/CPlusPlus/OS-Group-Project/src/Disk.cpp
 Disk.h
@@ -37,12 +39,6 @@ string
 /home/conrad/CPlusPlus/OS-Group-Project/src/Disk.h
 iostream
 -
-
-/home/conrad/CPlusPlus/OS-Group-Project/src/Dispatcher.cpp
-Dispatcher.h
-/home/conrad/CPlusPlus/OS-Group-Project/src/Dispatcher.h
-Log.h
-/home/conrad/CPlusPlus/OS-Group-Project/src/Log.h
 
 /home/conrad/CPlusPlus/OS-Group-Project/src/Dispatcher.h
 CPU.h
@@ -128,12 +124,6 @@ list
 Log.h
 /home/conrad/CPlusPlus/OS-Group-Project/src/Log.h
 
-/home/conrad/CPlusPlus/OS-Group-Project/src/Ram.cpp
-vector
--
-Ram.h
-/home/conrad/CPlusPlus/OS-Group-Project/src/Ram.h
-
 /home/conrad/CPlusPlus/OS-Group-Project/src/Ram.h
 iostream
 -
@@ -147,16 +137,6 @@ vector
 -
 Log.h
 /home/conrad/CPlusPlus/OS-Group-Project/src/Log.h
-
-/home/conrad/CPlusPlus/OS-Group-Project/src/Scheduler.cpp
-vector
--
-Scheduler.h
-/home/conrad/CPlusPlus/OS-Group-Project/src/Scheduler.h
-Log.h
-/home/conrad/CPlusPlus/OS-Group-Project/src/Log.h
-Utility.h
-/home/conrad/CPlusPlus/OS-Group-Project/src/Utility.h
 
 /home/conrad/CPlusPlus/OS-Group-Project/src/Scheduler.h
 Disk.h
@@ -199,10 +179,16 @@ Log.h
 /home/conrad/CPlusPlus/OS-Group-Project/src/Log.h
 Scheduler.h
 /home/conrad/CPlusPlus/OS-Group-Project/src/Scheduler.h
+Disk.h
+/home/conrad/CPlusPlus/OS-Group-Project/src/Disk.h
 Ram.h
 /home/conrad/CPlusPlus/OS-Group-Project/src/Ram.h
 CPU.h
 /home/conrad/CPlusPlus/OS-Group-Project/src/CPU.h
+mutex
+-
+vector
+-
 
 /home/conrad/CPlusPlus/OS-Group-Project/src/termcolor.hpp
 unistd.h

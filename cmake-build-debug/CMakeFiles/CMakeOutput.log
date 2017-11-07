@@ -28,29 +28,28 @@ The CXX compiler identification is GNU, found in "/home/conrad/CPlusPlus/OS-Grou
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_15acb/fast"
-/usr/bin/make -f CMakeFiles/cmTC_15acb.dir/build.make CMakeFiles/cmTC_15acb.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c94ee/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c94ee.dir/build.make CMakeFiles/cmTC_c94ee.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_15acb.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_15acb.dir/testCCompiler.c.o   -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_15acb
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_15acb.dir/link.txt --verbose=1
-/usr/bin/cc      CMakeFiles/cmTC_15acb.dir/testCCompiler.c.o  -o cmTC_15acb 
+Building C object CMakeFiles/cmTC_c94ee.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_c94ee.dir/testCCompiler.c.o   -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_c94ee
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c94ee.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_c94ee.dir/testCCompiler.c.o  -o cmTC_c94ee 
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_43605/fast"
-/usr/bin/make -f CMakeFiles/cmTC_43605.dir/build.make CMakeFiles/cmTC_43605.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_6a96e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6a96e.dir/build.make CMakeFiles/cmTC_6a96e.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_43605.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_43605.dir/CMakeCCompilerABI.c.o   -c /home/conrad/Clion/bin/cmake/share/cmake-3.8/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_43605
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_43605.dir/link.txt --verbose=1
-/usr/bin/cc     -v CMakeFiles/cmTC_43605.dir/CMakeCCompilerABI.c.o  -o cmTC_43605 
+Building C object CMakeFiles/cmTC_6a96e.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_6a96e.dir/CMakeCCompilerABI.c.o   -c /home/conrad/Clion/bin/cmake/share/cmake-3.8/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_6a96e
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6a96e.dir/link.txt --verbose=1
+/usr/bin/cc     -v CMakeFiles/cmTC_6a96e.dir/CMakeCCompilerABI.c.o  -o cmTC_6a96e 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -60,59 +59,23 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_43605' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccjmeZQH.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_43605 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_43605.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6a96e' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccK5nlJg.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_6a96e /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_6a96e.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-=======
-Run Build Command:"/usr/bin/make" "cmTC_2efc1/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_2efc1.dir/build.make CMakeFiles/cmTC_2efc1.dir/build
-Building C object CMakeFiles/cmTC_2efc1.dir/testCCompiler.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTC_2efc1.dir/testCCompiler.c.o   -c /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_2efc1
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2efc1.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_2efc1.dir/testCCompiler.c.o  -o cmTC_2efc1 
-
-
-Detecting C compiler ABI info compiled with the following output:
-Change Dir: /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
-
-Run Build Command:"/usr/bin/make" "cmTC_c05c0/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_c05c0.dir/build.make CMakeFiles/cmTC_c05c0.dir/build
-Building C object CMakeFiles/cmTC_c05c0.dir/CMakeCCompilerABI.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTC_c05c0.dir/CMakeCCompilerABI.c.o   -c /Applications/CLion.app/Contents/bin/cmake/share/cmake-3.8/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_c05c0
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c05c0.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_c05c0.dir/CMakeCCompilerABI.c.o  -o cmTC_c05c0 
-Apple LLVM version 9.0.0 (clang-900.0.38)
-Target: x86_64-apple-darwin16.7.0
-Thread model: posix
-InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-Found CUDA installation: /usr/local/cuda, version 8.0
- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.12.0 -o cmTC_c05c0 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_c05c0.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a
-@(#)PROGRAM:ld  PROJECT:ld64-302.3
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
-Library search paths:
-	/usr/lib
-	/usr/local/lib
-Framework search paths:
-	/Library/Frameworks/
-	/System/Library/Frameworks/
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
-<<<<<<< HEAD
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_43605/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_43605.dir/build.make CMakeFiles/cmTC_43605.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_6a96e/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_6a96e.dir/build.make CMakeFiles/cmTC_6a96e.dir/build]
   ignore line: [make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_43605.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_43605.dir/CMakeCCompilerABI.c.o   -c /home/conrad/Clion/bin/cmake/share/cmake-3.8/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_43605]
-  ignore line: [/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_43605.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v CMakeFiles/cmTC_43605.dir/CMakeCCompilerABI.c.o  -o cmTC_43605 ]
+  ignore line: [Building C object CMakeFiles/cmTC_6a96e.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_6a96e.dir/CMakeCCompilerABI.c.o   -c /home/conrad/Clion/bin/cmake/share/cmake-3.8/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_6a96e]
+  ignore line: [/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6a96e.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v CMakeFiles/cmTC_6a96e.dir/CMakeCCompilerABI.c.o  -o cmTC_6a96e ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -122,13 +85,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_43605' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccjmeZQH.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_43605 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_43605.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6a96e' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccK5nlJg.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_6a96e /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_6a96e.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccjmeZQH.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccK5nlJg.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -145,7 +108,7 @@ Parsed C implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_43605] ==> ignore
+    arg [cmTC_6a96e] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -157,7 +120,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_43605.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_6a96e.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -184,49 +147,6 @@ Parsed C implicit link information from above output:
   implicit libs: [c]
   implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/5;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
   implicit fwks: []
-=======
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_c05c0/fast"]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_c05c0.dir/build.make CMakeFiles/cmTC_c05c0.dir/build]
-  ignore line: [Building C object CMakeFiles/cmTC_c05c0.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTC_c05c0.dir/CMakeCCompilerABI.c.o   -c /Applications/CLion.app/Contents/bin/cmake/share/cmake-3.8/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_c05c0]
-  ignore line: [/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c05c0.dir/link.txt --verbose=1]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_c05c0.dir/CMakeCCompilerABI.c.o  -o cmTC_c05c0 ]
-  ignore line: [Apple LLVM version 9.0.0 (clang-900.0.38)]
-  ignore line: [Target: x86_64-apple-darwin16.7.0]
-  ignore line: [Thread model: posix]
-  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
-  ignore line: [Found CUDA installation: /usr/local/cuda, version 8.0]
-  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.12.0 -o cmTC_c05c0 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_c05c0.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a]
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
-    arg [-demangle] ==> ignore
-    arg [-lto_library] ==> ignore, skip following value
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [x86_64] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.12.0] ==> ignore
-    arg [-o] ==> ignore
-    arg [cmTC_c05c0] ==> ignore
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_c05c0.dir/CMakeCCompilerABI.c.o] ==> ignore
-    arg [-lSystem] ==> lib [System]
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a]
-  Library search paths: [;/usr/lib;/usr/local/lib]
-  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
-  remove lib [System]
-  remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a]
-  collapse library dir [/usr/lib] ==> [/usr/lib]
-  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
-  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
-  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
-  implicit libs: []
-  implicit dirs: [/usr/lib;/usr/local/lib]
-  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
 
@@ -234,25 +154,15 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_8ce6f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_8ce6f.dir/build.make CMakeFiles/cmTC_8ce6f.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_7c1ae/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7c1ae.dir/build.make CMakeFiles/cmTC_7c1ae.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_8ce6f.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_8ce6f.dir/feature_tests.c.o   -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_8ce6f
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8ce6f.dir/link.txt --verbose=1
-/usr/bin/cc      CMakeFiles/cmTC_8ce6f.dir/feature_tests.c.o  -o cmTC_8ce6f 
+Building C object CMakeFiles/cmTC_7c1ae.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_7c1ae.dir/feature_tests.c.o   -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_7c1ae
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7c1ae.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_7c1ae.dir/feature_tests.c.o  -o cmTC_7c1ae 
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-=======
-Run Build Command:"/usr/bin/make" "cmTC_f85e3/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_f85e3.dir/build.make CMakeFiles/cmTC_f85e3.dir/build
-Building C object CMakeFiles/cmTC_f85e3.dir/feature_tests.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_f85e3.dir/feature_tests.c.o   -c /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_f85e3
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f85e3.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_f85e3.dir/feature_tests.c.o  -o cmTC_f85e3 
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -264,25 +174,15 @@ Linking C executable cmTC_f85e3
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_6b7c9/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6b7c9.dir/build.make CMakeFiles/cmTC_6b7c9.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_799db/fast"
+/usr/bin/make -f CMakeFiles/cmTC_799db.dir/build.make CMakeFiles/cmTC_799db.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6b7c9.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_6b7c9.dir/feature_tests.c.o   -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_6b7c9
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b7c9.dir/link.txt --verbose=1
-/usr/bin/cc      CMakeFiles/cmTC_6b7c9.dir/feature_tests.c.o  -o cmTC_6b7c9 
+Building C object CMakeFiles/cmTC_799db.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_799db.dir/feature_tests.c.o   -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_799db
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_799db.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_799db.dir/feature_tests.c.o  -o cmTC_799db 
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-=======
-Run Build Command:"/usr/bin/make" "cmTC_4230e/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_4230e.dir/build.make CMakeFiles/cmTC_4230e.dir/build
-Building C object CMakeFiles/cmTC_4230e.dir/feature_tests.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_4230e.dir/feature_tests.c.o   -c /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_4230e
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4230e.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_4230e.dir/feature_tests.c.o  -o cmTC_4230e 
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -294,25 +194,15 @@ Linking C executable cmTC_4230e
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_2ef95/fast"
-/usr/bin/make -f CMakeFiles/cmTC_2ef95.dir/build.make CMakeFiles/cmTC_2ef95.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_d428d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d428d.dir/build.make CMakeFiles/cmTC_d428d.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_2ef95.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_2ef95.dir/feature_tests.c.o   -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_2ef95
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2ef95.dir/link.txt --verbose=1
-/usr/bin/cc      CMakeFiles/cmTC_2ef95.dir/feature_tests.c.o  -o cmTC_2ef95 
+Building C object CMakeFiles/cmTC_d428d.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_d428d.dir/feature_tests.c.o   -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_d428d
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d428d.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_d428d.dir/feature_tests.c.o  -o cmTC_d428d 
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-=======
-Run Build Command:"/usr/bin/make" "cmTC_4f359/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_4f359.dir/build.make CMakeFiles/cmTC_4f359.dir/build
-Building C object CMakeFiles/cmTC_4f359.dir/feature_tests.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_4f359.dir/feature_tests.c.o   -c /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_4f359
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4f359.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_4f359.dir/feature_tests.c.o  -o cmTC_4f359 
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -322,29 +212,28 @@ Linking C executable cmTC_4f359
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_a7a20/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a7a20.dir/build.make CMakeFiles/cmTC_a7a20.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_9b4df/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9b4df.dir/build.make CMakeFiles/cmTC_9b4df.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_a7a20.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_a7a20.dir/testCXXCompiler.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_a7a20
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a7a20.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_a7a20.dir/testCXXCompiler.cxx.o  -o cmTC_a7a20 
+Building CXX object CMakeFiles/cmTC_9b4df.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_9b4df.dir/testCXXCompiler.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_9b4df
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9b4df.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_9b4df.dir/testCXXCompiler.cxx.o  -o cmTC_9b4df 
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_18977/fast"
-/usr/bin/make -f CMakeFiles/cmTC_18977.dir/build.make CMakeFiles/cmTC_18977.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_21b39/fast"
+/usr/bin/make -f CMakeFiles/cmTC_21b39.dir/build.make CMakeFiles/cmTC_21b39.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_18977.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_18977.dir/CMakeCXXCompilerABI.cpp.o -c /home/conrad/Clion/bin/cmake/share/cmake-3.8/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_18977
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_18977.dir/link.txt --verbose=1
-/usr/bin/c++      -v CMakeFiles/cmTC_18977.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_18977 
+Building CXX object CMakeFiles/cmTC_21b39.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_21b39.dir/CMakeCXXCompilerABI.cpp.o -c /home/conrad/Clion/bin/cmake/share/cmake-3.8/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_21b39
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21b39.dir/link.txt --verbose=1
+/usr/bin/c++      -v CMakeFiles/cmTC_21b39.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_21b39 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -354,59 +243,23 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_18977' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccaOTHWW.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_18977 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_18977.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_21b39' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccV3zk2v.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_21b39 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_21b39.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-=======
-Run Build Command:"/usr/bin/make" "cmTC_e22ef/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_e22ef.dir/build.make CMakeFiles/cmTC_e22ef.dir/build
-Building CXX object CMakeFiles/cmTC_e22ef.dir/testCXXCompiler.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTC_e22ef.dir/testCXXCompiler.cxx.o -c /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_e22ef
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e22ef.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_e22ef.dir/testCXXCompiler.cxx.o  -o cmTC_e22ef 
-
-
-Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
-
-Run Build Command:"/usr/bin/make" "cmTC_d0ffd/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_d0ffd.dir/build.make CMakeFiles/cmTC_d0ffd.dir/build
-Building CXX object CMakeFiles/cmTC_d0ffd.dir/CMakeCXXCompilerABI.cpp.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTC_d0ffd.dir/CMakeCXXCompilerABI.cpp.o -c /Applications/CLion.app/Contents/bin/cmake/share/cmake-3.8/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_d0ffd
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d0ffd.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_d0ffd.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_d0ffd 
-Apple LLVM version 9.0.0 (clang-900.0.38)
-Target: x86_64-apple-darwin16.7.0
-Thread model: posix
-InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-Found CUDA installation: /usr/local/cuda, version 8.0
- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.12.0 -o cmTC_d0ffd -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_d0ffd.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a
-@(#)PROGRAM:ld  PROJECT:ld64-302.3
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
-Library search paths:
-	/usr/lib
-	/usr/local/lib
-Framework search paths:
-	/Library/Frameworks/
-	/System/Library/Frameworks/
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
-<<<<<<< HEAD
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_18977/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_18977.dir/build.make CMakeFiles/cmTC_18977.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_21b39/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_21b39.dir/build.make CMakeFiles/cmTC_21b39.dir/build]
   ignore line: [make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_18977.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_18977.dir/CMakeCXXCompilerABI.cpp.o -c /home/conrad/Clion/bin/cmake/share/cmake-3.8/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_18977]
-  ignore line: [/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_18977.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v CMakeFiles/cmTC_18977.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_18977 ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_21b39.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_21b39.dir/CMakeCXXCompilerABI.cpp.o -c /home/conrad/Clion/bin/cmake/share/cmake-3.8/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_21b39]
+  ignore line: [/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21b39.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v CMakeFiles/cmTC_21b39.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_21b39 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -416,13 +269,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_18977' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccaOTHWW.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_18977 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_18977.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_21b39' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccV3zk2v.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_21b39 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_21b39.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccaOTHWW.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccV3zk2v.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -439,7 +292,7 @@ Parsed CXX implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_18977] ==> ignore
+    arg [cmTC_21b39] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -451,7 +304,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_18977.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_21b39.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -476,50 +329,6 @@ Parsed CXX implicit link information from above output:
   implicit libs: [stdc++;m;c]
   implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/5;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
   implicit fwks: []
-=======
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_d0ffd/fast"]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_d0ffd.dir/build.make CMakeFiles/cmTC_d0ffd.dir/build]
-  ignore line: [Building CXX object CMakeFiles/cmTC_d0ffd.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTC_d0ffd.dir/CMakeCXXCompilerABI.cpp.o -c /Applications/CLion.app/Contents/bin/cmake/share/cmake-3.8/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_d0ffd]
-  ignore line: [/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d0ffd.dir/link.txt --verbose=1]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_d0ffd.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_d0ffd ]
-  ignore line: [Apple LLVM version 9.0.0 (clang-900.0.38)]
-  ignore line: [Target: x86_64-apple-darwin16.7.0]
-  ignore line: [Thread model: posix]
-  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
-  ignore line: [Found CUDA installation: /usr/local/cuda, version 8.0]
-  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.12.0 -o cmTC_d0ffd -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_d0ffd.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a]
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
-    arg [-demangle] ==> ignore
-    arg [-lto_library] ==> ignore, skip following value
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [x86_64] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.12.0] ==> ignore
-    arg [-o] ==> ignore
-    arg [cmTC_d0ffd] ==> ignore
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_d0ffd.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
-    arg [-lc++] ==> lib [c++]
-    arg [-lSystem] ==> lib [System]
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a]
-  Library search paths: [;/usr/lib;/usr/local/lib]
-  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
-  remove lib [System]
-  remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a]
-  collapse library dir [/usr/lib] ==> [/usr/lib]
-  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
-  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
-  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
-  implicit libs: [c++]
-  implicit dirs: [/usr/lib;/usr/local/lib]
-  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
 
@@ -527,25 +336,15 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_74ccb/fast"
-/usr/bin/make -f CMakeFiles/cmTC_74ccb.dir/build.make CMakeFiles/cmTC_74ccb.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_b1787/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b1787.dir/build.make CMakeFiles/cmTC_b1787.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_74ccb.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_74ccb.dir/feature_tests.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_74ccb
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_74ccb.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_74ccb.dir/feature_tests.cxx.o  -o cmTC_74ccb 
+Building CXX object CMakeFiles/cmTC_b1787.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_b1787.dir/feature_tests.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_b1787
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b1787.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_b1787.dir/feature_tests.cxx.o  -o cmTC_b1787 
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-=======
-Run Build Command:"/usr/bin/make" "cmTC_d4c3f/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_d4c3f.dir/build.make CMakeFiles/cmTC_d4c3f.dir/build
-Building CXX object CMakeFiles/cmTC_d4c3f.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_d4c3f.dir/feature_tests.cxx.o -c /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_d4c3f
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d4c3f.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_d4c3f.dir/feature_tests.cxx.o  -o cmTC_d4c3f 
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -610,25 +409,15 @@ Linking CXX executable cmTC_d4c3f
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_3f7d4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_3f7d4.dir/build.make CMakeFiles/cmTC_3f7d4.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_15c05/fast"
+/usr/bin/make -f CMakeFiles/cmTC_15c05.dir/build.make CMakeFiles/cmTC_15c05.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_3f7d4.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_3f7d4.dir/feature_tests.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_3f7d4
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3f7d4.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_3f7d4.dir/feature_tests.cxx.o  -o cmTC_3f7d4 
+Building CXX object CMakeFiles/cmTC_15c05.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_15c05.dir/feature_tests.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_15c05
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_15c05.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_15c05.dir/feature_tests.cxx.o  -o cmTC_15c05 
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-=======
-Run Build Command:"/usr/bin/make" "cmTC_00c52/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_00c52.dir/build.make CMakeFiles/cmTC_00c52.dir/build
-Building CXX object CMakeFiles/cmTC_00c52.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_00c52.dir/feature_tests.cxx.o -c /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_00c52
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_00c52.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_00c52.dir/feature_tests.cxx.o  -o cmTC_00c52 
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -693,25 +482,15 @@ Linking CXX executable cmTC_00c52
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command:"/usr/bin/make" "cmTC_c5d03/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c5d03.dir/build.make CMakeFiles/cmTC_c5d03.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_2402e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2402e.dir/build.make CMakeFiles/cmTC_2402e.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_c5d03.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_c5d03.dir/feature_tests.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_c5d03
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c5d03.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_c5d03.dir/feature_tests.cxx.o  -o cmTC_c5d03 
+Building CXX object CMakeFiles/cmTC_2402e.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_2402e.dir/feature_tests.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_2402e
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2402e.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_2402e.dir/feature_tests.cxx.o  -o cmTC_2402e 
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-=======
-Run Build Command:"/usr/bin/make" "cmTC_b11e8/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_b11e8.dir/build.make CMakeFiles/cmTC_b11e8.dir/build
-Building CXX object CMakeFiles/cmTC_b11e8.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_b11e8.dir/feature_tests.cxx.o -c /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_b11e8
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b11e8.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_b11e8.dir/feature_tests.cxx.o  -o cmTC_b11e8 
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -774,29 +553,17 @@ Linking CXX executable cmTC_b11e8
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-<<<<<<< HEAD
 Change Dir: /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b1c8c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b1c8c.dir/build.make CMakeFiles/cmTC_b1c8c.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c2d27/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c2d27.dir/build.make CMakeFiles/cmTC_c2d27.dir/build
 make[1]: Entering directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_b1c8c.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_b1c8c.dir/feature_tests.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_b1c8c
-/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b1c8c.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_b1c8c.dir/feature_tests.cxx.o  -o cmTC_b1c8c 
+Building CXX object CMakeFiles/cmTC_c2d27.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_c2d27.dir/feature_tests.cxx.o -c /home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_c2d27
+/home/conrad/Clion/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2d27.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_c2d27.dir/feature_tests.cxx.o  -o cmTC_c2d27 
 make[1]: Leaving directory '/home/conrad/CPlusPlus/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp'
-=======
-Change Dir: /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/CMakeTmp
-
-Run Build Command:"/usr/bin/make" "cmTC_d8f44/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_d8f44.dir/build.make CMakeFiles/cmTC_d8f44.dir/build
-Building CXX object CMakeFiles/cmTC_d8f44.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_d8f44.dir/feature_tests.cxx.o -c /Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_d8f44
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d8f44.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_d8f44.dir/feature_tests.cxx.o  -o cmTC_d8f44 
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

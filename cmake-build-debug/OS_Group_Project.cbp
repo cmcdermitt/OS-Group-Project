@@ -90,7 +90,6 @@
 		<Unit filename="/home/conrad/CPlusPlus/OS-Group-Project/src/Disk.h">
 			<Option target="MyTarget"/>
 		</Unit>
-<<<<<<< HEAD
 		<Unit filename="/home/conrad/CPlusPlus/OS-Group-Project/src/Loader.cpp">
 			<Option target="MyTarget"/>
 		</Unit>
@@ -107,24 +106,6 @@
 			<Option target="MyTarget"/>
 		</Unit>
 		<Unit filename="/home/conrad/CPlusPlus/OS-Group-Project/src/PCB.h">
-=======
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Cache.cpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Cache.h">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Disk.cpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Disk.h">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Dispatcher.cpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Dispatcher.h">
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 			<Option target="MyTarget"/>
 		</Unit>
 		<Unit filename="/home/conrad/CPlusPlus/OS-Group-Project/src/Utility.cpp">
@@ -139,41 +120,7 @@
 		<Unit filename="/home/conrad/CPlusPlus/OS-Group-Project/src/termcolor.hpp">
 			<Option target="MyTarget"/>
 		</Unit>
-<<<<<<< HEAD
 		<Unit filename="/home/conrad/CPlusPlus/OS-Group-Project/CMakeLists.txt">
-=======
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/PCB.cpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/PCB.h">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Ram.cpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Ram.h">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Scheduler.cpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Scheduler.h">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Utility.cpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/Utility.h">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/main.cpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/src/termcolor.hpp">
-			<Option target="MyTarget"/>
-		</Unit>
-		<Unit filename="/Users/eshingriffith/Documents/KSU/Fall-2017/CS-3502/groupProject/OS-Group-Project/CMakeLists.txt">
->>>>>>> 214ef6a702903e0c34e041e8e5d89a4f550c3fb6
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
